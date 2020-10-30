@@ -26,7 +26,7 @@ remotes::install_github("pachamaltese/censo2017")
 
 Tal como explico en mi sitio [SQL Databases for Students and Educators](https://db-edu.pacha.dev/), esta base presenta algunas diferencias respecto de la original que se obtiene en DVD.
 
-Esta versión corresponde a una versión DuckDB de la base original que hice usando PostGIS (PostgreSQL + GIS) a partir de los [Microdatos del Censo 2017 en DVD](https://www.ine.cl/prensa/2019/09/16/ine-pone-a-disposici%C3%B3n-la-base-de-microdatos-del-censo-2017). 
+Esta versión corresponde a una versión SQLite de la base original que hice usando PostGIS (PostgreSQL + GIS) a partir de los [Microdatos del Censo 2017 en DVD](https://www.ine.cl/prensa/2019/09/16/ine-pone-a-disposici%C3%B3n-la-base-de-microdatos-del-censo-2017). 
 
 La información se convirtió desde REDATAM usando el [Convertidor REDATAM](https://github.com/discontinuos/redatam-converter) creado por Pablo De Grande. La modificación a estos archivos, que incluye geometrías detalladas, consistió en unir todos los archivos shp regionales en una única tabla por nivel (e.g en lugar de proveer `R01_mapa_comunas`, ..., `R15_mapa_comunas` combiné las 15 regiones en una única tabla `mapa_comunas`).
 
@@ -36,7 +36,7 @@ Los cambios concretos respecto de la base original son los siguientes:
 * Nombres de columna en formato "tidy" (e.g. `comuna_ref_id` en lugar de `COMUNA_REF_ID`)
 * Agregué los nombres de las unidades geográficas (e.g. se incluye `nom_comuna` en la tabla `comunas` para facilitar los filtros)
 * Incluí restricciones e índices en la base original PostGIS para hacer maś eficientes los filtros.
-* Esta versión incluye únicamente llaves primarias y no trae las llaves foráneas de la versión PostGIS. Esto es debido a que DuckDB, aunque sea más rápido que SQLite, sigue siendo un "SQL reducido".
+* Esta versión incluye únicamente llaves primarias y no trae las llaves foráneas de la versión PostGIS. Esto es debido a que SQLite no tiene todas las funciones de PostreSQL.
 * Añadí la variable `geocodigo` a la tabla de `zonas`. Esto facilita mucho las uniones con las tablas de mapas.
 * También incluí las observaciones 16054 to 16060 en la variable `zonaloc_ref_id`. Esto se debió a que era necesario para crear una llave foránea desde la tabla `mapa_zonas` y vincular el `geocodigo` (no todas las zonas del mapa están presentes en los datos del Censo).
 
