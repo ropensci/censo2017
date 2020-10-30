@@ -217,3 +217,70 @@ for (i in seq_along(tablas)) {
   rm(d)
   gc()
 }
+
+# fixes ----
+
+zonas <- censo_tabla("zonas")
+
+zonas <- zonas %>% 
+  mutate(
+    len = nchar(geocodigo),
+    geocodigo = stringr::str_pad(geocodigo, 11, "left", "0")
+  ) %>% 
+  select(-len)
+
+DBI::dbSendQuery(censo_bbdd(), "DROP TABLE zonas")
+
+DBI::dbSendQuery(
+  censo_bbdd(),
+  "CREATE TABLE zonas (
+	zonaloc_ref_id float8 NOT NULL,
+	geocodigo char(11) NULL,
+	observacion text NULL,
+	CONSTRAINT zonas_pk PRIMARY KEY (zonaloc_ref_id),
+	CONSTRAINT zonas_un UNIQUE (geocodigo)
+)"
+)
+
+DBI::dbWriteTable(
+  censo_bbdd(),
+  "zonas",
+  zonas,
+  temporary = FALSE,
+  row.names = FALSE,
+  overwrite = F,
+  append = T
+)
+
+mapa_zonas <- censo_tabla("mapa_zonas")
+
+mapa_zonas <- mapa_zonas %>% 
+  mutate(
+    len = nchar(geocodigo),
+    geocodigo = stringr::str_pad(geocodigo, 11, "left", "0")
+  ) %>% 
+  select(-len)
+
+DBI::dbSendQuery(censo_bbdd(), "DROP TABLE mapa_zonas")
+
+DBI::dbSendQuery(
+  censo_bbdd(),
+  "CREATE TABLE mapa_zonas (
+	geometry text NULL,
+	region float8 NULL,
+	provincia float8 NULL,
+	comuna float8 NULL,
+	geocodigo char(11) NOT NULL,
+	CONSTRAINT mapa_zonas_pk PRIMARY KEY (geocodigo)
+)"
+)
+
+DBI::dbWriteTable(
+  censo_bbdd(),
+  "mapa_zonas",
+  mapa_zonas,
+  temporary = FALSE,
+  row.names = FALSE,
+  overwrite = F,
+  append = T
+)

@@ -93,7 +93,6 @@ censo_tabla <- function(tabla) {
   } else {
     df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla)) 
   }
-  suppressWarnings(censo_desconectar_base())
   return(df)
 }
 

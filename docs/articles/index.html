@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Conexion a la Base de Datos del Censo — censo_bbdd • censo2017</title>
+<title>Articles • censo2017</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,7 @@
 
 
 
-<meta property="og:title" content="Conexion a la Base de Datos del Censo — censo_bbdd" />
-<meta property="og:description" content="Devuelve una conexion a la base de datos local. Esto corresponde a una
-conexion a una base 'SQLite' compatible con DBI. A diferencia de
-censo_tabla(), esta funcion es mas flexible y se puede usar con
-dbplyr para leer unicamente lo que se necesita o directamente con DBI para
-usar comandos SQL." />
+<meta property="og:title" content="Articles" />
 
 
 
@@ -63,7 +58,7 @@ usar comandos SQL." />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-article-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -115,50 +110,18 @@ usar comandos SQL." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Conexion a la Base de Datos del Censo</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/censo2017/blob/master/R/connect.R'><code>R/connect.R</code></a></small>
-    <div class="hidden name"><code>censo_bbdd.Rd</code></div>
+      <h1>Articles</h1>
     </div>
 
-    <div class="ref-description">
-    <p>Devuelve una conexion a la base de datos local. Esto corresponde a una
-conexion a una base 'SQLite' compatible con DBI. A diferencia de
-<code><a href='censo_tabla.html'>censo_tabla()</a></code>, esta funcion es mas flexible y se puede usar con
-dbplyr para leer unicamente lo que se necesita o directamente con DBI para
-usar comandos SQL.</p>
+    <div class="section ">
+      <h3>All vignettes</h3>
+      <p class="section-desc"></p>
+
+      <dl>
+        <dt><a href="censo2017.html">Uso basico del paquete censo2017</a></dt>
+        <dd></dt>
+      </dl>
     </div>
-
-    <pre class="usage"><span class='fu'>censo_bbdd</span><span class='op'>(</span>dir <span class='op'>=</span> <span class='fu'>censo_path</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>dir</th>
-      <td><p>La ubicacion de la base de datos en el disco. Por defecto es
-<code>censo2017</code> en la carpeta de datos del usuario (<code><a href='https://rdrr.io/pkg/rappdirs/man/user_data_dir.html'>rappdirs::user_data_dir()</a></code>),
-o la variable de entorno <code>CENSO_BBDD_DIR</code>.</p></td>
-    </tr>
-    </table>
-
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='censo_estado.html'>censo_estado</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='fu'>DBI</span><span class='fu'>::</span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbListTables.html'>dbListTables</a></span><span class='op'>(</span><span class='fu'>censo_bbdd</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-
- <span class='fu'>DBI</span><span class='fu'>::</span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbGetQuery.html'>dbGetQuery</a></span><span class='op'>(</span>
-  <span class='fu'>censo_bbdd</span><span class='op'>(</span><span class='op'>)</span>,
-  <span class='st'>'SELECT * FROM comunas WHERE provincia_ref_id = 1'</span>
- <span class='op'>)</span>
-<span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='message'>── <span style='color: #00BB00;'>✓ La base de datos local del Censo 2017 esta OK.</span><span> ────────────────────────────</span></div><div class='output co'>#&gt;   comuna_ref_id provincia_ref_id idcomuna redcoden    nom_comuna
-#&gt; 1             1                1       01     1101       IQUIQUE
-#&gt; 2             2                1       07     1107 ALTO HOSPICIO</div></span></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
   </div>
 </div>
 

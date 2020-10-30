@@ -1,0 +1,2067 @@
+<database>
+  <creator name="Redatam Converter" url="http://www.aacademica.org/conversor.redatam" />
+  <entity name="CENSO" pointer=".\CPV2017_CENSO.ptr">
+    <variable name="CENSO" label="Identification code" type="STRING" size="1" decimals="0" range="" filter="" data=".\CPV2017_CENSO.rbf" />
+    <entity name="REGION" pointer=".\CPV201701.ptr">
+      <variable name="IDREGION" label="Código Region" type="STRING" size="2" decimals="0" range="" filter="" data=".\CPV201701.rbf" />
+      <variable name="REDCODEN" label="División Regional" type="INT16" size="16" decimals="0" range="0 TO 99" filter="" data=".\CPV2017_REGION_REDCODEN.rbf">
+        <valueLabels>
+          <valueLabel name="0" value="MISSING" />
+          <valueLabel name="0" value="NOTAPPLICABLE" />
+        </valueLabels>
+      </variable>
+      <entity name="PROVINCI" pointer=".\CPV201702.ptr">
+        <variable name="IDPROVIN" label="Código Provincia" type="STRING" size="1" decimals="0" range="" filter="" data=".\CPV201702.rbf" />
+        <variable name="REDCODEN" label="División Provincial" type="INT16" size="16" decimals="0" range="0 TO 999" filter="" data=".\CPV2017_PROVINCI_REDCODEN.rbf">
+          <valueLabels>
+            <valueLabel name="0" value="MISSING" />
+            <valueLabel name="0" value="NOTAPPLICABLE" />
+          </valueLabels>
+        </variable>
+        <entity name="COMUNA" pointer=".\CPV201703.ptr">
+          <variable name="IDCOMUNA" label="Código Comuna" type="STRING" size="2" decimals="0" range="" filter="" data=".\CPV201703.rbf" />
+          <variable name="REDCODEN" label="División Comunal" type="INT16" size="16" decimals="0" range="0 TO 99999" filter="" data=".\CPV2017_COMUNA_REDCODEN.rbf">
+            <valueLabels>
+              <valueLabel name="0" value="MISSING" />
+              <valueLabel name="0" value="NOTAPPLICABLE" />
+            </valueLabels>
+          </variable>
+          <entity name="DISTRITO" pointer=".\CPV201704.ptr">
+            <variable name="IDDIST" label="Distrito Censal" type="STRING" size="2" decimals="0" range="" filter="" data=".\CPV201704.rbf" />
+            <entity name="AREA" pointer=".\CPV201705.ptr">
+              <variable name="IDAREA" label="Código de Area" type="STRING" size="1" decimals="0" range="" filter="" data=".\CPV201705.rbf">
+                <valueLabels>
+                  <valueLabel name="1" value="Urbano" />
+                  <valueLabel name="2" value="Rural" />
+                </valueLabels>
+              </variable>
+              <variable name="AREA" label="Código de Area" type="INTEGER" size="2" decimals="0" range="1 TO 2" filter="" data=".\CPV201706.rbf">
+                <valueLabels>
+                  <valueLabel name="1" value="Urbano" />
+                  <valueLabel name="2" value="Rural" />
+                  <valueLabel name="3" value="MISSING" />
+                  <valueLabel name="0" value="NOTAPPLICABLE" />
+                </valueLabels>
+              </variable>
+              <entity name="ZONALOC" pointer=".\CPV201706.ptr">
+                <variable name="IDZC" label="Zona Censal/Localidad" type="STRING" size="3" decimals="0" range="" filter="" data=".\CPV201707.rbf" />
+                <entity name="VIVIENDA" pointer=".\CPV201707.ptr">
+                  <variable name="NVIV" label="Número de la Vivienda" type="INTEGER" size="14" decimals="0" range="0 TO 9999" filter="" data=".\CPV201708.rbf">
+                    <valueLabels>
+                      <valueLabel name="1001" value="MISSING" />
+                      <valueLabel name="1000" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="P01" label="Tipo de Vivienda" type="INTEGER" size="4" decimals="0" range="1 TO 10" filter="" data=".\CPV201709.rbf">
+                    <valueLabels>
+                      <valueLabel name="1" value="Casa" />
+                      <valueLabel name="2" value="Departamento en edificio" />
+                      <valueLabel name="3" value="Vivienda tradicional indígena (ruka, pae pae u otras)" />
+                      <valueLabel name="4" value="Pieza en casa antigua o en conventillo" />
+                      <valueLabel name="5" value="Mediagua, mejora, rancho o choza" />
+                      <valueLabel name="6" value="Móvil (carpa, casa rodante o similar)" />
+                      <valueLabel name="7" value="Otro tipo de vivienda particular" />
+                      <valueLabel name="8" value="Vivienda colectiva" />
+                      <valueLabel name="9" value="Operativo personas en tránsito (no es vivienda)" />
+                      <valueLabel name="10" value="Operativo calle (no es vivienda)" />
+                      <valueLabel name="11" value="MISSING" />
+                      <valueLabel name="0" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="P02" label="Ocupación de la Vivienda" type="INTEGER" size="3" decimals="0" range="1 TO 4" filter="" data=".\CPV201710.rbf">
+                    <valueLabels>
+                      <valueLabel name="1" value="Con moradores presentes" />
+                      <valueLabel name="2" value="Con moradores ausentes" />
+                      <valueLabel name="3" value="En venta, para arriendo, abandonada u otro" />
+                      <valueLabel name="4" value="De temporada (vacacional u otro)" />
+                      <valueLabel name="5" value="MISSING" />
+                      <valueLabel name="0" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="P03A" label="Material de los muros exteriores" type="INTEGER" size="7" decimals="0" range="1 TO 6" filter="" data=".\CPV201711.rbf">
+                    <valueLabels>
+                      <valueLabel name="1" value="Hormigón armado" />
+                      <valueLabel name="2" value="Albañilería: bloque de cemento, piedra o ladrillo" />
+                      <valueLabel name="3" value="Tabique forrado por ambas caras (madera o acero)" />
+                      <valueLabel name="4" value="Tabique sin forro interior (madera u otro)" />
+                      <valueLabel name="5" value="Adobe, barro, quincha, pirca u otro artesanal tradicional" />
+                      <valueLabel name="6" value="Materiales precarios (lata, cartón, plástico, etc.)" />
+                      <valueLabel name="99" value="MISSING" />
+                      <valueLabel name="98" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="P03B" label="Material en la cubierta del techo" type="INTEGER" size="7" decimals="0" range="1 TO 7" filter="" data=".\CPV201712.rbf">
+                    <valueLabels>
+                      <valueLabel name="1" value="Tejas o tejuelas de arcilla, metálicas, de cemento, de madera, asfálticas o plásticas" />
+                      <valueLabel name="2" value="Losa hormigón" />
+                      <valueLabel name="3" value="Planchas metálicas de zinc, cobre, etc. o fibrocemento (tipo pizarreño)" />
+                      <valueLabel name="4" value="Fonolita o plancha de fieltro embreado" />
+                      <valueLabel name="5" value="Paja, coirón, totora o caña" />
+                      <valueLabel name="6" value="Materiales precarios (lata, cartón, plásticos, etc.)" />
+                      <valueLabel name="7" value="Sin cubierta sólida de techo" />
+                      <valueLabel name="99" value="MISSING" />
+                      <valueLabel name="98" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="P03C" label="Material de construcción del piso" type="INTEGER" size="7" decimals="0" range="1 TO 5" filter="" data=".\CPV201713.rbf">
+                    <valueLabels>
+                      <valueLabel name="1" value="Parquet, piso flotante, cerámico, madera, alfombra, flexit, cubrepiso u otro similar, sobre radier o vigas de madera" />
+                      <valueLabel name="2" value="Radier sin revestimiento" />
+                      <valueLabel name="3" value="Baldosa de cemento" />
+                      <valueLabel name="4" value="Capa de cemento sobre tierra" />
+                      <valueLabel name="5" value="Tierra" />
+                      <valueLabel name="99" value="MISSING" />
+                      <valueLabel name="98" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="P04" label="Número de piezas usadas exclusivamente como dormitorio" type="INTEGER" size="7" decimals="0" range="0 TO 6" filter="" data=".\CPV201714.rbf">
+                    <valueLabels>
+                      <valueLabel name="0" value="0 piezas" />
+                      <valueLabel name="1" value="1 pieza" />
+                      <valueLabel name="2" value="2 piezas" />
+                      <valueLabel name="3" value="3 piezas" />
+                      <valueLabel name="4" value="4 piezas" />
+                      <valueLabel name="5" value="5 piezas" />
+                      <valueLabel name="6" value="6 o más piezas" />
+                      <valueLabel name="99" value="MISSING" />
+                      <valueLabel name="98" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="P05" label="Origen del Agua" type="INTEGER" size="7" decimals="0" range="1 TO 4" filter="" data=".\CPV201715.rbf">
+                    <valueLabels>
+                      <valueLabel name="1" value="Red pública" />
+                      <valueLabel name="2" value="Pozo o noria" />
+                      <valueLabel name="3" value="Camión aljibe" />
+                      <valueLabel name="4" value="Río, vertiente, estero, canal, lago, etc." />
+                      <valueLabel name="99" value="MISSING" />
+                      <valueLabel name="98" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="CANT_HOG" label="Cantidad de Hogares" type="INTEGER" size="7" decimals="0" range="0 TO 36" filter="" data=".\CPV201716.rbf">
+                    <valueLabels>
+                      <valueLabel name="99" value="MISSING" />
+                      <valueLabel name="98" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="CANT_PER" label="Cantidad de Personas" type="INTEGER" size="14" decimals="0" range="0 TO 9999" filter="" data=".\CPV201717.rbf">
+                    <valueLabels>
+                      <valueLabel name="10001" value="MISSING" />
+                      <valueLabel name="10000" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="ind_hacin" label="Tasa de hacinamiento" type="REAL" size="64" decimals="0" range="0 TO 999" filter="" data=".\Tasa_hacin.rbf">
+                    <valueLabels>
+                      <valueLabel name="999" value="MISSING" />
+                      <valueLabel name="999" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="Ind_hacin_rec" label="Indice_hacinamiento_recode" type="INTEGER" size="4" decimals="0" range="1 TO 9" filter="" data=".\Ind_hacinamiento_recodificado.rbf">
+                    <valueLabels>
+                      <valueLabel name="1" value="Sin hacinamiento" />
+                      <valueLabel name="2" value="Hacinamiento medio" />
+                      <valueLabel name="3" value="Hacinamiento alto" />
+                      <valueLabel name="4" value="Hacinamiento crítico" />
+                      <valueLabel name="9" value="No aplica" />
+                      <valueLabel name="9" value="MISSING" />
+                      <valueLabel name="9" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <variable name="Ind_material" label="Vivienda irrecuperable" type="INTEGER" size="4" decimals="0" range="0 TO 9" filter="" data=".\Ind_global_vivienda.rbf">
+                    <valueLabels>
+                      <valueLabel name="1" value="Aceptable - Recuperable" />
+                      <valueLabel name="2" value="Irrecuperable" />
+                      <valueLabel name="9" value="No aplica" />
+                      <valueLabel name="9" value="MISSING" />
+                      <valueLabel name="9" value="NOTAPPLICABLE" />
+                    </valueLabels>
+                  </variable>
+                  <entity name="HOGAR" pointer=".\CPV201708.ptr">
+                    <variable name="NHOGAR" label="Número del hogar" type="INTEGER" size="7" decimals="0" range="0 TO 97" filter="" data=".\CPV201718.rbf">
+                      <valueLabels>
+                        <valueLabel name="0" value="1" />
+                        <valueLabel name="1" value="2" />
+                        <valueLabel name="2" value="3" />
+                        <valueLabel name="3" value="4" />
+                        <valueLabel name="4" value="5" />
+                        <valueLabel name="5" value="6" />
+                        <valueLabel name="6" value="7" />
+                        <valueLabel name="7" value="8" />
+                        <valueLabel name="8" value="9" />
+                        <valueLabel name="9" value="10" />
+                        <valueLabel name="10" value="11" />
+                        <valueLabel name="11" value="12" />
+                        <valueLabel name="12" value="13" />
+                        <valueLabel name="13" value="14" />
+                        <valueLabel name="14" value="15" />
+                        <valueLabel name="15" value="16" />
+                        <valueLabel name="16" value="17" />
+                        <valueLabel name="17" value="18" />
+                        <valueLabel name="18" value="19" />
+                        <valueLabel name="19" value="20" />
+                        <valueLabel name="20" value="21" />
+                        <valueLabel name="21" value="22" />
+                        <valueLabel name="22" value="23" />
+                        <valueLabel name="23" value="24" />
+                        <valueLabel name="24" value="25" />
+                        <valueLabel name="25" value="26" />
+                        <valueLabel name="26" value="27" />
+                        <valueLabel name="27" value="28" />
+                        <valueLabel name="28" value="29" />
+                        <valueLabel name="29" value="30" />
+                        <valueLabel name="30" value="31" />
+                        <valueLabel name="31" value="32" />
+                        <valueLabel name="32" value="33" />
+                        <valueLabel name="33" value="34" />
+                        <valueLabel name="34" value="35" />
+                        <valueLabel name="35" value="36" />
+                        <valueLabel name="99" value="MISSING" />
+                        <valueLabel name="98" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="TIPO_HOGAR" label="Tipo de hogar" type="INTEGER" size="7" decimals="0" range="1 TO 7" filter="" data=".\CPV201719.rbf">
+                      <valueLabels>
+                        <valueLabel name="1" value="Hogar unipersonal" />
+                        <valueLabel name="2" value="Hogar nuclear monoparental" />
+                        <valueLabel name="3" value="Hogar nuclear biparental sin hijos" />
+                        <valueLabel name="4" value="Hogar nuclear biparental con hijos" />
+                        <valueLabel name="5" value="Hogar compuesto" />
+                        <valueLabel name="6" value="Hogar extenso" />
+                        <valueLabel name="7" value="Hogar sin núcleo" />
+                        <valueLabel name="99" value="MISSING" />
+                        <valueLabel name="98" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="ncu_yern_nuer" label="Nucleos yernos o nueras" type="INTEGER" size="7" decimals="0" range="0 TO 99" filter="" data=".\nuc_yern_nuer.rbf">
+                      <valueLabels>
+                        <valueLabel name="99" value="MISSING" />
+                        <valueLabel name="99" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="N_herm_cun" label="" type="INTEGER" size="7" decimals="0" range="0 TO 99" filter="" data=".\N_hermanos.rbf">
+                      <valueLabels>
+                        <valueLabel name="99" value="MISSING" />
+                        <valueLabel name="99" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="Nuc_herm_cun" label="Nucleos de hermanos o cuñados" type="INTEGER" size="4" decimals="0" range="0 TO 9" filter="" data=".\nucleos_hermanos.rbf">
+                      <valueLabels>
+                        <valueLabel name="0" value="MISSING" />
+                        <valueLabel name="0" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="num_sueg_pad_abu" label="Numero de padres - suegros - abuelos" type="INTEGER" size="7" decimals="0" range="0 TO 99" filter="" data=".\Num_padres_abuelos_suegros.rbf">
+                      <valueLabels>
+                        <valueLabel name="0" value="MISSING" />
+                        <valueLabel name="0" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="Nuc_pad_sueg_abu" label="Nucleos de padres suegros y abuelos" type="INTEGER" size="2" decimals="0" range="0 TO 3" filter="" data=".\nuc_abuelos_padres_suegros.rbf">
+                      <valueLabels>
+                        <valueLabel name="0" value="MISSING" />
+                        <valueLabel name="0" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="num_otros" label="" type="INTEGER" size="6" decimals="0" range="0 TO 35" filter="" data=".\num_otros.rbf">
+                      <valueLabels>
+                        <valueLabel name="0" value="MISSING" />
+                        <valueLabel name="0" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="nuc_otros" label="Nucleos_otros_parientes" type="INTEGER" size="3" decimals="0" range="0 TO 5" filter="" data=".\nucleos_otros_par.rbf">
+                      <valueLabels>
+                        <valueLabel name="0" value="MISSING" />
+                        <valueLabel name="0" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="num_no_par" label="Numero de no parientes" type="INTEGER" size="7" decimals="0" range="0 TO 99" filter="" data=".\num_No_par.rbf">
+                      <valueLabels>
+                        <valueLabel name="0" value="MISSING" />
+                        <valueLabel name="0" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="nuc_no_par" label="nucleos_no_parientes" type="INTEGER" size="3" decimals="0" range="0 TO 4" filter="" data=".\nuc_no_parientes.rbf">
+                      <valueLabels>
+                        <valueLabel name="0" value="MISSING" />
+                        <valueLabel name="0" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <variable name="Tot_nucleos" label="Total de nucleos secundarios" type="INTEGER" size="7" decimals="0" range="0 TO 100" filter="" data=".\Nucleos_secundarios.rbf">
+                      <valueLabels>
+                        <valueLabel name="0" value="MISSING" />
+                        <valueLabel name="0" value="NOTAPPLICABLE" />
+                      </valueLabels>
+                    </variable>
+                    <entity name="PERSONA" pointer=".\CPV201709.ptr">
+                      <variable name="PERSONAN" label="Número de la persona" type="INTEGER" size="14" decimals="0" range="0 TO 9999" filter="" data=".\CPV201720.rbf">
+                        <valueLabels>
+                          <valueLabel name="10001" value="MISSING" />
+                          <valueLabel name="10000" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P07" label="Relación de parentesco" type="INTEGER" size="5" decimals="0" range="1 TO 19" filter="" data=".\CPV201721.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Jefe/a de hogar" />
+                          <valueLabel name="2" value="Esposo/a o cónyuge" />
+                          <valueLabel name="3" value="Conviviente por unión civil" />
+                          <valueLabel name="4" value="Conviviente de hecho o pareja" />
+                          <valueLabel name="5" value="Hijo/a" />
+                          <valueLabel name="6" value="Hijo/a del cónyuge, conviviente o pareja" />
+                          <valueLabel name="7" value="Hermano/a" />
+                          <valueLabel name="8" value="Padre/madre" />
+                          <valueLabel name="9" value="Cuñado/a" />
+                          <valueLabel name="10" value="Suegro/a" />
+                          <valueLabel name="11" value="Yerno/nuera" />
+                          <valueLabel name="12" value="Nieto/a" />
+                          <valueLabel name="13" value="Abuelo/a" />
+                          <valueLabel name="14" value="Otro pariente" />
+                          <valueLabel name="15" value="No pariente" />
+                          <valueLabel name="16" value="Servicio doméstico puertas adentro" />
+                          <valueLabel name="17" value="Persona en vivienda colectiva" />
+                          <valueLabel name="18" value="Persona en tránsito" />
+                          <valueLabel name="19" value="Persona en operativo calle" />
+                          <valueLabel name="21" value="MISSING" />
+                          <valueLabel name="0" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P08" label="Sexo" type="INTEGER" size="2" decimals="0" range="1 TO 2" filter="" data=".\CPV201722.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Hombre" />
+                          <valueLabel name="2" value="Mujer" />
+                          <valueLabel name="3" value="MISSING" />
+                          <valueLabel name="0" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P09" label="Edad" type="INTEGER" size="8" decimals="0" range="0 TO 130" filter="" data=".\CPV201723.rbf">
+                        <valueLabels>
+                          <valueLabel name="100" value="años y más" />
+                          <valueLabel name="132" value="MISSING" />
+                          <valueLabel name="131" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P10" label="Residencia habitual" type="INTEGER" size="7" decimals="0" range="1 TO 4" filter="" data=".\CPV201724.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="En esta vivienda" />
+                          <valueLabel name="2" value="En otra vivienda" />
+                          <valueLabel name="3" value="En otra comuna" />
+                          <valueLabel name="4" value="En otro país" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P10COMUNA" label="Comuna de Residencia Habitual" type="INTEGER" size="14" decimals="0" range="997 TO 15202" filter="" data=".\CPV201725.rbf">
+                        <valueLabels>
+                          <valueLabel name="1101" value="Iquique" />
+                          <valueLabel name="1107" value="Alto Hospicio" />
+                          <valueLabel name="1401" value="Pozo Almonte" />
+                          <valueLabel name="1402" value="Camiña" />
+                          <valueLabel name="1403" value="Colchane" />
+                          <valueLabel name="1404" value="Huara" />
+                          <valueLabel name="1405" value="Pica" />
+                          <valueLabel name="2101" value="Antofagasta" />
+                          <valueLabel name="2102" value="Mejillones" />
+                          <valueLabel name="2103" value="Sierra Gorda" />
+                          <valueLabel name="2104" value="Taltal" />
+                          <valueLabel name="2201" value="Calama" />
+                          <valueLabel name="2202" value="Ollagüe" />
+                          <valueLabel name="2203" value="San Pedro de Atacama" />
+                          <valueLabel name="2301" value="Tocopilla" />
+                          <valueLabel name="2302" value="María Elena" />
+                          <valueLabel name="3101" value="Copiapó" />
+                          <valueLabel name="3102" value="Caldera" />
+                          <valueLabel name="3103" value="Tierra Amarilla" />
+                          <valueLabel name="3201" value="Chañaral" />
+                          <valueLabel name="3202" value="Diego de Almagro" />
+                          <valueLabel name="3301" value="Vallenar" />
+                          <valueLabel name="3302" value="Alto del Carmen" />
+                          <valueLabel name="3303" value="Freirina" />
+                          <valueLabel name="3304" value="Huasco" />
+                          <valueLabel name="4101" value="La Serena" />
+                          <valueLabel name="4102" value="Coquimbo" />
+                          <valueLabel name="4103" value="Andacollo" />
+                          <valueLabel name="4104" value="La Higuera" />
+                          <valueLabel name="4105" value="Paiguano" />
+                          <valueLabel name="4106" value="Vicuña" />
+                          <valueLabel name="4201" value="Illapel" />
+                          <valueLabel name="4202" value="Canela" />
+                          <valueLabel name="4203" value="Los Vilos" />
+                          <valueLabel name="4204" value="Salamanca" />
+                          <valueLabel name="4301" value="Ovalle" />
+                          <valueLabel name="4302" value="Combarbalá" />
+                          <valueLabel name="4303" value="Monte Patria" />
+                          <valueLabel name="4304" value="Punitaqui" />
+                          <valueLabel name="4305" value="Río Hurtado" />
+                          <valueLabel name="5101" value="Valparaíso" />
+                          <valueLabel name="5102" value="Casablanca" />
+                          <valueLabel name="5103" value="Concón" />
+                          <valueLabel name="5104" value="Juan  Fernández" />
+                          <valueLabel name="5105" value="Puchuncaví" />
+                          <valueLabel name="5107" value="Quintero" />
+                          <valueLabel name="5109" value="Viña del Mar" />
+                          <valueLabel name="5201" value="Isla de Pascua" />
+                          <valueLabel name="5301" value="Los Andes" />
+                          <valueLabel name="5302" value="Calle Larga" />
+                          <valueLabel name="5303" value="Rinconada" />
+                          <valueLabel name="5304" value="San Esteban" />
+                          <valueLabel name="5401" value="La Ligua" />
+                          <valueLabel name="5402" value="Cabildo" />
+                          <valueLabel name="5403" value="Papudo" />
+                          <valueLabel name="5404" value="Petorca" />
+                          <valueLabel name="5405" value="Zapallar" />
+                          <valueLabel name="5501" value="Quillota" />
+                          <valueLabel name="5502" value="Calera" />
+                          <valueLabel name="5503" value="Hijuelas" />
+                          <valueLabel name="5504" value="La Cruz" />
+                          <valueLabel name="5506" value="Nogales" />
+                          <valueLabel name="5601" value="San Antonio" />
+                          <valueLabel name="5602" value="Algarrobo" />
+                          <valueLabel name="5603" value="Cartagena" />
+                          <valueLabel name="5604" value="El Quisco" />
+                          <valueLabel name="5605" value="El Tabo" />
+                          <valueLabel name="5606" value="Santo Domingo" />
+                          <valueLabel name="5701" value="San Felipe" />
+                          <valueLabel name="5702" value="Catemu" />
+                          <valueLabel name="5703" value="Llaillay" />
+                          <valueLabel name="5704" value="Panquehue" />
+                          <valueLabel name="5705" value="Puntaendo" />
+                          <valueLabel name="5706" value="Santa María" />
+                          <valueLabel name="5801" value="Quilpué" />
+                          <valueLabel name="5802" value="Limache" />
+                          <valueLabel name="5803" value="Olmué" />
+                          <valueLabel name="5804" value="Villa Alemana" />
+                          <valueLabel name="6101" value="Rancagua" />
+                          <valueLabel name="6102" value="Codegua" />
+                          <valueLabel name="6103" value="Coinco" />
+                          <valueLabel name="6104" value="Coltauco" />
+                          <valueLabel name="6105" value="Doñihue" />
+                          <valueLabel name="6106" value="Graneros" />
+                          <valueLabel name="6107" value="Las Cabras" />
+                          <valueLabel name="6108" value="Machalí" />
+                          <valueLabel name="6109" value="Malloa" />
+                          <valueLabel name="6110" value="Mostazal" />
+                          <valueLabel name="6111" value="Olivar" />
+                          <valueLabel name="6112" value="Peumo" />
+                          <valueLabel name="6113" value="Pichidegua" />
+                          <valueLabel name="6114" value="Quinta de Tilcoco" />
+                          <valueLabel name="6115" value="Rengo" />
+                          <valueLabel name="6116" value="Requínoa" />
+                          <valueLabel name="6117" value="San Vicente" />
+                          <valueLabel name="6201" value="Pichilemu" />
+                          <valueLabel name="6202" value="La Estrella" />
+                          <valueLabel name="6203" value="Litueche" />
+                          <valueLabel name="6204" value="Marchihue" />
+                          <valueLabel name="6205" value="Navidad" />
+                          <valueLabel name="6206" value="Paredones" />
+                          <valueLabel name="6301" value="San Fernando" />
+                          <valueLabel name="6302" value="Chépica" />
+                          <valueLabel name="6303" value="Chimbarongo" />
+                          <valueLabel name="6304" value="Lolol" />
+                          <valueLabel name="6305" value="Nancagua" />
+                          <valueLabel name="6306" value="Palmilla" />
+                          <valueLabel name="6307" value="Peralillo" />
+                          <valueLabel name="6308" value="Placilla" />
+                          <valueLabel name="6309" value="Pumanque" />
+                          <valueLabel name="6310" value="Santa Cruz" />
+                          <valueLabel name="7101" value="Talca" />
+                          <valueLabel name="7102" value="Constitución" />
+                          <valueLabel name="7103" value="Curepto" />
+                          <valueLabel name="7104" value="Empedrado" />
+                          <valueLabel name="7105" value="Maule" />
+                          <valueLabel name="7106" value="Pelarco" />
+                          <valueLabel name="7107" value="Pencahue" />
+                          <valueLabel name="7108" value="Río Claro" />
+                          <valueLabel name="7109" value="San Clemente" />
+                          <valueLabel name="7110" value="San Rafael" />
+                          <valueLabel name="7201" value="Cauquenes" />
+                          <valueLabel name="7202" value="Chanco" />
+                          <valueLabel name="7203" value="Pelluhue" />
+                          <valueLabel name="7301" value="Curicó" />
+                          <valueLabel name="7302" value="Hualañé" />
+                          <valueLabel name="7303" value="Licantén" />
+                          <valueLabel name="7304" value="Molina" />
+                          <valueLabel name="7305" value="Rauco" />
+                          <valueLabel name="7306" value="Romeral" />
+                          <valueLabel name="7307" value="Sagrada Familia" />
+                          <valueLabel name="7308" value="Teno" />
+                          <valueLabel name="7309" value="Vichuquén" />
+                          <valueLabel name="7401" value="Linares" />
+                          <valueLabel name="7402" value="Colbún" />
+                          <valueLabel name="7403" value="Longaví" />
+                          <valueLabel name="7404" value="Parral" />
+                          <valueLabel name="7405" value="Retiro" />
+                          <valueLabel name="7406" value="San Javier" />
+                          <valueLabel name="7407" value="Villa Alegre" />
+                          <valueLabel name="7408" value="Yerbas Buenas" />
+                          <valueLabel name="8101" value="Concepción" />
+                          <valueLabel name="8102" value="Coronel" />
+                          <valueLabel name="8103" value="Chiguayante" />
+                          <valueLabel name="8104" value="Florida" />
+                          <valueLabel name="8105" value="Hualqui" />
+                          <valueLabel name="8106" value="Lota" />
+                          <valueLabel name="8107" value="Penco" />
+                          <valueLabel name="8108" value="San Pedro de la Paz" />
+                          <valueLabel name="8109" value="Santa Juana" />
+                          <valueLabel name="8110" value="Talcahuano" />
+                          <valueLabel name="8111" value="Tomé" />
+                          <valueLabel name="8112" value="Hualpén" />
+                          <valueLabel name="8201" value="Lebu" />
+                          <valueLabel name="8202" value="Arauco" />
+                          <valueLabel name="8203" value="Cañete" />
+                          <valueLabel name="8204" value="Contulmo" />
+                          <valueLabel name="8205" value="Curanilahue" />
+                          <valueLabel name="8206" value="Los Álamos" />
+                          <valueLabel name="8207" value="Tirúa" />
+                          <valueLabel name="8301" value="Los Ángeles" />
+                          <valueLabel name="8302" value="Antuco" />
+                          <valueLabel name="8303" value="Cabrero" />
+                          <valueLabel name="8304" value="Laja" />
+                          <valueLabel name="8305" value="Mulchén" />
+                          <valueLabel name="8306" value="Nacimiento" />
+                          <valueLabel name="8307" value="Negrete" />
+                          <valueLabel name="8308" value="Quilaco" />
+                          <valueLabel name="8309" value="Quilleco" />
+                          <valueLabel name="8310" value="San Rosendo" />
+                          <valueLabel name="8311" value="Santa Bárbara" />
+                          <valueLabel name="8312" value="Tucapel" />
+                          <valueLabel name="8313" value="Yumbel" />
+                          <valueLabel name="8314" value="Alto Biobío" />
+                          <valueLabel name="8401" value="Chillán" />
+                          <valueLabel name="8402" value="Bulnes" />
+                          <valueLabel name="8403" value="Cobquecura" />
+                          <valueLabel name="8404" value="Coelemu" />
+                          <valueLabel name="8405" value="Coihueco" />
+                          <valueLabel name="8406" value="Chillán Viejo" />
+                          <valueLabel name="8407" value="El Carmen" />
+                          <valueLabel name="8408" value="Ninhue" />
+                          <valueLabel name="8409" value="Ñiquén" />
+                          <valueLabel name="8410" value="Pemuco" />
+                          <valueLabel name="8411" value="Pinto" />
+                          <valueLabel name="8412" value="Portezuelo" />
+                          <valueLabel name="8413" value="Quillón" />
+                          <valueLabel name="8414" value="Quirihue" />
+                          <valueLabel name="8415" value="Ranquil" />
+                          <valueLabel name="8416" value="San Carlos" />
+                          <valueLabel name="8417" value="San Fabián" />
+                          <valueLabel name="8418" value="San Ignacio" />
+                          <valueLabel name="8419" value="San Nicolás" />
+                          <valueLabel name="8420" value="Treguaco" />
+                          <valueLabel name="8421" value="Yungay" />
+                          <valueLabel name="9101" value="Temuco" />
+                          <valueLabel name="9102" value="Carahue" />
+                          <valueLabel name="9103" value="Cunco" />
+                          <valueLabel name="9104" value="Curarrehue" />
+                          <valueLabel name="9105" value="Freire" />
+                          <valueLabel name="9106" value="Galvarino" />
+                          <valueLabel name="9107" value="Gorbea" />
+                          <valueLabel name="9108" value="Lautaro" />
+                          <valueLabel name="9109" value="Loncoche" />
+                          <valueLabel name="9110" value="Melipeuco" />
+                          <valueLabel name="9111" value="Nueva Imperial" />
+                          <valueLabel name="9112" value="Padre Las Casas" />
+                          <valueLabel name="9113" value="Perquenco" />
+                          <valueLabel name="9114" value="Pitrufquén" />
+                          <valueLabel name="9115" value="Pucón" />
+                          <valueLabel name="9116" value="Saavedra" />
+                          <valueLabel name="9117" value="Teodoro Schmidt" />
+                          <valueLabel name="9118" value="Toltén" />
+                          <valueLabel name="9119" value="Vilcún" />
+                          <valueLabel name="9120" value="Villarica" />
+                          <valueLabel name="9121" value="Cholchol" />
+                          <valueLabel name="9201" value="Angol" />
+                          <valueLabel name="9202" value="Collipulli" />
+                          <valueLabel name="9203" value="Curacautin" />
+                          <valueLabel name="9204" value="Ercilla" />
+                          <valueLabel name="9205" value="Lonquimay" />
+                          <valueLabel name="9206" value="Los Sauces" />
+                          <valueLabel name="9207" value="Lumaco" />
+                          <valueLabel name="9208" value="Purén" />
+                          <valueLabel name="9209" value="Renaico" />
+                          <valueLabel name="9210" value="Traiguén" />
+                          <valueLabel name="9211" value="Victoria" />
+                          <valueLabel name="10101" value="Puerto Montt" />
+                          <valueLabel name="10102" value="Calbuco" />
+                          <valueLabel name="10103" value="Cochamó" />
+                          <valueLabel name="10104" value="Fresia" />
+                          <valueLabel name="10105" value="Frutillar" />
+                          <valueLabel name="10106" value="Los Muermos" />
+                          <valueLabel name="10107" value="Llanquihue" />
+                          <valueLabel name="10108" value="Maullín" />
+                          <valueLabel name="10109" value="Puerto Varas" />
+                          <valueLabel name="10201" value="Castro" />
+                          <valueLabel name="10202" value="Ancud" />
+                          <valueLabel name="10203" value="Chonchi" />
+                          <valueLabel name="10204" value="Curaco de Vélez" />
+                          <valueLabel name="10205" value="Dalcahue" />
+                          <valueLabel name="10206" value="Puqueldón" />
+                          <valueLabel name="10207" value="Queilén" />
+                          <valueLabel name="10208" value="Quellón" />
+                          <valueLabel name="10209" value="Quemchi" />
+                          <valueLabel name="10210" value="Quinchao" />
+                          <valueLabel name="10301" value="Osorno" />
+                          <valueLabel name="10302" value="Puerto Octay" />
+                          <valueLabel name="10303" value="Purranque" />
+                          <valueLabel name="10304" value="Puyehue" />
+                          <valueLabel name="10305" value="Río Negro" />
+                          <valueLabel name="10306" value="San Juan de la Costa" />
+                          <valueLabel name="10307" value="San Pablo" />
+                          <valueLabel name="10401" value="Chaitén" />
+                          <valueLabel name="10402" value="Futaleufú" />
+                          <valueLabel name="10403" value="Hualaihué" />
+                          <valueLabel name="10404" value="Palena" />
+                          <valueLabel name="11101" value="Coyhaique" />
+                          <valueLabel name="11102" value="Lago Verde" />
+                          <valueLabel name="11201" value="Aysén" />
+                          <valueLabel name="11202" value="Cisnes" />
+                          <valueLabel name="11203" value="Guaitecas" />
+                          <valueLabel name="11301" value="Cochrane" />
+                          <valueLabel name="11302" value="O’Higgins" />
+                          <valueLabel name="11303" value="Tortel" />
+                          <valueLabel name="11401" value="Chile Chico" />
+                          <valueLabel name="11402" value="Río Ibáñez" />
+                          <valueLabel name="12101" value="Punta Arenas" />
+                          <valueLabel name="12102" value="Laguna Blanca" />
+                          <valueLabel name="12103" value="Río Verde" />
+                          <valueLabel name="12104" value="San Gregorio" />
+                          <valueLabel name="12201" value="Cabo de Hornos" />
+                          <valueLabel name="12202" value="Antártica" />
+                          <valueLabel name="12301" value="Porvenir" />
+                          <valueLabel name="12302" value="Primavera" />
+                          <valueLabel name="12303" value="Timaukel" />
+                          <valueLabel name="12401" value="Natales" />
+                          <valueLabel name="12402" value="Torres del Paine" />
+                          <valueLabel name="13101" value="Santiago" />
+                          <valueLabel name="13102" value="Cerrillos" />
+                          <valueLabel name="13103" value="Cerro Navia" />
+                          <valueLabel name="13104" value="Conchalí" />
+                          <valueLabel name="13105" value="El Bosque" />
+                          <valueLabel name="13106" value="Estación Central" />
+                          <valueLabel name="13107" value="Huechuraba" />
+                          <valueLabel name="13108" value="Independencia" />
+                          <valueLabel name="13109" value="La Cisterna" />
+                          <valueLabel name="13110" value="La Florida" />
+                          <valueLabel name="13111" value="La Granja" />
+                          <valueLabel name="13112" value="La Pintana" />
+                          <valueLabel name="13113" value="La Reina" />
+                          <valueLabel name="13114" value="Las Condes" />
+                          <valueLabel name="13115" value="Lo Barnechea" />
+                          <valueLabel name="13116" value="Lo Espejo" />
+                          <valueLabel name="13117" value="Lo Prado" />
+                          <valueLabel name="13118" value="Macul" />
+                          <valueLabel name="13119" value="Maipú" />
+                          <valueLabel name="13120" value="Ñuñoa" />
+                          <valueLabel name="13121" value="Pedro Aguirre Cerda" />
+                          <valueLabel name="13122" value="Peñalolén" />
+                          <valueLabel name="13123" value="Providencia" />
+                          <valueLabel name="13124" value="Pudahuel" />
+                          <valueLabel name="13125" value="Quilicura" />
+                          <valueLabel name="13126" value="Quinta Normal" />
+                          <valueLabel name="13127" value="Recoleta" />
+                          <valueLabel name="13128" value="Renca" />
+                          <valueLabel name="13129" value="San Joaquín" />
+                          <valueLabel name="13130" value="San Miguel" />
+                          <valueLabel name="13131" value="San Ramón" />
+                          <valueLabel name="13132" value="Vitacura" />
+                          <valueLabel name="13201" value="Puente Alto" />
+                          <valueLabel name="13202" value="Pirque" />
+                          <valueLabel name="13203" value="San José de Maipo" />
+                          <valueLabel name="13301" value="Colina" />
+                          <valueLabel name="13302" value="Lampa" />
+                          <valueLabel name="13303" value="Tiltil" />
+                          <valueLabel name="13401" value="San Bernardo" />
+                          <valueLabel name="13402" value="Buin" />
+                          <valueLabel name="13403" value="Calera de Tango" />
+                          <valueLabel name="13404" value="Paine" />
+                          <valueLabel name="13501" value="Melipilla" />
+                          <valueLabel name="13502" value="Alhué" />
+                          <valueLabel name="13503" value="Curacaví" />
+                          <valueLabel name="13504" value="María Pinto" />
+                          <valueLabel name="13505" value="San Pedro" />
+                          <valueLabel name="13601" value="Talagante" />
+                          <valueLabel name="13602" value="El Monte" />
+                          <valueLabel name="13603" value="Isla de Maipo" />
+                          <valueLabel name="13604" value="Padre Hurtado" />
+                          <valueLabel name="13605" value="Peñaflor" />
+                          <valueLabel name="14101" value="Valdivia" />
+                          <valueLabel name="14102" value="Corral" />
+                          <valueLabel name="14103" value="Lanco" />
+                          <valueLabel name="14104" value="Los Lagos" />
+                          <valueLabel name="14105" value="Máfil" />
+                          <valueLabel name="14106" value="Mariquina" />
+                          <valueLabel name="14107" value="Paillaco" />
+                          <valueLabel name="14108" value="Panguipulli" />
+                          <valueLabel name="14201" value="La Unión" />
+                          <valueLabel name="14202" value="Futrono" />
+                          <valueLabel name="14203" value="Lago Ranco" />
+                          <valueLabel name="14204" value="Río Bueno" />
+                          <valueLabel name="15101" value="Arica" />
+                          <valueLabel name="15102" value="Camarones" />
+                          <valueLabel name="15201" value="Putre" />
+                          <valueLabel name="15202" value="General Lagos" />
+                          <valueLabel name="997" value="Comuna no declarada" />
+                          <valueLabel name="1000" value="Región de Tarapacá" />
+                          <valueLabel name="2000" value="Región de Antofagasta" />
+                          <valueLabel name="3000" value="Región de Atacama" />
+                          <valueLabel name="4000" value="Región de Coquimbo" />
+                          <valueLabel name="5000" value="Región de Valparaíso" />
+                          <valueLabel name="6000" value="Región del Libertador General Bernardo O'Higgins" />
+                          <valueLabel name="7000" value="Región de Maule" />
+                          <valueLabel name="8000" value="Región de Biobío" />
+                          <valueLabel name="9000" value="Región de La Araucanía" />
+                          <valueLabel name="10000" value="Región de Los Lagos" />
+                          <valueLabel name="11000" value="Región de Aysén del General Carlos Ibáñez del Campo" />
+                          <valueLabel name="12000" value="Región de Magallanes y de la Antártica Chilena" />
+                          <valueLabel name="13000" value="Región Metropolitana de Santiago" />
+                          <valueLabel name="14000" value="Región de Los Ríos" />
+                          <valueLabel name="15000" value="Región de Arica y Parinacota" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P10PAIS" label="Pais de Residencia Habitual" type="INTEGER" size="10" decimals="0" range="0 TO 997" filter="" data=".\CPV201726.rbf">
+                        <valueLabels>
+                          <valueLabel name="2" value="África" />
+                          <valueLabel name="5" value="Sudamérica" />
+                          <valueLabel name="9" value="Oceanía" />
+                          <valueLabel name="10" value="Antártida" />
+                          <valueLabel name="12" value="Argelia" />
+                          <valueLabel name="13" value="Centroamérica" />
+                          <valueLabel name="21" value="Norteamérica" />
+                          <valueLabel name="29" value="Caribe" />
+                          <valueLabel name="32" value="Argentina" />
+                          <valueLabel name="36" value="Australia" />
+                          <valueLabel name="40" value="Austria" />
+                          <valueLabel name="51" value="Armenia" />
+                          <valueLabel name="56" value="Bélgica" />
+                          <valueLabel name="68" value="Bolivia (Estado Plurinacional de)" />
+                          <valueLabel name="76" value="Brasil" />
+                          <valueLabel name="96" value="Brunei Darussalam" />
+                          <valueLabel name="100" value="Bulgaria" />
+                          <valueLabel name="124" value="Canadá" />
+                          <valueLabel name="136" value="Islas Caimán" />
+                          <valueLabel name="142" value="Asia" />
+                          <valueLabel name="150" value="Europa" />
+                          <valueLabel name="156" value="China" />
+                          <valueLabel name="158" value="Taiwán (Provincia de China)" />
+                          <valueLabel name="170" value="Colombia" />
+                          <valueLabel name="188" value="Costa Rica" />
+                          <valueLabel name="191" value="Croacia" />
+                          <valueLabel name="192" value="Cuba" />
+                          <valueLabel name="203" value="República Checa" />
+                          <valueLabel name="208" value="Dinamarca" />
+                          <valueLabel name="214" value="República Dominicana" />
+                          <valueLabel name="218" value="Ecuador" />
+                          <valueLabel name="222" value="El Salvador" />
+                          <valueLabel name="246" value="Finlandia" />
+                          <valueLabel name="250" value="Francia" />
+                          <valueLabel name="258" value="Polinesia Francesa" />
+                          <valueLabel name="275" value="Palestina (Estado de)" />
+                          <valueLabel name="276" value="Alemania" />
+                          <valueLabel name="300" value="Grecia" />
+                          <valueLabel name="320" value="Guatemala" />
+                          <valueLabel name="332" value="Haití" />
+                          <valueLabel name="340" value="Honduras" />
+                          <valueLabel name="348" value="Hungría" />
+                          <valueLabel name="356" value="India" />
+                          <valueLabel name="360" value="Indonesia" />
+                          <valueLabel name="364" value="Irán (República Islámica de)" />
+                          <valueLabel name="372" value="Irlanda" />
+                          <valueLabel name="376" value="Israel" />
+                          <valueLabel name="380" value="Italia" />
+                          <valueLabel name="392" value="Japón" />
+                          <valueLabel name="400" value="Jordania" />
+                          <valueLabel name="410" value="Corea del Sur (República de)" />
+                          <valueLabel name="422" value="Líbano" />
+                          <valueLabel name="484" value="México" />
+                          <valueLabel name="504" value="Marruecos" />
+                          <valueLabel name="524" value="Nepal" />
+                          <valueLabel name="528" value="Países Bajos" />
+                          <valueLabel name="548" value="Vanuatu" />
+                          <valueLabel name="554" value="Nueva Zelandia" />
+                          <valueLabel name="558" value="Nicaragua" />
+                          <valueLabel name="578" value="Noruega" />
+                          <valueLabel name="586" value="Pakistán" />
+                          <valueLabel name="591" value="Panamá" />
+                          <valueLabel name="600" value="Paraguay" />
+                          <valueLabel name="604" value="Perú" />
+                          <valueLabel name="608" value="Filipinas" />
+                          <valueLabel name="616" value="Polonia" />
+                          <valueLabel name="620" value="Portugal" />
+                          <valueLabel name="626" value="Timor-Leste" />
+                          <valueLabel name="630" value="Puerto Rico" />
+                          <valueLabel name="642" value="Rumania" />
+                          <valueLabel name="643" value="Rusia (Federación de)" />
+                          <valueLabel name="688" value="Serbia" />
+                          <valueLabel name="710" value="Sudáfrica" />
+                          <valueLabel name="724" value="España" />
+                          <valueLabel name="752" value="Suecia" />
+                          <valueLabel name="756" value="Suiza" />
+                          <valueLabel name="760" value="República Árabe Siria" />
+                          <valueLabel name="764" value="Tailandia" />
+                          <valueLabel name="792" value="Turquía" />
+                          <valueLabel name="804" value="Ucrania" />
+                          <valueLabel name="818" value="Egipto" />
+                          <valueLabel name="826" value="Reino Unido de Gran Bretaña e Irlanda del Norte" />
+                          <valueLabel name="840" value="Estados Unidos de América" />
+                          <valueLabel name="858" value="Uruguay" />
+                          <valueLabel name="862" value="Venezuela (República Bolivariana de)" />
+                          <valueLabel name="997" value="País no declarado" />
+                          <valueLabel name="999" value="MISSING" />
+                          <valueLabel name="998" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P10PAIS_GRUPO" label="Pais de Residencia Habitual(grupo)" type="INTEGER" size="10" decimals="0" range="0 TO 997" filter="" data=".\CPV201727.rbf">
+                        <valueLabels>
+                          <valueLabel name="2" value="África" />
+                          <valueLabel name="5" value="Sudamérica" />
+                          <valueLabel name="9" value="Oceanía" />
+                          <valueLabel name="10" value="Antártida" />
+                          <valueLabel name="13" value="Centroamérica" />
+                          <valueLabel name="21" value="Norteamérica" />
+                          <valueLabel name="29" value="Caribe" />
+                          <valueLabel name="32" value="Argentina" />
+                          <valueLabel name="68" value="Bolivia (Estado Plurinacional de)" />
+                          <valueLabel name="142" value="Asia" />
+                          <valueLabel name="150" value="Europa" />
+                          <valueLabel name="170" value="Colombia" />
+                          <valueLabel name="218" value="Ecuador" />
+                          <valueLabel name="332" value="Haití" />
+                          <valueLabel name="604" value="Perú" />
+                          <valueLabel name="862" value="Venezuela (República Bolivariana de)" />
+                          <valueLabel name="997" value="País no declarado" />
+                          <valueLabel name="999" value="MISSING" />
+                          <valueLabel name="998" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P11" label="Comuna de Residencia Anterior" type="INTEGER" size="7" decimals="0" range="0 TO 9" filter="" data=".\CPV201728.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Aún no nacía" />
+                          <valueLabel name="2" value="En esta comuna" />
+                          <valueLabel name="3" value="En otra comuna" />
+                          <valueLabel name="4" value="Perú" />
+                          <valueLabel name="5" value="Argentina" />
+                          <valueLabel name="6" value="Bolivia" />
+                          <valueLabel name="7" value="Ecuador" />
+                          <valueLabel name="8" value="Colombia" />
+                          <valueLabel name="9" value="Otro" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P11COMUNA" label="Comuna de Residencia Anterior" type="INTEGER" size="14" decimals="0" range="997 TO 15202" filter="" data=".\CPV201729.rbf">
+                        <valueLabels>
+                          <valueLabel name="1101" value="Iquique" />
+                          <valueLabel name="1107" value="Alto Hospicio" />
+                          <valueLabel name="1401" value="Pozo Almonte" />
+                          <valueLabel name="1402" value="Camiña" />
+                          <valueLabel name="1403" value="Colchane" />
+                          <valueLabel name="1404" value="Huara" />
+                          <valueLabel name="1405" value="Pica" />
+                          <valueLabel name="2101" value="Antofagasta" />
+                          <valueLabel name="2102" value="Mejillones" />
+                          <valueLabel name="2103" value="Sierra Gorda" />
+                          <valueLabel name="2104" value="Taltal" />
+                          <valueLabel name="2201" value="Calama" />
+                          <valueLabel name="2202" value="Ollagüe" />
+                          <valueLabel name="2203" value="San Pedro de Atacama" />
+                          <valueLabel name="2301" value="Tocopilla" />
+                          <valueLabel name="2302" value="María Elena" />
+                          <valueLabel name="3101" value="Copiapó" />
+                          <valueLabel name="3102" value="Caldera" />
+                          <valueLabel name="3103" value="Tierra Amarilla" />
+                          <valueLabel name="3201" value="Chañaral" />
+                          <valueLabel name="3202" value="Diego de Almagro" />
+                          <valueLabel name="3301" value="Vallenar" />
+                          <valueLabel name="3302" value="Alto del Carmen" />
+                          <valueLabel name="3303" value="Freirina" />
+                          <valueLabel name="3304" value="Huasco" />
+                          <valueLabel name="4101" value="La Serena" />
+                          <valueLabel name="4102" value="Coquimbo" />
+                          <valueLabel name="4103" value="Andacollo" />
+                          <valueLabel name="4104" value="La Higuera" />
+                          <valueLabel name="4105" value="Paiguano" />
+                          <valueLabel name="4106" value="Vicuña" />
+                          <valueLabel name="4201" value="Illapel" />
+                          <valueLabel name="4202" value="Canela" />
+                          <valueLabel name="4203" value="Los Vilos" />
+                          <valueLabel name="4204" value="Salamanca" />
+                          <valueLabel name="4301" value="Ovalle" />
+                          <valueLabel name="4302" value="Combarbalá" />
+                          <valueLabel name="4303" value="Monte Patria" />
+                          <valueLabel name="4304" value="Punitaqui" />
+                          <valueLabel name="4305" value="Río Hurtado" />
+                          <valueLabel name="5101" value="Valparaíso" />
+                          <valueLabel name="5102" value="Casablanca" />
+                          <valueLabel name="5103" value="Concón" />
+                          <valueLabel name="5104" value="Juan  Fernández" />
+                          <valueLabel name="5105" value="Puchuncaví" />
+                          <valueLabel name="5107" value="Quintero" />
+                          <valueLabel name="5109" value="Viña del Mar" />
+                          <valueLabel name="5201" value="Isla de Pascua" />
+                          <valueLabel name="5301" value="Los Andes" />
+                          <valueLabel name="5302" value="Calle Larga" />
+                          <valueLabel name="5303" value="Rinconada" />
+                          <valueLabel name="5304" value="San Esteban" />
+                          <valueLabel name="5401" value="La Ligua" />
+                          <valueLabel name="5402" value="Cabildo" />
+                          <valueLabel name="5403" value="Papudo" />
+                          <valueLabel name="5404" value="Petorca" />
+                          <valueLabel name="5405" value="Zapallar" />
+                          <valueLabel name="5501" value="Quillota" />
+                          <valueLabel name="5502" value="Calera" />
+                          <valueLabel name="5503" value="Hijuelas" />
+                          <valueLabel name="5504" value="La Cruz" />
+                          <valueLabel name="5506" value="Nogales" />
+                          <valueLabel name="5601" value="San Antonio" />
+                          <valueLabel name="5602" value="Algarrobo" />
+                          <valueLabel name="5603" value="Cartagena" />
+                          <valueLabel name="5604" value="El Quisco" />
+                          <valueLabel name="5605" value="El Tabo" />
+                          <valueLabel name="5606" value="Santo Domingo" />
+                          <valueLabel name="5701" value="San Felipe" />
+                          <valueLabel name="5702" value="Catemu" />
+                          <valueLabel name="5703" value="Llaillay" />
+                          <valueLabel name="5704" value="Panquehue" />
+                          <valueLabel name="5705" value="Puntaendo" />
+                          <valueLabel name="5706" value="Santa María" />
+                          <valueLabel name="5801" value="Quilpué" />
+                          <valueLabel name="5802" value="Limache" />
+                          <valueLabel name="5803" value="Olmué" />
+                          <valueLabel name="5804" value="Villa Alemana" />
+                          <valueLabel name="6101" value="Rancagua" />
+                          <valueLabel name="6102" value="Codegua" />
+                          <valueLabel name="6103" value="Coinco" />
+                          <valueLabel name="6104" value="Coltauco" />
+                          <valueLabel name="6105" value="Doñihue" />
+                          <valueLabel name="6106" value="Graneros" />
+                          <valueLabel name="6107" value="Las Cabras" />
+                          <valueLabel name="6108" value="Machalí" />
+                          <valueLabel name="6109" value="Malloa" />
+                          <valueLabel name="6110" value="Mostazal" />
+                          <valueLabel name="6111" value="Olivar" />
+                          <valueLabel name="6112" value="Peumo" />
+                          <valueLabel name="6113" value="Pichidegua" />
+                          <valueLabel name="6114" value="Quinta de Tilcoco" />
+                          <valueLabel name="6115" value="Rengo" />
+                          <valueLabel name="6116" value="Requínoa" />
+                          <valueLabel name="6117" value="San Vicente" />
+                          <valueLabel name="6201" value="Pichilemu" />
+                          <valueLabel name="6202" value="La Estrella" />
+                          <valueLabel name="6203" value="Litueche" />
+                          <valueLabel name="6204" value="Marchihue" />
+                          <valueLabel name="6205" value="Navidad" />
+                          <valueLabel name="6206" value="Paredones" />
+                          <valueLabel name="6301" value="San Fernando" />
+                          <valueLabel name="6302" value="Chépica" />
+                          <valueLabel name="6303" value="Chimbarongo" />
+                          <valueLabel name="6304" value="Lolol" />
+                          <valueLabel name="6305" value="Nancagua" />
+                          <valueLabel name="6306" value="Palmilla" />
+                          <valueLabel name="6307" value="Peralillo" />
+                          <valueLabel name="6308" value="Placilla" />
+                          <valueLabel name="6309" value="Pumanque" />
+                          <valueLabel name="6310" value="Santa Cruz" />
+                          <valueLabel name="7101" value="Talca" />
+                          <valueLabel name="7102" value="Constitución" />
+                          <valueLabel name="7103" value="Curepto" />
+                          <valueLabel name="7104" value="Empedrado" />
+                          <valueLabel name="7105" value="Maule" />
+                          <valueLabel name="7106" value="Pelarco" />
+                          <valueLabel name="7107" value="Pencahue" />
+                          <valueLabel name="7108" value="Río Claro" />
+                          <valueLabel name="7109" value="San Clemente" />
+                          <valueLabel name="7110" value="San Rafael" />
+                          <valueLabel name="7201" value="Cauquenes" />
+                          <valueLabel name="7202" value="Chanco" />
+                          <valueLabel name="7203" value="Pelluhue" />
+                          <valueLabel name="7301" value="Curicó" />
+                          <valueLabel name="7302" value="Hualañé" />
+                          <valueLabel name="7303" value="Licantén" />
+                          <valueLabel name="7304" value="Molina" />
+                          <valueLabel name="7305" value="Rauco" />
+                          <valueLabel name="7306" value="Romeral" />
+                          <valueLabel name="7307" value="Sagrada Familia" />
+                          <valueLabel name="7308" value="Teno" />
+                          <valueLabel name="7309" value="Vichuquén" />
+                          <valueLabel name="7401" value="Linares" />
+                          <valueLabel name="7402" value="Colbún" />
+                          <valueLabel name="7403" value="Longaví" />
+                          <valueLabel name="7404" value="Parral" />
+                          <valueLabel name="7405" value="Retiro" />
+                          <valueLabel name="7406" value="San Javier" />
+                          <valueLabel name="7407" value="Villa Alegre" />
+                          <valueLabel name="7408" value="Yerbas Buenas" />
+                          <valueLabel name="8101" value="Concepción" />
+                          <valueLabel name="8102" value="Coronel" />
+                          <valueLabel name="8103" value="Chiguayante" />
+                          <valueLabel name="8104" value="Florida" />
+                          <valueLabel name="8105" value="Hualqui" />
+                          <valueLabel name="8106" value="Lota" />
+                          <valueLabel name="8107" value="Penco" />
+                          <valueLabel name="8108" value="San Pedro de la Paz" />
+                          <valueLabel name="8109" value="Santa Juana" />
+                          <valueLabel name="8110" value="Talcahuano" />
+                          <valueLabel name="8111" value="Tomé" />
+                          <valueLabel name="8112" value="Hualpén" />
+                          <valueLabel name="8201" value="Lebu" />
+                          <valueLabel name="8202" value="Arauco" />
+                          <valueLabel name="8203" value="Cañete" />
+                          <valueLabel name="8204" value="Contulmo" />
+                          <valueLabel name="8205" value="Curanilahue" />
+                          <valueLabel name="8206" value="Los Álamos" />
+                          <valueLabel name="8207" value="Tirúa" />
+                          <valueLabel name="8301" value="Los Ángeles" />
+                          <valueLabel name="8302" value="Antuco" />
+                          <valueLabel name="8303" value="Cabrero" />
+                          <valueLabel name="8304" value="Laja" />
+                          <valueLabel name="8305" value="Mulchén" />
+                          <valueLabel name="8306" value="Nacimiento" />
+                          <valueLabel name="8307" value="Negrete" />
+                          <valueLabel name="8308" value="Quilaco" />
+                          <valueLabel name="8309" value="Quilleco" />
+                          <valueLabel name="8310" value="San Rosendo" />
+                          <valueLabel name="8311" value="Santa Bárbara" />
+                          <valueLabel name="8312" value="Tucapel" />
+                          <valueLabel name="8313" value="Yumbel" />
+                          <valueLabel name="8314" value="Alto Biobío" />
+                          <valueLabel name="8401" value="Chillán" />
+                          <valueLabel name="8402" value="Bulnes" />
+                          <valueLabel name="8403" value="Cobquecura" />
+                          <valueLabel name="8404" value="Coelemu" />
+                          <valueLabel name="8405" value="Coihueco" />
+                          <valueLabel name="8406" value="Chillán Viejo" />
+                          <valueLabel name="8407" value="El Carmen" />
+                          <valueLabel name="8408" value="Ninhue" />
+                          <valueLabel name="8409" value="Ñiquén" />
+                          <valueLabel name="8410" value="Pemuco" />
+                          <valueLabel name="8411" value="Pinto" />
+                          <valueLabel name="8412" value="Portezuelo" />
+                          <valueLabel name="8413" value="Quillón" />
+                          <valueLabel name="8414" value="Quirihue" />
+                          <valueLabel name="8415" value="Ranquil" />
+                          <valueLabel name="8416" value="San Carlos" />
+                          <valueLabel name="8417" value="San Fabián" />
+                          <valueLabel name="8418" value="San Ignacio" />
+                          <valueLabel name="8419" value="San Nicolás" />
+                          <valueLabel name="8420" value="Treguaco" />
+                          <valueLabel name="8421" value="Yungay" />
+                          <valueLabel name="9101" value="Temuco" />
+                          <valueLabel name="9102" value="Carahue" />
+                          <valueLabel name="9103" value="Cunco" />
+                          <valueLabel name="9104" value="Curarrehue" />
+                          <valueLabel name="9105" value="Freire" />
+                          <valueLabel name="9106" value="Galvarino" />
+                          <valueLabel name="9107" value="Gorbea" />
+                          <valueLabel name="9108" value="Lautaro" />
+                          <valueLabel name="9109" value="Loncoche" />
+                          <valueLabel name="9110" value="Melipeuco" />
+                          <valueLabel name="9111" value="Nueva Imperial" />
+                          <valueLabel name="9112" value="Padre Las Casas" />
+                          <valueLabel name="9113" value="Perquenco" />
+                          <valueLabel name="9114" value="Pitrufquén" />
+                          <valueLabel name="9115" value="Pucón" />
+                          <valueLabel name="9116" value="Saavedra" />
+                          <valueLabel name="9117" value="Teodoro Schmidt" />
+                          <valueLabel name="9118" value="Toltén" />
+                          <valueLabel name="9119" value="Vilcún" />
+                          <valueLabel name="9120" value="Villarica" />
+                          <valueLabel name="9121" value="Cholchol" />
+                          <valueLabel name="9201" value="Angol" />
+                          <valueLabel name="9202" value="Collipulli" />
+                          <valueLabel name="9203" value="Curacautin" />
+                          <valueLabel name="9204" value="Ercilla" />
+                          <valueLabel name="9205" value="Lonquimay" />
+                          <valueLabel name="9206" value="Los Sauces" />
+                          <valueLabel name="9207" value="Lumaco" />
+                          <valueLabel name="9208" value="Purén" />
+                          <valueLabel name="9209" value="Renaico" />
+                          <valueLabel name="9210" value="Traiguén" />
+                          <valueLabel name="9211" value="Victoria" />
+                          <valueLabel name="10101" value="Puerto Montt" />
+                          <valueLabel name="10102" value="Calbuco" />
+                          <valueLabel name="10103" value="Cochamó" />
+                          <valueLabel name="10104" value="Fresia" />
+                          <valueLabel name="10105" value="Frutillar" />
+                          <valueLabel name="10106" value="Los Muermos" />
+                          <valueLabel name="10107" value="Llanquihue" />
+                          <valueLabel name="10108" value="Maullín" />
+                          <valueLabel name="10109" value="Puerto Varas" />
+                          <valueLabel name="10201" value="Castro" />
+                          <valueLabel name="10202" value="Ancud" />
+                          <valueLabel name="10203" value="Chonchi" />
+                          <valueLabel name="10204" value="Curaco de Vélez" />
+                          <valueLabel name="10205" value="Dalcahue" />
+                          <valueLabel name="10206" value="Puqueldón" />
+                          <valueLabel name="10207" value="Queilén" />
+                          <valueLabel name="10208" value="Quellón" />
+                          <valueLabel name="10209" value="Quemchi" />
+                          <valueLabel name="10210" value="Quinchao" />
+                          <valueLabel name="10301" value="Osorno" />
+                          <valueLabel name="10302" value="Puerto Octay" />
+                          <valueLabel name="10303" value="Purranque" />
+                          <valueLabel name="10304" value="Puyehue" />
+                          <valueLabel name="10305" value="Río Negro" />
+                          <valueLabel name="10306" value="San Juan de la Costa" />
+                          <valueLabel name="10307" value="San Pablo" />
+                          <valueLabel name="10401" value="Chaitén" />
+                          <valueLabel name="10402" value="Futaleufú" />
+                          <valueLabel name="10403" value="Hualaihué" />
+                          <valueLabel name="10404" value="Palena" />
+                          <valueLabel name="11101" value="Coyhaique" />
+                          <valueLabel name="11102" value="Lago Verde" />
+                          <valueLabel name="11201" value="Aysén" />
+                          <valueLabel name="11202" value="Cisnes" />
+                          <valueLabel name="11203" value="Guaitecas" />
+                          <valueLabel name="11301" value="Cochrane" />
+                          <valueLabel name="11302" value="O’Higgins" />
+                          <valueLabel name="11303" value="Tortel" />
+                          <valueLabel name="11401" value="Chile Chico" />
+                          <valueLabel name="11402" value="Río Ibáñez" />
+                          <valueLabel name="12101" value="Punta Arenas" />
+                          <valueLabel name="12102" value="Laguna Blanca" />
+                          <valueLabel name="12103" value="Río Verde" />
+                          <valueLabel name="12104" value="San Gregorio" />
+                          <valueLabel name="12201" value="Cabo de Hornos" />
+                          <valueLabel name="12202" value="Antártica" />
+                          <valueLabel name="12301" value="Porvenir" />
+                          <valueLabel name="12302" value="Primavera" />
+                          <valueLabel name="12303" value="Timaukel" />
+                          <valueLabel name="12401" value="Natales" />
+                          <valueLabel name="12402" value="Torres del Paine" />
+                          <valueLabel name="13101" value="Santiago" />
+                          <valueLabel name="13102" value="Cerrillos" />
+                          <valueLabel name="13103" value="Cerro Navia" />
+                          <valueLabel name="13104" value="Conchalí" />
+                          <valueLabel name="13105" value="El Bosque" />
+                          <valueLabel name="13106" value="Estación Central" />
+                          <valueLabel name="13107" value="Huechuraba" />
+                          <valueLabel name="13108" value="Independencia" />
+                          <valueLabel name="13109" value="La Cisterna" />
+                          <valueLabel name="13110" value="La Florida" />
+                          <valueLabel name="13111" value="La Granja" />
+                          <valueLabel name="13112" value="La Pintana" />
+                          <valueLabel name="13113" value="La Reina" />
+                          <valueLabel name="13114" value="Las Condes" />
+                          <valueLabel name="13115" value="Lo Barnechea" />
+                          <valueLabel name="13116" value="Lo Espejo" />
+                          <valueLabel name="13117" value="Lo Prado" />
+                          <valueLabel name="13118" value="Macul" />
+                          <valueLabel name="13119" value="Maipú" />
+                          <valueLabel name="13120" value="Ñuñoa" />
+                          <valueLabel name="13121" value="Pedro Aguirre Cerda" />
+                          <valueLabel name="13122" value="Peñalolén" />
+                          <valueLabel name="13123" value="Providencia" />
+                          <valueLabel name="13124" value="Pudahuel" />
+                          <valueLabel name="13125" value="Quilicura" />
+                          <valueLabel name="13126" value="Quinta Normal" />
+                          <valueLabel name="13127" value="Recoleta" />
+                          <valueLabel name="13128" value="Renca" />
+                          <valueLabel name="13129" value="San Joaquín" />
+                          <valueLabel name="13130" value="San Miguel" />
+                          <valueLabel name="13131" value="San Ramón" />
+                          <valueLabel name="13132" value="Vitacura" />
+                          <valueLabel name="13201" value="Puente Alto" />
+                          <valueLabel name="13202" value="Pirque" />
+                          <valueLabel name="13203" value="San José de Maipo" />
+                          <valueLabel name="13301" value="Colina" />
+                          <valueLabel name="13302" value="Lampa" />
+                          <valueLabel name="13303" value="Tiltil" />
+                          <valueLabel name="13401" value="San Bernardo" />
+                          <valueLabel name="13402" value="Buin" />
+                          <valueLabel name="13403" value="Calera de Tango" />
+                          <valueLabel name="13404" value="Paine" />
+                          <valueLabel name="13501" value="Melipilla" />
+                          <valueLabel name="13502" value="Alhué" />
+                          <valueLabel name="13503" value="Curacaví" />
+                          <valueLabel name="13504" value="María Pinto" />
+                          <valueLabel name="13505" value="San Pedro" />
+                          <valueLabel name="13601" value="Talagante" />
+                          <valueLabel name="13602" value="El Monte" />
+                          <valueLabel name="13603" value="Isla de Maipo" />
+                          <valueLabel name="13604" value="Padre Hurtado" />
+                          <valueLabel name="13605" value="Peñaflor" />
+                          <valueLabel name="14101" value="Valdivia" />
+                          <valueLabel name="14102" value="Corral" />
+                          <valueLabel name="14103" value="Lanco" />
+                          <valueLabel name="14104" value="Los Lagos" />
+                          <valueLabel name="14105" value="Máfil" />
+                          <valueLabel name="14106" value="Mariquina" />
+                          <valueLabel name="14107" value="Paillaco" />
+                          <valueLabel name="14108" value="Panguipulli" />
+                          <valueLabel name="14201" value="La Unión" />
+                          <valueLabel name="14202" value="Futrono" />
+                          <valueLabel name="14203" value="Lago Ranco" />
+                          <valueLabel name="14204" value="Río Bueno" />
+                          <valueLabel name="15101" value="Arica" />
+                          <valueLabel name="15102" value="Camarones" />
+                          <valueLabel name="15201" value="Putre" />
+                          <valueLabel name="15202" value="General Lagos" />
+                          <valueLabel name="997" value="Comuna no declarada" />
+                          <valueLabel name="1000" value="Región de Tarapacá" />
+                          <valueLabel name="2000" value="Región de Antofagasta" />
+                          <valueLabel name="3000" value="Región de Atacama" />
+                          <valueLabel name="4000" value="Región de Coquimbo" />
+                          <valueLabel name="5000" value="Región de Valparaíso" />
+                          <valueLabel name="6000" value="Región del Libertador General Bernardo O'Higgins" />
+                          <valueLabel name="7000" value="Región de Maule" />
+                          <valueLabel name="8000" value="Región de Biobío" />
+                          <valueLabel name="9000" value="Región de La Araucanía" />
+                          <valueLabel name="10000" value="Región de Los Lagos" />
+                          <valueLabel name="11000" value="Región de Aysén del General Carlos Ibáñez del Campo" />
+                          <valueLabel name="12000" value="Región de Magallanes y de la Antártica Chilena" />
+                          <valueLabel name="13000" value="Región Metropolitana de Santiago" />
+                          <valueLabel name="14000" value="Región de Los Ríos" />
+                          <valueLabel name="15000" value="Región de Arica y Parinacota" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P11PAIS" label="Pais de Residencia Anterior" type="INTEGER" size="10" decimals="0" range="0 TO 997" filter="" data=".\CPV201730.rbf">
+                        <valueLabels>
+                          <valueLabel name="2" value="África" />
+                          <valueLabel name="5" value="Sudamérica" />
+                          <valueLabel name="9" value="Oceanía" />
+                          <valueLabel name="10" value="Antártida" />
+                          <valueLabel name="12" value="Argelia" />
+                          <valueLabel name="13" value="Centroamérica" />
+                          <valueLabel name="21" value="Norteamérica" />
+                          <valueLabel name="29" value="Caribe" />
+                          <valueLabel name="32" value="Argentina" />
+                          <valueLabel name="36" value="Australia" />
+                          <valueLabel name="40" value="Austria" />
+                          <valueLabel name="51" value="Armenia" />
+                          <valueLabel name="56" value="Bélgica" />
+                          <valueLabel name="68" value="Bolivia (Estado Plurinacional de)" />
+                          <valueLabel name="76" value="Brasil" />
+                          <valueLabel name="96" value="Brunei Darussalam" />
+                          <valueLabel name="100" value="Bulgaria" />
+                          <valueLabel name="124" value="Canadá" />
+                          <valueLabel name="136" value="Islas Caimán" />
+                          <valueLabel name="142" value="Asia" />
+                          <valueLabel name="150" value="Europa" />
+                          <valueLabel name="156" value="China" />
+                          <valueLabel name="158" value="Taiwán (Provincia de China)" />
+                          <valueLabel name="170" value="Colombia" />
+                          <valueLabel name="188" value="Costa Rica" />
+                          <valueLabel name="191" value="Croacia" />
+                          <valueLabel name="192" value="Cuba" />
+                          <valueLabel name="203" value="República Checa" />
+                          <valueLabel name="208" value="Dinamarca" />
+                          <valueLabel name="214" value="República Dominicana" />
+                          <valueLabel name="218" value="Ecuador" />
+                          <valueLabel name="222" value="El Salvador" />
+                          <valueLabel name="246" value="Finlandia" />
+                          <valueLabel name="250" value="Francia" />
+                          <valueLabel name="258" value="Polinesia Francesa" />
+                          <valueLabel name="275" value="Palestina (Estado de)" />
+                          <valueLabel name="276" value="Alemania" />
+                          <valueLabel name="300" value="Grecia" />
+                          <valueLabel name="320" value="Guatemala" />
+                          <valueLabel name="332" value="Haití" />
+                          <valueLabel name="340" value="Honduras" />
+                          <valueLabel name="348" value="Hungría" />
+                          <valueLabel name="356" value="India" />
+                          <valueLabel name="360" value="Indonesia" />
+                          <valueLabel name="364" value="Irán (República Islámica de)" />
+                          <valueLabel name="372" value="Irlanda" />
+                          <valueLabel name="376" value="Israel" />
+                          <valueLabel name="380" value="Italia" />
+                          <valueLabel name="392" value="Japón" />
+                          <valueLabel name="400" value="Jordania" />
+                          <valueLabel name="410" value="Corea del Sur (República de)" />
+                          <valueLabel name="422" value="Líbano" />
+                          <valueLabel name="484" value="México" />
+                          <valueLabel name="504" value="Marruecos" />
+                          <valueLabel name="524" value="Nepal" />
+                          <valueLabel name="528" value="Países Bajos" />
+                          <valueLabel name="548" value="Vanuatu" />
+                          <valueLabel name="554" value="Nueva Zelandia" />
+                          <valueLabel name="558" value="Nicaragua" />
+                          <valueLabel name="578" value="Noruega" />
+                          <valueLabel name="586" value="Pakistán" />
+                          <valueLabel name="591" value="Panamá" />
+                          <valueLabel name="600" value="Paraguay" />
+                          <valueLabel name="604" value="Perú" />
+                          <valueLabel name="608" value="Filipinas" />
+                          <valueLabel name="616" value="Polonia" />
+                          <valueLabel name="620" value="Portugal" />
+                          <valueLabel name="626" value="Timor-Leste" />
+                          <valueLabel name="630" value="Puerto Rico" />
+                          <valueLabel name="642" value="Rumania" />
+                          <valueLabel name="643" value="Rusia (Federación de)" />
+                          <valueLabel name="688" value="Serbia" />
+                          <valueLabel name="710" value="Sudáfrica" />
+                          <valueLabel name="724" value="España" />
+                          <valueLabel name="752" value="Suecia" />
+                          <valueLabel name="756" value="Suiza" />
+                          <valueLabel name="760" value="República Árabe Siria" />
+                          <valueLabel name="764" value="Tailandia" />
+                          <valueLabel name="792" value="Turquía" />
+                          <valueLabel name="804" value="Ucrania" />
+                          <valueLabel name="818" value="Egipto" />
+                          <valueLabel name="826" value="Reino Unido de Gran Bretaña e Irlanda del Norte" />
+                          <valueLabel name="840" value="Estados Unidos de América" />
+                          <valueLabel name="858" value="Uruguay" />
+                          <valueLabel name="862" value="Venezuela (República Bolivariana de)" />
+                          <valueLabel name="997" value="País no declarado" />
+                          <valueLabel name="999" value="MISSING" />
+                          <valueLabel name="998" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P11PAIS_GRUPO" label="Pais de Residencia Anterior (grupo)" type="INTEGER" size="10" decimals="0" range="0 TO 997" filter="" data=".\CPV201731.rbf">
+                        <valueLabels>
+                          <valueLabel name="2" value="África" />
+                          <valueLabel name="5" value="Sudamérica" />
+                          <valueLabel name="9" value="Oceanía" />
+                          <valueLabel name="10" value="Antártida" />
+                          <valueLabel name="13" value="Centroamérica" />
+                          <valueLabel name="21" value="Norteamérica" />
+                          <valueLabel name="29" value="Caribe" />
+                          <valueLabel name="32" value="Argentina" />
+                          <valueLabel name="68" value="Bolivia (Estado Plurinacional de)" />
+                          <valueLabel name="142" value="Asia" />
+                          <valueLabel name="150" value="Europa" />
+                          <valueLabel name="170" value="Colombia" />
+                          <valueLabel name="218" value="Ecuador" />
+                          <valueLabel name="332" value="Haití" />
+                          <valueLabel name="604" value="Perú" />
+                          <valueLabel name="862" value="Venezuela (República Bolivariana de)" />
+                          <valueLabel name="997" value="País no declarado" />
+                          <valueLabel name="999" value="MISSING" />
+                          <valueLabel name="998" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P12" label="Comuna o pais de Nacimiento" type="INTEGER" size="7" decimals="0" range="1 TO 8" filter="" data=".\CPV201732.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="En esta comuna" />
+                          <valueLabel name="2" value="En otra comuna" />
+                          <valueLabel name="3" value="Perú" />
+                          <valueLabel name="4" value="Argentina" />
+                          <valueLabel name="5" value="Bolivia" />
+                          <valueLabel name="6" value="Ecuador" />
+                          <valueLabel name="7" value="Colombia" />
+                          <valueLabel name="8" value="Otro" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P12COMUNA" label="Comuna de Nacimiento" type="INTEGER" size="14" decimals="0" range="997 TO 15202" filter="" data=".\CPV201733.rbf">
+                        <valueLabels>
+                          <valueLabel name="1101" value="Iquique" />
+                          <valueLabel name="1107" value="Alto Hospicio" />
+                          <valueLabel name="1401" value="Pozo Almonte" />
+                          <valueLabel name="1402" value="Camiña" />
+                          <valueLabel name="1403" value="Colchane" />
+                          <valueLabel name="1404" value="Huara" />
+                          <valueLabel name="1405" value="Pica" />
+                          <valueLabel name="2101" value="Antofagasta" />
+                          <valueLabel name="2102" value="Mejillones" />
+                          <valueLabel name="2103" value="Sierra Gorda" />
+                          <valueLabel name="2104" value="Taltal" />
+                          <valueLabel name="2201" value="Calama" />
+                          <valueLabel name="2202" value="Ollagüe" />
+                          <valueLabel name="2203" value="San Pedro de Atacama" />
+                          <valueLabel name="2301" value="Tocopilla" />
+                          <valueLabel name="2302" value="María Elena" />
+                          <valueLabel name="3101" value="Copiapó" />
+                          <valueLabel name="3102" value="Caldera" />
+                          <valueLabel name="3103" value="Tierra Amarilla" />
+                          <valueLabel name="3201" value="Chañaral" />
+                          <valueLabel name="3202" value="Diego de Almagro" />
+                          <valueLabel name="3301" value="Vallenar" />
+                          <valueLabel name="3302" value="Alto del Carmen" />
+                          <valueLabel name="3303" value="Freirina" />
+                          <valueLabel name="3304" value="Huasco" />
+                          <valueLabel name="4101" value="La Serena" />
+                          <valueLabel name="4102" value="Coquimbo" />
+                          <valueLabel name="4103" value="Andacollo" />
+                          <valueLabel name="4104" value="La Higuera" />
+                          <valueLabel name="4105" value="Paiguano" />
+                          <valueLabel name="4106" value="Vicuña" />
+                          <valueLabel name="4201" value="Illapel" />
+                          <valueLabel name="4202" value="Canela" />
+                          <valueLabel name="4203" value="Los Vilos" />
+                          <valueLabel name="4204" value="Salamanca" />
+                          <valueLabel name="4301" value="Ovalle" />
+                          <valueLabel name="4302" value="Combarbalá" />
+                          <valueLabel name="4303" value="Monte Patria" />
+                          <valueLabel name="4304" value="Punitaqui" />
+                          <valueLabel name="4305" value="Río Hurtado" />
+                          <valueLabel name="5101" value="Valparaíso" />
+                          <valueLabel name="5102" value="Casablanca" />
+                          <valueLabel name="5103" value="Concón" />
+                          <valueLabel name="5104" value="Juan  Fernández" />
+                          <valueLabel name="5105" value="Puchuncaví" />
+                          <valueLabel name="5107" value="Quintero" />
+                          <valueLabel name="5109" value="Viña del Mar" />
+                          <valueLabel name="5201" value="Isla de Pascua" />
+                          <valueLabel name="5301" value="Los Andes" />
+                          <valueLabel name="5302" value="Calle Larga" />
+                          <valueLabel name="5303" value="Rinconada" />
+                          <valueLabel name="5304" value="San Esteban" />
+                          <valueLabel name="5401" value="La Ligua" />
+                          <valueLabel name="5402" value="Cabildo" />
+                          <valueLabel name="5403" value="Papudo" />
+                          <valueLabel name="5404" value="Petorca" />
+                          <valueLabel name="5405" value="Zapallar" />
+                          <valueLabel name="5501" value="Quillota" />
+                          <valueLabel name="5502" value="Calera" />
+                          <valueLabel name="5503" value="Hijuelas" />
+                          <valueLabel name="5504" value="La Cruz" />
+                          <valueLabel name="5506" value="Nogales" />
+                          <valueLabel name="5601" value="San Antonio" />
+                          <valueLabel name="5602" value="Algarrobo" />
+                          <valueLabel name="5603" value="Cartagena" />
+                          <valueLabel name="5604" value="El Quisco" />
+                          <valueLabel name="5605" value="El Tabo" />
+                          <valueLabel name="5606" value="Santo Domingo" />
+                          <valueLabel name="5701" value="San Felipe" />
+                          <valueLabel name="5702" value="Catemu" />
+                          <valueLabel name="5703" value="Llaillay" />
+                          <valueLabel name="5704" value="Panquehue" />
+                          <valueLabel name="5705" value="Puntaendo" />
+                          <valueLabel name="5706" value="Santa María" />
+                          <valueLabel name="5801" value="Quilpué" />
+                          <valueLabel name="5802" value="Limache" />
+                          <valueLabel name="5803" value="Olmué" />
+                          <valueLabel name="5804" value="Villa Alemana" />
+                          <valueLabel name="6101" value="Rancagua" />
+                          <valueLabel name="6102" value="Codegua" />
+                          <valueLabel name="6103" value="Coinco" />
+                          <valueLabel name="6104" value="Coltauco" />
+                          <valueLabel name="6105" value="Doñihue" />
+                          <valueLabel name="6106" value="Graneros" />
+                          <valueLabel name="6107" value="Las Cabras" />
+                          <valueLabel name="6108" value="Machalí" />
+                          <valueLabel name="6109" value="Malloa" />
+                          <valueLabel name="6110" value="Mostazal" />
+                          <valueLabel name="6111" value="Olivar" />
+                          <valueLabel name="6112" value="Peumo" />
+                          <valueLabel name="6113" value="Pichidegua" />
+                          <valueLabel name="6114" value="Quinta de Tilcoco" />
+                          <valueLabel name="6115" value="Rengo" />
+                          <valueLabel name="6116" value="Requínoa" />
+                          <valueLabel name="6117" value="San Vicente" />
+                          <valueLabel name="6201" value="Pichilemu" />
+                          <valueLabel name="6202" value="La Estrella" />
+                          <valueLabel name="6203" value="Litueche" />
+                          <valueLabel name="6204" value="Marchihue" />
+                          <valueLabel name="6205" value="Navidad" />
+                          <valueLabel name="6206" value="Paredones" />
+                          <valueLabel name="6301" value="San Fernando" />
+                          <valueLabel name="6302" value="Chépica" />
+                          <valueLabel name="6303" value="Chimbarongo" />
+                          <valueLabel name="6304" value="Lolol" />
+                          <valueLabel name="6305" value="Nancagua" />
+                          <valueLabel name="6306" value="Palmilla" />
+                          <valueLabel name="6307" value="Peralillo" />
+                          <valueLabel name="6308" value="Placilla" />
+                          <valueLabel name="6309" value="Pumanque" />
+                          <valueLabel name="6310" value="Santa Cruz" />
+                          <valueLabel name="7101" value="Talca" />
+                          <valueLabel name="7102" value="Constitución" />
+                          <valueLabel name="7103" value="Curepto" />
+                          <valueLabel name="7104" value="Empedrado" />
+                          <valueLabel name="7105" value="Maule" />
+                          <valueLabel name="7106" value="Pelarco" />
+                          <valueLabel name="7107" value="Pencahue" />
+                          <valueLabel name="7108" value="Río Claro" />
+                          <valueLabel name="7109" value="San Clemente" />
+                          <valueLabel name="7110" value="San Rafael" />
+                          <valueLabel name="7201" value="Cauquenes" />
+                          <valueLabel name="7202" value="Chanco" />
+                          <valueLabel name="7203" value="Pelluhue" />
+                          <valueLabel name="7301" value="Curicó" />
+                          <valueLabel name="7302" value="Hualañé" />
+                          <valueLabel name="7303" value="Licantén" />
+                          <valueLabel name="7304" value="Molina" />
+                          <valueLabel name="7305" value="Rauco" />
+                          <valueLabel name="7306" value="Romeral" />
+                          <valueLabel name="7307" value="Sagrada Familia" />
+                          <valueLabel name="7308" value="Teno" />
+                          <valueLabel name="7309" value="Vichuquén" />
+                          <valueLabel name="7401" value="Linares" />
+                          <valueLabel name="7402" value="Colbún" />
+                          <valueLabel name="7403" value="Longaví" />
+                          <valueLabel name="7404" value="Parral" />
+                          <valueLabel name="7405" value="Retiro" />
+                          <valueLabel name="7406" value="San Javier" />
+                          <valueLabel name="7407" value="Villa Alegre" />
+                          <valueLabel name="7408" value="Yerbas Buenas" />
+                          <valueLabel name="8101" value="Concepción" />
+                          <valueLabel name="8102" value="Coronel" />
+                          <valueLabel name="8103" value="Chiguayante" />
+                          <valueLabel name="8104" value="Florida" />
+                          <valueLabel name="8105" value="Hualqui" />
+                          <valueLabel name="8106" value="Lota" />
+                          <valueLabel name="8107" value="Penco" />
+                          <valueLabel name="8108" value="San Pedro de la Paz" />
+                          <valueLabel name="8109" value="Santa Juana" />
+                          <valueLabel name="8110" value="Talcahuano" />
+                          <valueLabel name="8111" value="Tomé" />
+                          <valueLabel name="8112" value="Hualpén" />
+                          <valueLabel name="8201" value="Lebu" />
+                          <valueLabel name="8202" value="Arauco" />
+                          <valueLabel name="8203" value="Cañete" />
+                          <valueLabel name="8204" value="Contulmo" />
+                          <valueLabel name="8205" value="Curanilahue" />
+                          <valueLabel name="8206" value="Los Álamos" />
+                          <valueLabel name="8207" value="Tirúa" />
+                          <valueLabel name="8301" value="Los Ángeles" />
+                          <valueLabel name="8302" value="Antuco" />
+                          <valueLabel name="8303" value="Cabrero" />
+                          <valueLabel name="8304" value="Laja" />
+                          <valueLabel name="8305" value="Mulchén" />
+                          <valueLabel name="8306" value="Nacimiento" />
+                          <valueLabel name="8307" value="Negrete" />
+                          <valueLabel name="8308" value="Quilaco" />
+                          <valueLabel name="8309" value="Quilleco" />
+                          <valueLabel name="8310" value="San Rosendo" />
+                          <valueLabel name="8311" value="Santa Bárbara" />
+                          <valueLabel name="8312" value="Tucapel" />
+                          <valueLabel name="8313" value="Yumbel" />
+                          <valueLabel name="8314" value="Alto Biobío" />
+                          <valueLabel name="8401" value="Chillán" />
+                          <valueLabel name="8402" value="Bulnes" />
+                          <valueLabel name="8403" value="Cobquecura" />
+                          <valueLabel name="8404" value="Coelemu" />
+                          <valueLabel name="8405" value="Coihueco" />
+                          <valueLabel name="8406" value="Chillán Viejo" />
+                          <valueLabel name="8407" value="El Carmen" />
+                          <valueLabel name="8408" value="Ninhue" />
+                          <valueLabel name="8409" value="Ñiquén" />
+                          <valueLabel name="8410" value="Pemuco" />
+                          <valueLabel name="8411" value="Pinto" />
+                          <valueLabel name="8412" value="Portezuelo" />
+                          <valueLabel name="8413" value="Quillón" />
+                          <valueLabel name="8414" value="Quirihue" />
+                          <valueLabel name="8415" value="Ranquil" />
+                          <valueLabel name="8416" value="San Carlos" />
+                          <valueLabel name="8417" value="San Fabián" />
+                          <valueLabel name="8418" value="San Ignacio" />
+                          <valueLabel name="8419" value="San Nicolás" />
+                          <valueLabel name="8420" value="Treguaco" />
+                          <valueLabel name="8421" value="Yungay" />
+                          <valueLabel name="9101" value="Temuco" />
+                          <valueLabel name="9102" value="Carahue" />
+                          <valueLabel name="9103" value="Cunco" />
+                          <valueLabel name="9104" value="Curarrehue" />
+                          <valueLabel name="9105" value="Freire" />
+                          <valueLabel name="9106" value="Galvarino" />
+                          <valueLabel name="9107" value="Gorbea" />
+                          <valueLabel name="9108" value="Lautaro" />
+                          <valueLabel name="9109" value="Loncoche" />
+                          <valueLabel name="9110" value="Melipeuco" />
+                          <valueLabel name="9111" value="Nueva Imperial" />
+                          <valueLabel name="9112" value="Padre Las Casas" />
+                          <valueLabel name="9113" value="Perquenco" />
+                          <valueLabel name="9114" value="Pitrufquén" />
+                          <valueLabel name="9115" value="Pucón" />
+                          <valueLabel name="9116" value="Saavedra" />
+                          <valueLabel name="9117" value="Teodoro Schmidt" />
+                          <valueLabel name="9118" value="Toltén" />
+                          <valueLabel name="9119" value="Vilcún" />
+                          <valueLabel name="9120" value="Villarica" />
+                          <valueLabel name="9121" value="Cholchol" />
+                          <valueLabel name="9201" value="Angol" />
+                          <valueLabel name="9202" value="Collipulli" />
+                          <valueLabel name="9203" value="Curacautin" />
+                          <valueLabel name="9204" value="Ercilla" />
+                          <valueLabel name="9205" value="Lonquimay" />
+                          <valueLabel name="9206" value="Los Sauces" />
+                          <valueLabel name="9207" value="Lumaco" />
+                          <valueLabel name="9208" value="Purén" />
+                          <valueLabel name="9209" value="Renaico" />
+                          <valueLabel name="9210" value="Traiguén" />
+                          <valueLabel name="9211" value="Victoria" />
+                          <valueLabel name="10101" value="Puerto Montt" />
+                          <valueLabel name="10102" value="Calbuco" />
+                          <valueLabel name="10103" value="Cochamó" />
+                          <valueLabel name="10104" value="Fresia" />
+                          <valueLabel name="10105" value="Frutillar" />
+                          <valueLabel name="10106" value="Los Muermos" />
+                          <valueLabel name="10107" value="Llanquihue" />
+                          <valueLabel name="10108" value="Maullín" />
+                          <valueLabel name="10109" value="Puerto Varas" />
+                          <valueLabel name="10201" value="Castro" />
+                          <valueLabel name="10202" value="Ancud" />
+                          <valueLabel name="10203" value="Chonchi" />
+                          <valueLabel name="10204" value="Curaco de Vélez" />
+                          <valueLabel name="10205" value="Dalcahue" />
+                          <valueLabel name="10206" value="Puqueldón" />
+                          <valueLabel name="10207" value="Queilén" />
+                          <valueLabel name="10208" value="Quellón" />
+                          <valueLabel name="10209" value="Quemchi" />
+                          <valueLabel name="10210" value="Quinchao" />
+                          <valueLabel name="10301" value="Osorno" />
+                          <valueLabel name="10302" value="Puerto Octay" />
+                          <valueLabel name="10303" value="Purranque" />
+                          <valueLabel name="10304" value="Puyehue" />
+                          <valueLabel name="10305" value="Río Negro" />
+                          <valueLabel name="10306" value="San Juan de la Costa" />
+                          <valueLabel name="10307" value="San Pablo" />
+                          <valueLabel name="10401" value="Chaitén" />
+                          <valueLabel name="10402" value="Futaleufú" />
+                          <valueLabel name="10403" value="Hualaihué" />
+                          <valueLabel name="10404" value="Palena" />
+                          <valueLabel name="11101" value="Coyhaique" />
+                          <valueLabel name="11102" value="Lago Verde" />
+                          <valueLabel name="11201" value="Aysén" />
+                          <valueLabel name="11202" value="Cisnes" />
+                          <valueLabel name="11203" value="Guaitecas" />
+                          <valueLabel name="11301" value="Cochrane" />
+                          <valueLabel name="11302" value="O’Higgins" />
+                          <valueLabel name="11303" value="Tortel" />
+                          <valueLabel name="11401" value="Chile Chico" />
+                          <valueLabel name="11402" value="Río Ibáñez" />
+                          <valueLabel name="12101" value="Punta Arenas" />
+                          <valueLabel name="12102" value="Laguna Blanca" />
+                          <valueLabel name="12103" value="Río Verde" />
+                          <valueLabel name="12104" value="San Gregorio" />
+                          <valueLabel name="12201" value="Cabo de Hornos" />
+                          <valueLabel name="12202" value="Antártica" />
+                          <valueLabel name="12301" value="Porvenir" />
+                          <valueLabel name="12302" value="Primavera" />
+                          <valueLabel name="12303" value="Timaukel" />
+                          <valueLabel name="12401" value="Natales" />
+                          <valueLabel name="12402" value="Torres del Paine" />
+                          <valueLabel name="13101" value="Santiago" />
+                          <valueLabel name="13102" value="Cerrillos" />
+                          <valueLabel name="13103" value="Cerro Navia" />
+                          <valueLabel name="13104" value="Conchalí" />
+                          <valueLabel name="13105" value="El Bosque" />
+                          <valueLabel name="13106" value="Estación Central" />
+                          <valueLabel name="13107" value="Huechuraba" />
+                          <valueLabel name="13108" value="Independencia" />
+                          <valueLabel name="13109" value="La Cisterna" />
+                          <valueLabel name="13110" value="La Florida" />
+                          <valueLabel name="13111" value="La Granja" />
+                          <valueLabel name="13112" value="La Pintana" />
+                          <valueLabel name="13113" value="La Reina" />
+                          <valueLabel name="13114" value="Las Condes" />
+                          <valueLabel name="13115" value="Lo Barnechea" />
+                          <valueLabel name="13116" value="Lo Espejo" />
+                          <valueLabel name="13117" value="Lo Prado" />
+                          <valueLabel name="13118" value="Macul" />
+                          <valueLabel name="13119" value="Maipú" />
+                          <valueLabel name="13120" value="Ñuñoa" />
+                          <valueLabel name="13121" value="Pedro Aguirre Cerda" />
+                          <valueLabel name="13122" value="Peñalolén" />
+                          <valueLabel name="13123" value="Providencia" />
+                          <valueLabel name="13124" value="Pudahuel" />
+                          <valueLabel name="13125" value="Quilicura" />
+                          <valueLabel name="13126" value="Quinta Normal" />
+                          <valueLabel name="13127" value="Recoleta" />
+                          <valueLabel name="13128" value="Renca" />
+                          <valueLabel name="13129" value="San Joaquín" />
+                          <valueLabel name="13130" value="San Miguel" />
+                          <valueLabel name="13131" value="San Ramón" />
+                          <valueLabel name="13132" value="Vitacura" />
+                          <valueLabel name="13201" value="Puente Alto" />
+                          <valueLabel name="13202" value="Pirque" />
+                          <valueLabel name="13203" value="San José de Maipo" />
+                          <valueLabel name="13301" value="Colina" />
+                          <valueLabel name="13302" value="Lampa" />
+                          <valueLabel name="13303" value="Tiltil" />
+                          <valueLabel name="13401" value="San Bernardo" />
+                          <valueLabel name="13402" value="Buin" />
+                          <valueLabel name="13403" value="Calera de Tango" />
+                          <valueLabel name="13404" value="Paine" />
+                          <valueLabel name="13501" value="Melipilla" />
+                          <valueLabel name="13502" value="Alhué" />
+                          <valueLabel name="13503" value="Curacaví" />
+                          <valueLabel name="13504" value="María Pinto" />
+                          <valueLabel name="13505" value="San Pedro" />
+                          <valueLabel name="13601" value="Talagante" />
+                          <valueLabel name="13602" value="El Monte" />
+                          <valueLabel name="13603" value="Isla de Maipo" />
+                          <valueLabel name="13604" value="Padre Hurtado" />
+                          <valueLabel name="13605" value="Peñaflor" />
+                          <valueLabel name="14101" value="Valdivia" />
+                          <valueLabel name="14102" value="Corral" />
+                          <valueLabel name="14103" value="Lanco" />
+                          <valueLabel name="14104" value="Los Lagos" />
+                          <valueLabel name="14105" value="Máfil" />
+                          <valueLabel name="14106" value="Mariquina" />
+                          <valueLabel name="14107" value="Paillaco" />
+                          <valueLabel name="14108" value="Panguipulli" />
+                          <valueLabel name="14201" value="La Unión" />
+                          <valueLabel name="14202" value="Futrono" />
+                          <valueLabel name="14203" value="Lago Ranco" />
+                          <valueLabel name="14204" value="Río Bueno" />
+                          <valueLabel name="15101" value="Arica" />
+                          <valueLabel name="15102" value="Camarones" />
+                          <valueLabel name="15201" value="Putre" />
+                          <valueLabel name="15202" value="General Lagos" />
+                          <valueLabel name="997" value="Comuna no declarada" />
+                          <valueLabel name="1000" value="Región de Tarapacá" />
+                          <valueLabel name="2000" value="Región de Antofagasta" />
+                          <valueLabel name="3000" value="Región de Atacama" />
+                          <valueLabel name="4000" value="Región de Coquimbo" />
+                          <valueLabel name="5000" value="Región de Valparaíso" />
+                          <valueLabel name="6000" value="Región del Libertador General Bernardo O'Higgins" />
+                          <valueLabel name="7000" value="Región de Maule" />
+                          <valueLabel name="8000" value="Región de Biobío" />
+                          <valueLabel name="9000" value="Región de La Araucanía" />
+                          <valueLabel name="10000" value="Región de Los Lagos" />
+                          <valueLabel name="11000" value="Región de Aysén del General Carlos Ibáñez del Campo" />
+                          <valueLabel name="12000" value="Región de Magallanes y de la Antártica Chilena" />
+                          <valueLabel name="13000" value="Región Metropolitana de Santiago" />
+                          <valueLabel name="14000" value="Región de Los Ríos" />
+                          <valueLabel name="15000" value="Región de Arica y Parinacota" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P12PAIS" label="Pais de Nacimiento" type="INTEGER" size="10" decimals="0" range="0 TO 997" filter="" data=".\CPV201734.rbf">
+                        <valueLabels>
+                          <valueLabel name="2" value="África" />
+                          <valueLabel name="5" value="Sudamérica" />
+                          <valueLabel name="9" value="Oceanía" />
+                          <valueLabel name="10" value="Antártida" />
+                          <valueLabel name="12" value="Argelia" />
+                          <valueLabel name="13" value="Centroamérica" />
+                          <valueLabel name="21" value="Norteamérica" />
+                          <valueLabel name="29" value="Caribe" />
+                          <valueLabel name="32" value="Argentina" />
+                          <valueLabel name="36" value="Australia" />
+                          <valueLabel name="40" value="Austria" />
+                          <valueLabel name="51" value="Armenia" />
+                          <valueLabel name="56" value="Bélgica" />
+                          <valueLabel name="68" value="Bolivia (Estado Plurinacional de)" />
+                          <valueLabel name="76" value="Brasil" />
+                          <valueLabel name="96" value="Brunei Darussalam" />
+                          <valueLabel name="100" value="Bulgaria" />
+                          <valueLabel name="124" value="Canadá" />
+                          <valueLabel name="136" value="Islas Caimán" />
+                          <valueLabel name="142" value="Asia" />
+                          <valueLabel name="150" value="Europa" />
+                          <valueLabel name="156" value="China" />
+                          <valueLabel name="158" value="Taiwán (Provincia de China)" />
+                          <valueLabel name="170" value="Colombia" />
+                          <valueLabel name="188" value="Costa Rica" />
+                          <valueLabel name="191" value="Croacia" />
+                          <valueLabel name="192" value="Cuba" />
+                          <valueLabel name="203" value="República Checa" />
+                          <valueLabel name="208" value="Dinamarca" />
+                          <valueLabel name="214" value="República Dominicana" />
+                          <valueLabel name="218" value="Ecuador" />
+                          <valueLabel name="222" value="El Salvador" />
+                          <valueLabel name="246" value="Finlandia" />
+                          <valueLabel name="250" value="Francia" />
+                          <valueLabel name="258" value="Polinesia Francesa" />
+                          <valueLabel name="275" value="Palestina (Estado de)" />
+                          <valueLabel name="276" value="Alemania" />
+                          <valueLabel name="300" value="Grecia" />
+                          <valueLabel name="320" value="Guatemala" />
+                          <valueLabel name="332" value="Haití" />
+                          <valueLabel name="340" value="Honduras" />
+                          <valueLabel name="348" value="Hungría" />
+                          <valueLabel name="356" value="India" />
+                          <valueLabel name="360" value="Indonesia" />
+                          <valueLabel name="364" value="Irán (República Islámica de)" />
+                          <valueLabel name="372" value="Irlanda" />
+                          <valueLabel name="376" value="Israel" />
+                          <valueLabel name="380" value="Italia" />
+                          <valueLabel name="392" value="Japón" />
+                          <valueLabel name="400" value="Jordania" />
+                          <valueLabel name="410" value="Corea del Sur (República de)" />
+                          <valueLabel name="422" value="Líbano" />
+                          <valueLabel name="484" value="México" />
+                          <valueLabel name="504" value="Marruecos" />
+                          <valueLabel name="524" value="Nepal" />
+                          <valueLabel name="528" value="Países Bajos" />
+                          <valueLabel name="548" value="Vanuatu" />
+                          <valueLabel name="554" value="Nueva Zelandia" />
+                          <valueLabel name="558" value="Nicaragua" />
+                          <valueLabel name="578" value="Noruega" />
+                          <valueLabel name="586" value="Pakistán" />
+                          <valueLabel name="591" value="Panamá" />
+                          <valueLabel name="600" value="Paraguay" />
+                          <valueLabel name="604" value="Perú" />
+                          <valueLabel name="608" value="Filipinas" />
+                          <valueLabel name="616" value="Polonia" />
+                          <valueLabel name="620" value="Portugal" />
+                          <valueLabel name="626" value="Timor-Leste" />
+                          <valueLabel name="630" value="Puerto Rico" />
+                          <valueLabel name="642" value="Rumania" />
+                          <valueLabel name="643" value="Rusia (Federación de)" />
+                          <valueLabel name="688" value="Serbia" />
+                          <valueLabel name="710" value="Sudáfrica" />
+                          <valueLabel name="724" value="España" />
+                          <valueLabel name="752" value="Suecia" />
+                          <valueLabel name="756" value="Suiza" />
+                          <valueLabel name="760" value="República Árabe Siria" />
+                          <valueLabel name="764" value="Tailandia" />
+                          <valueLabel name="792" value="Turquía" />
+                          <valueLabel name="804" value="Ucrania" />
+                          <valueLabel name="818" value="Egipto" />
+                          <valueLabel name="826" value="Reino Unido de Gran Bretaña e Irlanda del Norte" />
+                          <valueLabel name="840" value="Estados Unidos de América" />
+                          <valueLabel name="858" value="Uruguay" />
+                          <valueLabel name="862" value="Venezuela (República Bolivariana de)" />
+                          <valueLabel name="997" value="País no declarado" />
+                          <valueLabel name="999" value="MISSING" />
+                          <valueLabel name="998" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P12PAIS_GRUPO" label="Pais de Nacimiento(grupo)" type="INTEGER" size="10" decimals="0" range="0 TO 997" filter="" data=".\CPV201735.rbf">
+                        <valueLabels>
+                          <valueLabel name="2" value="África" />
+                          <valueLabel name="5" value="Sudamérica" />
+                          <valueLabel name="9" value="Oceanía" />
+                          <valueLabel name="10" value="Antártida" />
+                          <valueLabel name="13" value="Centroamérica" />
+                          <valueLabel name="21" value="Norteamérica" />
+                          <valueLabel name="29" value="Caribe" />
+                          <valueLabel name="32" value="Argentina" />
+                          <valueLabel name="68" value="Bolivia (Estado Plurinacional de)" />
+                          <valueLabel name="142" value="Asia" />
+                          <valueLabel name="150" value="Europa" />
+                          <valueLabel name="170" value="Colombia" />
+                          <valueLabel name="218" value="Ecuador" />
+                          <valueLabel name="332" value="Haití" />
+                          <valueLabel name="604" value="Perú" />
+                          <valueLabel name="862" value="Venezuela (República Bolivariana de)" />
+                          <valueLabel name="997" value="País no declarado" />
+                          <valueLabel name="999" value="MISSING" />
+                          <valueLabel name="998" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P12A_LLEGADA" label="Año de Llegada al País" type="INTEGER" size="14" decimals="0" range="1950 TO 2017" filter="" data=".\CPV201736.rbf">
+                        <valueLabels>
+                          <valueLabel name="1950" value="o antes" />
+                          <valueLabel name="9999" value="MISSING" />
+                          <valueLabel name="9998" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P12A_TRAMO" label="Período de Llegada al País" type="INTEGER" size="7" decimals="0" range="1 TO 4" filter="" data=".\CPV201737.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Entre 2010 y 2017" />
+                          <valueLabel name="2" value="Entre 2000 y 2009" />
+                          <valueLabel name="3" value="Entre 1990 y 1999" />
+                          <valueLabel name="4" value="Antes de 1990" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P13" label="Asiste actualmente a educación formal" type="INTEGER" size="7" decimals="0" range="1 TO 3" filter="" data=".\CPV201738.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Sí" />
+                          <valueLabel name="2" value="No asiste actualmente" />
+                          <valueLabel name="3" value="Nunca asistió" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P14" label="Curso o año más alto aprobado" type="INTEGER" size="7" decimals="0" range="0 TO 8" filter="" data=".\CPV201739.rbf">
+                        <valueLabels>
+                          <valueLabel name="0" value="0" />
+                          <valueLabel name="1" value="1°" />
+                          <valueLabel name="2" value="2°" />
+                          <valueLabel name="3" value="3°" />
+                          <valueLabel name="4" value="4°" />
+                          <valueLabel name="5" value="5°" />
+                          <valueLabel name="6" value="6°" />
+                          <valueLabel name="7" value="7°" />
+                          <valueLabel name="8" value="8°" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P15" label="Nivel del curso más alto aprobado" type="INTEGER" size="7" decimals="0" range="1 TO 14" filter="" data=".\CPV201740.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Sala cuna o jardín infantil" />
+                          <valueLabel name="2" value="Prekínder" />
+                          <valueLabel name="3" value="Kínder" />
+                          <valueLabel name="4" value="Especial o diferencial" />
+                          <valueLabel name="5" value="Educación básica" />
+                          <valueLabel name="6" value="Primaria o preparatoria (sistema antiguo)" />
+                          <valueLabel name="7" value="Científico-humanista" />
+                          <valueLabel name="8" value="Técnica profesional" />
+                          <valueLabel name="9" value="Humanidades (sistema antiguo)" />
+                          <valueLabel name="10" value="Técnica comercial, industrial/normalista (sistema antiguo)" />
+                          <valueLabel name="11" value="Técnico superior (1-3 años)" />
+                          <valueLabel name="12" value="Profesional (4 o más años)" />
+                          <valueLabel name="13" value="Magíster" />
+                          <valueLabel name="14" value="Doctorado" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P15A" label="Completó el nivel especificado" type="INTEGER" size="7" decimals="0" range="1 TO 2" filter="" data=".\CPV201741.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Sí" />
+                          <valueLabel name="2" value="No" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P16" label="Se considera perteneciente a pueblo indígena u originario" type="INTEGER" size="7" decimals="0" range="1 TO 2" filter="" data=".\CPV201742.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Sí" />
+                          <valueLabel name="2" value="No" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P16A" label="Pueblo indígena u originario" type="INTEGER" size="7" decimals="0" range="1 TO 10" filter="" data=".\CPV201743.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Mapuche" />
+                          <valueLabel name="2" value="Aymara" />
+                          <valueLabel name="3" value="Rapa Nui" />
+                          <valueLabel name="4" value="Lican Antai" />
+                          <valueLabel name="5" value="Quechua" />
+                          <valueLabel name="6" value="Colla" />
+                          <valueLabel name="7" value="Diaguita" />
+                          <valueLabel name="8" value="Kawésqar" />
+                          <valueLabel name="9" value="Yagán o Yamana" />
+                          <valueLabel name="10" value="Otro" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P16A_OTRO" label="Pueblo indígena u originario (Otros)" type="INTEGER" size="7" decimals="0" range="1 TO 97" filter="" data=".\CPV201744.rbf">
+                        <valueLabels>
+                          <valueLabel name="3" value="Lafquenche" />
+                          <valueLabel name="4" value="Pehuenche" />
+                          <valueLabel name="5" value="Huilliche" />
+                          <valueLabel name="6" value="Picunche" />
+                          <valueLabel name="21" value="Changos" />
+                          <valueLabel name="22" value="Chonos" />
+                          <valueLabel name="23" value="Ona" />
+                          <valueLabel name="28" value="Tehuelches" />
+                          <valueLabel name="33" value="Pueblos de America Latina" />
+                          <valueLabel name="34" value="Pueblos del Resto del Mundo" />
+                          <valueLabel name="35" value="Afrodescendientes" />
+                          <valueLabel name="37" value="Otros pueblos presentes en el territorio nacional" />
+                          <valueLabel name="97" value="Pueblo no declarado" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P16A_GRUPO" label="Pueblo indígena u originario (Grupo)" type="INTEGER" size="7" decimals="0" range="1 TO 10" filter="" data=".\CPV201745.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Mapuche" />
+                          <valueLabel name="2" value="Aymara" />
+                          <valueLabel name="3" value="Rapa Nui" />
+                          <valueLabel name="4" value="Lican Antai" />
+                          <valueLabel name="5" value="Quechua" />
+                          <valueLabel name="6" value="Colla" />
+                          <valueLabel name="7" value="Diaguita" />
+                          <valueLabel name="8" value="Kawésqar" />
+                          <valueLabel name="9" value="Yagán o Yamana" />
+                          <valueLabel name="10" value="Otro" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P17" label="Trabajó durante la semana pasada" type="INTEGER" size="7" decimals="0" range="1 TO 8" filter="" data=".\CPV201746.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Por un pago en dinero o especies" />
+                          <valueLabel name="2" value="Sin pago para un familiar" />
+                          <valueLabel name="3" value="Tenía empleo pero estuvo de vacaciones, con licencia, en descanso laboral, etc." />
+                          <valueLabel name="4" value="Se encontraba buscando empleo" />
+                          <valueLabel name="5" value="Estaba estudiando" />
+                          <valueLabel name="6" value="Realizó quehaceres de su hogar" />
+                          <valueLabel name="7" value="Es jubilado, pensionado o rentista" />
+                          <valueLabel name="8" value="Otra situación" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P18" label="Rama de la actividad económica" type="STRING" size="2" decimals="0" range="" filter="" data=".\CPV201747.rbf">
+                        <valueLabels>
+                          <valueLabel name="0" value="A Agricultura, ganadería, silvicultura y pesca" />
+                          <valueLabel name="0" value="B Explotación de minas y canteras" />
+                          <valueLabel name="0" value="C Industrias manufactureras" />
+                          <valueLabel name="0" value="D Suministro de electricidad, gas, vapor y aire acondicionado" />
+                          <valueLabel name="0" value="E Suministro de agua; evacuación de aguas residuales, gestión de desechos y descontaminación" />
+                          <valueLabel name="0" value="F Construcción" />
+                          <valueLabel name="0" value="G Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas" />
+                          <valueLabel name="0" value="H Transporte y almacenamiento" />
+                          <valueLabel name="0" value="I Actividades de alojamiento y de servicio de comidas" />
+                          <valueLabel name="0" value="J Información y comunicaciones" />
+                          <valueLabel name="0" value="K Actividades financieras y de seguros" />
+                          <valueLabel name="0" value="L Actividades inmobiliarias" />
+                          <valueLabel name="0" value="M Actividades profesionales, científicas y técnicas" />
+                          <valueLabel name="0" value="N Actividades de servicios administrativos y de apoyo" />
+                          <valueLabel name="0" value="O Administración pública y defensa; planes de seguridad social de afiliación obligatoria" />
+                          <valueLabel name="0" value="P Enseñanza" />
+                          <valueLabel name="0" value="Q Actividades de atención de la salud humana y de asistencia social" />
+                          <valueLabel name="0" value="R Actividades artísticas, de entretenimiento y recreativas" />
+                          <valueLabel name="0" value="S Otras actividades de servicios" />
+                          <valueLabel name="0" value="T Actividades de los hogares como empleadores; actividades no diferenciadas de los hogares como productores de bienes y servicios para uso propio" />
+                          <valueLabel name="0" value="U Actividades de organizaciones y órganos extraterritoriales" />
+                          <valueLabel name="0" value="Z Rama no declarada" />
+                          <valueLabel name="98" value="No Aplica" />
+                          <valueLabel name="99" value="Missing" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P19" label="Total hijos/as nacidos vivos" type="INTEGER" size="7" decimals="0" range="0 TO 23" filter="" data=".\CPV201748.rbf">
+                        <valueLabels>
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P20" label="Total hijos/as actualmente vivos" type="INTEGER" size="7" decimals="0" range="0 TO 23" filter="" data=".\CPV201749.rbf">
+                        <valueLabels>
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P21M" label="Mes de nacimiento del último/a hijo/a" type="INTEGER" size="7" decimals="0" range="1 TO 12" filter="" data=".\CPV201750.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="Enero" />
+                          <valueLabel name="2" value="Febrero" />
+                          <valueLabel name="3" value="Marzo" />
+                          <valueLabel name="4" value="Abril" />
+                          <valueLabel name="5" value="Mayo" />
+                          <valueLabel name="6" value="Junio" />
+                          <valueLabel name="7" value="Julio" />
+                          <valueLabel name="8" value="Agosto" />
+                          <valueLabel name="9" value="Septiembre" />
+                          <valueLabel name="10" value="Octubre" />
+                          <valueLabel name="11" value="Noviembre" />
+                          <valueLabel name="12" value="Diciembre" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="98" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="P21A" label="Año de nacimiento de último hijo/a" type="INTEGER" size="14" decimals="0" range="1890 TO 2017" filter="" data=".\CPV201751.rbf">
+                        <valueLabels>
+                          <valueLabel name="9999" value="MISSING" />
+                          <valueLabel name="9998" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="ESCOLARIDAD" label="Años de escolaridad" type="INTEGER" size="7" decimals="0" range="0 TO 26" filter="" data=".\CPV201752.rbf">
+                        <valueLabels>
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="27" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                      <variable name="Rec_parentesco" label="Parentesco_recode" type="INTEGER" size="7" decimals="0" range="1 TO 99" filter="" data=".\rec_parentesco.rbf">
+                        <valueLabels>
+                          <valueLabel name="1" value="JH" />
+                          <valueLabel name="2" value="Conyuge o pareja" />
+                          <valueLabel name="3" value="Hijos" />
+                          <valueLabel name="4" value="yerno - nuera" />
+                          <valueLabel name="5" value="nietos" />
+                          <valueLabel name="6" value="hermanos - cuñados" />
+                          <valueLabel name="7" value="padres - suegros - abuelos" />
+                          <valueLabel name="8" value="otros parientes" />
+                          <valueLabel name="9" value="no parientes" />
+                          <valueLabel name="99" value="No aplica" />
+                          <valueLabel name="99" value="MISSING" />
+                          <valueLabel name="99" value="NOTAPPLICABLE" />
+                        </valueLabels>
+                      </variable>
+                    </entity>
+                  </entity>
+                </entity>
+              </entity>
+            </entity>
+          </entity>
+        </entity>
+      </entity>
+    </entity>
+  </entity>
+</database>
