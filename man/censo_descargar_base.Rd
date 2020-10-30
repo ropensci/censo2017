@@ -14,7 +14,7 @@ Se pueden ver todas las versiones en
 \item{borrar}{Borrar o no el archivo zip luego de cargar la base de datos.}
 }
 \description{
-Este comando descarga la base de datos completa como un único archivo bz2 que
+Este comando descarga la base de datos completa como un unico archivo bz2 que
 se descomprime para dejar disponible la base de datos local. La descarga son 1 GB
 y la base de datos usa 8.5 GB en disco. Nota: se usa bz2 para evitar el truncamiento
 al descomprimir zip en algunos sistemas operativos.

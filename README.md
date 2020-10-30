@@ -8,7 +8,7 @@
 
 # Acerca de
 
-Provee un acceso conveniente a más de 17 millones de registros de la base de datos del Censo 2017. Los datos fueron importados desde el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo de Grande y además se proporcionan los mapas que acompañan a estos datos.
+Provee un acceso conveniente a más de 17 millones de registros de la base de datos del Censo 2017. Los datos fueron importados desde el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo De Grande y además se proporcionan los mapas que acompañan a estos datos.
     
 # Documentación
 

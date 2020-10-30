@@ -15,14 +15,15 @@ censo_check_status <- function() {
   }
 }
 
-#' Conexión a la Base de Datos del Censo
+#' Conexion a la Base de Datos del Censo
 #'
 #' Devuelve una conexion a la base de datos local. Esto corresponde a una
-#' conexion a una base 'SQLite' compatible con DBI. A diferencia de [censo_datos()],
-#' esta función es más flexible y se puede usar con dbplyr para leer únicamente
-#' lo que se necesita o directamente con DBI para usar comandos SQL.
+#' conexion a una base 'SQLite' compatible con DBI. A diferencia de 
+#' [censo2017::censo_tabla()], esta funcion es mas flexible y se puede usar con 
+#' dbplyr para leer unicamente lo que se necesita o directamente con DBI para
+#' usar comandos SQL.
 #'
-#' @param dir La ubicación de la base de datos en el disco. Por defecto es
+#' @param dir La ubicacion de la base de datos en el disco. Por defecto es
 #' `censo2017` en la carpeta de datos del usuario ([rappdirs::user_data_dir()]), 
 #' o la variable de entorno `CENSO_BBDD_DIR`.
 #'
@@ -56,7 +57,7 @@ censo_bbdd <- function(dir = censo_path()) {
   error = function(e) {
     if (grepl("(Database lock|bad rolemask)", e)) {
       stop(
-        "La base de datos local del Censo esta siendo usada por otro proceso.\nIntenta cerrar otras sesiones de R o desconectar la base usando censo_desconectar_base() en las demás sesiones.",
+        "La base de datos local del Censo esta siendo usada por otro proceso.\nIntenta cerrar otras sesiones de R o desconectar la base usando censo_desconectar_base() en las demas sesiones.",
         call. = FALSE
       )
     } else {
@@ -74,9 +75,9 @@ censo_bbdd <- function(dir = censo_path()) {
 #' Tablas Completas de la Base de Datos del Censo
 #'
 #' Devuelve una tabla completa de la base de datos. Para entregar datos
-#' filtrados previamente se debe usar [censo_bbdd()]. Esta función puede
-#' ser especialmente útil para obtener los mapas y usarlos directamente con
-#' tm o ggplot2, sin necesidad de transformar las columnas de geometrías.
+#' filtrados previamente se debe usar [censo2017::censo_bbdd()]. Esta funcion puede
+#' ser especialmente util para obtener los mapas y usarlos directamente con
+#' tm o ggplot2, sin necesidad de transformar las columnas de geometrias.
 #'
 #' @param tabla Una cadena de texto indicando la tabla a extraer
 #' @return Un tibble
@@ -99,7 +100,7 @@ censo_tabla <- function(tabla) {
 
 #' Desconecta la Base de Datos del Censo
 #'
-#' Una función auxiliar para desconectarse de la base de datos.
+#' Una funcion auxiliar para desconectarse de la base de datos.
 #'
 #' @examples
 #' censo_desconectar_base()
@@ -124,7 +125,7 @@ censo_db_disconnect_ <- function(environment = censo_cache) {
 #' Obtiene el Estado de la Base de Datos Local del Censo
 #'
 #' Entrega el estado de la base de datos local. Muestra un mensaje informativo
-#' respecto de cómo obtener la base si esta no se encuentra o esta dañada.
+#' respecto de como obtener la base si esta no se encuentra o esta daniada.
 #'
 #' @param msg Mostrar o no mensajes de estado. Por defecto es TRUE.
 #' 
@@ -138,10 +139,10 @@ censo_estado <- function(msg = TRUE) {
   existing_tables <- sort(DBI::dbListTables(censo_bbdd()))
   
   if (isTRUE(all.equal(expected_tables, existing_tables))) {
-    status_msg <- crayon::green(paste(cli::symbol$tick, "La base de datos local del Censo 2017 está OK."))
+    status_msg <- crayon::green(paste(cli::symbol$tick, "La base de datos local del Censo 2017 esta OK."))
     out <- TRUE
   } else {
-    status_msg <- crayon::red(paste(cli::symbol$cross, "La base de datos local del Censo 2017 está vacía o dañada. Descargala con censo_descargar_base()."))
+    status_msg <- crayon::red(paste(cli::symbol$cross, "La base de datos local del Censo 2017 esta vacia o daniada. Descargala con censo_descargar_base()."))
     out <- FALSE
   }
   if (msg) msg(cli::rule(status_msg))

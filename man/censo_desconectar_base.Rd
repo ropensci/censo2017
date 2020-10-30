@@ -7,7 +7,7 @@
 censo_desconectar_base()
 }
 \description{
-Una función auxiliar para desconectarse de la base de datos.
+Una funcion auxiliar para desconectarse de la base de datos.
 }
 \examples{
 censo_desconectar_base()

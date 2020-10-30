@@ -1,5 +1,6 @@
 Package: censo2017
-Title: Una Base de Datos de Alto Rendimiento del Censo 2017 de Chile
+Title: Base de Datos de Facil Acceso del Censo 2017 de Chile
+    (Chilean Census 2017 Easy Access Database)
 Version: 0.1
 Authors@R: c( 
         person(given = "Mauricio",
@@ -14,11 +15,17 @@ Authors@R: c(
                role = c("dtc")
         )
     )
-Description: Provee un acceso conveniente a más de 17 millones de registros
+Description: Provee un acceso conveniente a mas de 17 millones de registros
     de la base de datos del Censo 2017. Los datos fueron importados desde
-    el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo de
-    Grande y además se proporcionan los mapas que acompañan a estos
-    datos.
+    el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo De
+    Grande y ademas se proporcionan los mapas que acompanian a estos
+    datos. Esta paquete esta documentado intencionalmente en castellano 
+    asciificado para que funcione sin problema en diferentes plataformas.
+    (Provides convenient access to more than 17 million records from the
+    Chilean Census 2017 database. The datasets were imported from the official 
+    DVD provided by the Chilean National Bureau of Statistics by using the
+    REDATAM converter created by Pablo De Grandeand in addition it includes the
+    maps accompanying these datasets.)
 URL: https://pacha.dev/censo2017/
 BugReports: https://github.com/pachamaltese/censo2017/issues/
 License: CC0

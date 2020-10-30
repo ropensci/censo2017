@@ -12,7 +12,7 @@ test_that("censo_datos returns tbl_df", {
   expect_is(censo_bbdd(), "SQLiteConnection")
   
   for (t in c("comunas", "regiones")) {
-    expect_is(censo_datos(t), "tbl_df")
+    expect_is(censo_tabla(t), "tbl_df")
   }
 })
 

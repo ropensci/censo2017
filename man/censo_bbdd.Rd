@@ -2,20 +2,21 @@
 % Please edit documentation in R/connect.R
 \name{censo_bbdd}
 \alias{censo_bbdd}
-\title{Conexión a la Base de Datos del Censo}
+\title{Conexion a la Base de Datos del Censo}
 \usage{
 censo_bbdd(dir = censo_path())
 }
 \arguments{
-\item{dir}{La ubicación de la base de datos en el disco. Por defecto es
+\item{dir}{La ubicacion de la base de datos en el disco. Por defecto es
 \code{censo2017} en la carpeta de datos del usuario (\code{\link[rappdirs:user_data_dir]{rappdirs::user_data_dir()}}),
 o la variable de entorno \code{CENSO_BBDD_DIR}.}
 }
 \description{
 Devuelve una conexion a la base de datos local. Esto corresponde a una
-conexion a una base 'SQLite' compatible con DBI. A diferencia de \code{\link[=censo_datos]{censo_datos()}},
-esta función es más flexible y se puede usar con dbplyr para leer únicamente
-lo que se necesita o directamente con DBI para usar comandos SQL.
+conexion a una base 'SQLite' compatible con DBI. A diferencia de
+\code{\link[=censo_tabla]{censo_tabla()}}, esta funcion es mas flexible y se puede usar con
+dbplyr para leer unicamente lo que se necesita o directamente con DBI para
+usar comandos SQL.
 }
 \examples{
 if (censo_estado()) {

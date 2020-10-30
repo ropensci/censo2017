@@ -1,6 +1,6 @@
 #' Descarga la Base de Datos del Censo a tu Computador
 #'
-#' Este comando descarga la base de datos completa como un único archivo bz2 que
+#' Este comando descarga la base de datos completa como un unico archivo bz2 que
 #' se descomprime para dejar disponible la base de datos local. La descarga son 1 GB
 #' y la base de datos usa 8.5 GB en disco. Nota: se usa bz2 para evitar el truncamiento
 #' al descomprimir zip en algunos sistemas operativos.
@@ -64,10 +64,10 @@ get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
     release_obj <- purrr::keep(releases, function(x) x$tag_name == tag_name)
   }
   
-  if (!length(release_obj)) stop("No se encuenta una versión disponible \"", tag_name, "\"")
+  if (!length(release_obj)) stop("No se encuenta una version disponible \"", tag_name, "\"")
   
   if (release_obj[[1]]$prerelease) {
-    msg("Estos datos aún no se han validado.")
+    msg("Estos datos aun no se han validado.")
   }
   
   download_url <- release_obj[[1]]$assets[[1]]$url
