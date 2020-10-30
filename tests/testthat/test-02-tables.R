@@ -1,0 +1,30 @@
+olddir <- Sys.getenv("CENSO_BBDD_DIR")
+Sys.setenv(CENSO_BBDD_DIR = normalizePath(file.path(getwd(), "censodb"),
+                                        mustWork = FALSE
+))
+
+context("Tables")
+
+test_that("censo_datos returns tbl_df", {
+  skip_on_cran()
+  skip_if_not(censo_estado())
+  
+  expect_is(censo_bbdd(), "duckdb_connection")
+  
+  for (t in c("comunas", "regiones")) {
+    expect_is(censo_datos(t), "tbl_df")
+  }
+})
+
+test_that("censo_datos returns tbl_lazy", {
+  skip_on_cran()
+  skip_if_not(censo_estado())
+  
+  expect_is(censo_bbdd(), "duckdb_connection")
+
+  for (t in c("comunas", "regiones")) {
+    expect_is(tbl(censo_bbdd(), t), "tbl_lazy")
+  }
+})
+
+Sys.setenv(CENSO_BBDD_DIR = olddir)

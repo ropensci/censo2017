@@ -1,0 +1,50 @@
+Package: censo2017
+Title: Una Base de Datos de Alto Rendimiento del Censo 2017 de Chile
+Version: 0.1
+Authors@R: c( 
+        person(given = "Mauricio",
+               family = "Vargas",
+               role = c("aut", "cre"),
+               email = "mvargas@dcc.uchile.cl",
+               comment = c(ORCID = "0000-0003-1017-7574")),
+        person(given = "Juan",
+               family = "Correa",
+               role = c("ctb")),
+        person(family = "Instituto Nacional de Estadisticas (INE)",
+               role = c("dtc")
+        )
+    )
+Description: Provee un acceso conveniente a más de 17 millones de registros
+    de la base de datos del Censo 2017. Los datos fueron importados desde
+    el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo de
+    Grande y además se proporcionan los mapas que acompañan a estos
+    datos. Se usa la base de datos local 'DuckDB' para facilitar el análisis.
+URL: https://pacha.dev/censo2017/
+BugReports: https://github.com/pachamaltese/censo2017/issues/
+License: CCBY-4.0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1.9000
+Imports:
+    duckdb,
+    rappdirs,
+    DBI,
+    httr,
+    R.utils,
+    tools,
+    tibble,
+    purrr,
+    sf,
+    cli,
+    crayon
+Suggests:
+    devtools,
+    usethis,
+    testthat,
+    covr,
+    dplyr,
+    dbplyr,
+    ggplot2
+Depends: 
+    R (>= 3.5)

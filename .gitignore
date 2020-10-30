@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+_bookdown_files
+data-raw/*.duckdb
+data-raw/*.duckdb.wal
+data-raw/*.zip
+inst/paper.md
+inst/paper.bib
+inst/*.log
+inst/*.pdf
