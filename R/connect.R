@@ -18,7 +18,7 @@ censo_check_status <- function() {
 #' Conexión a la Base de Datos del Censo
 #'
 #' Devuelve una conexion a la base de datos local. Esto corresponde a una
-#' conexion a una base 'DuckDB' compatible con DBI. A diferencia de [censo_datos()],
+#' conexion a una base 'SQLite' compatible con DBI. A diferencia de [censo_datos()],
 #' esta función es más flexible y se puede usar con dbplyr para leer únicamente
 #' lo que se necesita o directamente con DBI para usar comandos SQL.
 #'
@@ -49,8 +49,8 @@ censo_bbdd <- function(dir = censo_path()) {
   
   tryCatch({
     db <- DBI::dbConnect(
-      duckdb::duckdb(),
-      paste0(dir, "/censo2017.duckdb")
+      RSQLite::SQLite(),
+      paste0(dir, "/censo2017.sqlite")
     )
   },
   error = function(e) {
@@ -92,6 +92,7 @@ censo_datos <- function(tabla) {
   } else {
     df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla)) 
   }
+  suppressWarnings(censo_desconectar_base())
   return(df)
 }
 
@@ -111,12 +112,11 @@ censo_desconectar_base <- function() {
 censo_db_disconnect_ <- function(environment = censo_cache) {
   db <- mget("censo_bbdd", envir = censo_cache, ifnotfound = NA)[[1]]
   if (inherits(db, "DBIConnection")) {
-    DBI::dbDisconnect(db, shutdown = TRUE)
-    duckdb::duckdb_shutdown(duckdb::duckdb())
+    DBI::dbDisconnect(db)
   }
   observer <- getOption("connectionObserver")
   if (!is.null(observer)) {
-    observer$connectionClosed("CensoDB", "censodb")
+    observer$connectionClosed("Censo2017", "censo2017")
   }
 }
 
@@ -141,7 +141,7 @@ censo_estado <- function(msg = TRUE) {
     status_msg <- crayon::green(paste(cli::symbol$tick, "La base de datos local del Censo 2017 está OK."))
     out <- TRUE
   } else {
-    status_msg <- crayon::red(paste(cli::symbol$cross, "La base de datos local del Censo 2017 estÁ vacía o dañada. Descargala con censo_descargar_base()."))
+    status_msg <- crayon::red(paste(cli::symbol$cross, "La base de datos local del Censo 2017 está vacía o dañada. Descargala con censo_descargar_base()."))
     out <- FALSE
   }
   if (msg) msg(cli::rule(status_msg))

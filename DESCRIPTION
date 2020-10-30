@@ -21,23 +21,23 @@ Description: Provee un acceso conveniente a más de 17 millones de registros
     datos. Se usa la base de datos local 'DuckDB' para facilitar el análisis.
 URL: https://pacha.dev/censo2017/
 BugReports: https://github.com/pachamaltese/censo2017/issues/
-License: CCBY-4.0
+License: CC0
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1.9000
+RoxygenNote: 7.0.2
 Imports:
-    duckdb,
-    rappdirs,
     DBI,
+    RSQLite,
+    rappdirs,
     httr,
     R.utils,
-    tools,
     tibble,
     purrr,
     sf,
     cli,
-    crayon
+    crayon,
+    rstudioapi
 Suggests:
     devtools,
     usethis,

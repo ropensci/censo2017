@@ -1,3 +1,4 @@
+.github
 ^censo2017\.Rproj$
 ^\.Rproj\.user$
 ^docs$
@@ -5,3 +6,4 @@ CNAME
 ^data-raw$
 ^LICENSE\.md$
 ^CODE_OF_CONDUCT\.md$
+^codemeta\.json$

@@ -1,6 +1,5 @@
 library(dplyr)
 library(RPostgres)
-library(duckdb)
 library(sf)
 
 # I imported the SQL dump from db-edu.pacha.dev
@@ -16,7 +15,7 @@ tablas <- dbListTables(con)
 tablas <- grep("geometry_|geography_|raster_|spatial_", tablas, value = T, invert = T)
 tablas <- sort(tablas)
 
-con2 <- dbConnect(duckdb::duckdb(), "data-raw/censo2017.duckdb")
+con2 <- dbConnect(RSQLite::SQLite(), "data-raw/censo2017.sqlite")
 
 dbSendQuery(
   con2,
@@ -201,7 +200,7 @@ for (i in seq_along(tablas)) {
   
   d <- tbl(con, t) %>% collect()
   
-  con2 <- dbConnect(duckdb::duckdb(), "data-raw/censo2017.duckdb")
+  con2 <- dbConnect(RSQLite::SQLite(), "data-raw/censo2017.sqlite")
   
   dbWriteTable(
     con2,
@@ -213,7 +212,7 @@ for (i in seq_along(tablas)) {
     append = T
   )
   
-  dbDisconnect(con2, shutdown = T)
+  dbDisconnect(con2)
   
   rm(d)
   gc()

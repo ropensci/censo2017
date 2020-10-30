@@ -13,7 +13,7 @@ o la variable de entorno \code{CENSO_BBDD_DIR}.}
 }
 \description{
 Devuelve una conexion a la base de datos local. Esto corresponde a una
-conexion a una base 'DuckDB' compatible con DBI. A diferencia de \code{\link[=censo_datos]{censo_datos()}},
+conexion a una base 'SQLite' compatible con DBI. A diferencia de \code{\link[=censo_datos]{censo_datos()}},
 esta función es más flexible y se puede usar con dbplyr para leer únicamente
 lo que se necesita o directamente con DBI para usar comandos SQL.
 }

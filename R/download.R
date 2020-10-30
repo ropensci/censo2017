@@ -1,8 +1,9 @@
 #' Descarga la Base de Datos del Censo a tu Computador
 #'
-#' Este comando descarga la base de datos completa como un único archivo zip que
-#' se descomprime para dejar disponible la base de datos local. La descarga son 1.1 GB
-#' y la base de datos usa 8.5 GB en disco.
+#' Este comando descarga la base de datos completa como un único archivo bz2 que
+#' se descomprime para dejar disponible la base de datos local. La descarga son 1 GB
+#' y la base de datos usa 8.5 GB en disco. Nota: se usa bz2 para evitar el truncamiento
+#' al descomprimir zip en algunos sistemas operativos.
 #'
 #' @param ver La version a descargar. Por defecto es la ultima version disponible en GitHub. 
 #' Se pueden ver todas las versiones en
@@ -19,9 +20,10 @@
 #' }
 #' }
 censo_descargar_base <- function(ver = NULL, borrar = TRUE) {
-  message("Downloading data...\n")
+  msg("Descargando la base de datos desde GitHub...")
   
   dir <- censo_path()
+  try(dir.create(dir))
   
   zfile <- get_gh_release_file("pachamaltese/censo2017",
                                tag_name = ver,
@@ -29,21 +31,19 @@ censo_descargar_base <- function(ver = NULL, borrar = TRUE) {
   )
   ver <- attr(zfile, "ver")
   
-  message("Descomprimiendo la base de datos local...\n")
+  msg("Descomprimiendo la base de datos local...")
   
-  censo_borrar_base()
-  try(dir.create(dir))
-  utils::unzip(zfile, overwrite = TRUE, exdir = dir)
+  dfile <- gsub(".bz2", "", zfile)
+  if (file.exists(dfile)) censo_borrar_base()
+  suppressWarnings(try(censo_desconectar_base()))
+  R.utils::gunzip(zfile, dfile, overwrite = TRUE, remove = borrar)
   
-  finp <- list.files(dir, full.names = TRUE, pattern = "censo2017.zip")
-  if (length(finp) == 1) try(file.remove(finp))
-  
+  suppressWarnings(censo_desconectar_base())
   invisible(DBI::dbListTables(censo_bbdd()))
-  invisible(censo_desconectar_base())
   
   update_censo_pane()
   censo_panel()
-  invisible(censo_estado())
+  censo_estado()
 }
 
 
@@ -67,7 +67,7 @@ get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
   if (!length(release_obj)) stop("No se encuenta una versión disponible \"", tag_name, "\"")
   
   if (release_obj[[1]]$prerelease) {
-    message("Estos datos aún no se han validado.")
+    msg("Estos datos aún no se han validado.")
   }
   
   download_url <- release_obj[[1]]$assets[[1]]$url
@@ -99,7 +99,11 @@ get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
 #' }
 #' }
 censo_borrar_base <- function() {
-  censo_desconectar_base()
-  try(file.remove(gsub("\\\\", "/", paste0(rappdirs::user_data_dir(), "/censo2017"))))
+  suppressWarnings(censo_desconectar_base())
+  try(
+    file.remove(paste0(censo_path(), "/censo2017.sqlite"), 
+                recursive = TRUE)
+  )
   update_censo_pane()
+  censo_panel()
 }

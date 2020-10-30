@@ -1,9 +1,9 @@
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Codecov test coverage](https://codecov.io/gh/pachamaltese/chilemapas/branch/master/graph/badge.svg)](https://codecov.io/gh/pachamaltese/censo2017?branch=master)
-[![CRAN status](https://www.r-pkg.org/badges/version/censo2017)](https://cran.r-project.org/package=censo2017)
-[![R build status](https://github.com/pachamaltese/censo2017/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/censo2017/actions?workflow=R-CMD-check)
+[![GH-actions Windows](https://github.com/pachamaltese/censo2017/workflows/check-windows/badge.svg)](https://github.com/pachamaltese/censo2017/actions)
+[![GH-actions Linux](https://github.com/pachamaltese/censo2017/workflows/check-linux/badge.svg)](https://github.com/pachamaltese/censo2017/actions)
+[![Coverage status](https://codecov.io/gh/pachamaltese/censo2017/branch/master/graph/badge.svg)](https://codecov.io/github/pachamaltese/censo2017?branch=master)
 <!-- badges: end -->
 
 # Acerca de
@@ -30,7 +30,7 @@ Esta versión corresponde a una versión DuckDB de la base original que hice usa
 
 La información se convirtió desde REDATAM usando el [Convertidor REDATAM](https://github.com/discontinuos/redatam-converter) creado por Pablo De Grande. La modificación a estos archivos, que incluye geometrías detalladas, consistió en unir todos los archivos shp regionales en una única tabla por nivel (e.g en lugar de proveer `R01_mapa_comunas`, ..., `R15_mapa_comunas` combiné las 15 regiones en una única tabla `mapa_comunas`).
 
-Todos los datos de estos repositorios contemplan 15 regiones pues los archivos del Censo se entregan de esta forma. Esto difiere de mi otro proyecto [censo2017](https://[pacha.dev/censo2017]) que se centra únicamente en las geometrías y donde convertí las mismas cartografías del DVD del Censo a mapas simplificados (de menor tamaño) y con la posterior transformación de códigos para dar cuenta de la creación de la Región de Ñuble.
+Todos los datos de estos repositorios contemplan 15 regiones pues los archivos del Censo se entregan de esta forma. Esto difiere de mi otro proyecto [chilemapas](https://[pacha.dev/chilemapas]) que se centra únicamente en las geometrías y donde convertí las mismas cartografías del DVD del Censo a mapas simplificados (de menor tamaño) y con la posterior transformación de códigos para dar cuenta de la creación de la Región de Ñuble.
 
 Los cambios concretos respecto de la base original son los siguientes:
 * Nombres de columna en formato "tidy" (e.g. `comuna_ref_id` en lugar de `COMUNA_REF_ID`)

@@ -31,8 +31,8 @@ censo_panel <- function() {
   observer <- getOption("connectionObserver")
   if (!is.null(observer) && interactive()) {
     observer$connectionOpened(
-      type = "CensoDB",
-      host = "censodb",
+      type = "Censo2017",
+      host = "censo2017",
       displayName = "Tablas Censo 2017",
       icon = system.file("img", "cl-logo.png", package = "censo2017"),
       connectCode = "censo2017::censo_panel()",
@@ -80,6 +80,6 @@ censo_panel <- function() {
 update_censo_pane <- function() {
   observer <- getOption("connectionObserver")
   if (!is.null(observer)) {
-    observer$connectionUpdated("CensoDB", "censodb", "")
+    observer$connectionUpdated("Censo2017", "censo2017", "")
   }
 }
