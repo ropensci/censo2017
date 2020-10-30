@@ -84,11 +84,11 @@ censo_bbdd <- function(dir = censo_path()) {
 #'
 #' @examples
 #' if (censo_estado()) {
-#'   censo_datos("comunas")
+#'   censo_tabla("comunas")
 #' }
-censo_datos <- function(tabla) {
+censo_tabla <- function(tabla) {
   if (any(tabla %in% grep("mapa_", censo_tables(), value = T))) {
-    df <- sf::st_read(censo_bbdd(), table)
+    df <- sf::st_read(censo_bbdd(), tabla)
   } else {
     df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla)) 
   }

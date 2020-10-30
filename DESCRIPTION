@@ -25,7 +25,7 @@ License: CC0
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1.9000
 Imports:
     DBI,
     RSQLite,
