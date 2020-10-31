@@ -1,5 +1,5 @@
 ---
-title: 'censo2017: Chilean Census 2017 Easy Access Database'
+title: 'censo2017: 2017 Chilean Census Easy Access Database'
 tags:
 - R
 - demographics
