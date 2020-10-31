@@ -54,6 +54,7 @@ Suggests:
     dplyr,
     dbplyr,
     ggplot2,
+    knitr,
     rmarkdown,
     chilemapas
 Depends: 
