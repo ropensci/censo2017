@@ -96,7 +96,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/censo2017/">censo2017</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pachamaltese.github.io/chilemapas/">chilemapas</a></span><span class="op">)</span></pre></div>
 <p>Hay que realizar algunos cruces de tablas de manera de filtrar la region que nos interesa. Comienzo con la tabla zonas, genero la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. La v variable <code>p15</code>, cuya descripcion esta en el <a href="https://github.com/pachamaltese/censo2017/blob/main/data-raw/censo2017-descripcion-variables.xml">repositorio</a>, que interesa para este ejemplo.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="va">nivel_educacional_biobio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="fu"><a href="../reference/censo_bbdd.html">censo_bbdd</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"zonas"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -136,11 +136,11 @@
 <span class="co">#&gt;  9 08101           9   5854    0.0262 </span>
 <span class="co">#&gt; 10 08101          10   2653    0.0119 </span>
 <span class="co">#&gt; # … with 850 more rows</span></pre></div>
-<p>Ahora obtengo el mapa de la provincia y procedo a pegar los datos a la tabla del mapa. Notese que en esta parte uso <code><a href="../reference/censo_tabla.html">censo_tabla()</a></code>, funcion que trae la tabla completa y que me ahorra pasos adicionales con dplyr para transformar la columna <code>geometry</code> a un formato adecuado para graficar.</p>
+<p>Ahora obtengo el mapa de la provincia y procedo a pegar los datos a la tabla del mapa. Se usara chilemapas para simplificar al limite.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">mapa_biobio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/censo_tabla.html">censo_tabla</a></span><span class="op">(</span><span class="st">"mapa_comunas"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">==</span> <span class="st">"08"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nivel_educacional_biobio</span>, by <span class="op">=</span> <span class="st">"comuna"</span><span class="op">)</span></pre></div>
+<span class="va">mapa_biobio</span> <span class="op">&lt;-</span> <span class="va">mapa_comunas</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">codigo_region</span> <span class="op">==</span> <span class="st">"08"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nivel_educacional_biobio</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"codigo_comuna"</span> <span class="op">=</span> <span class="st">"comuna"</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p>Ahora que cargue toda la informacion necesaria en R desde la base de datos, debo cerrar la conexion SQL (importante).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="fu"><a href="../reference/censo_desconectar_base.html">censo_desconectar_base</a></span><span class="op">(</span><span class="op">)</span></pre></div>
@@ -150,13 +150,12 @@
 
 <span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mapa_biobio</span> <span class="op">%&gt;%</span> 
-            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">comuna</span>, <span class="va">geometry</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">codigo_comuna</span>, <span class="va">geometry</span><span class="op">)</span> <span class="op">%&gt;%</span> 
             <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span>
               <span class="va">mapa_biobio</span> <span class="op">%&gt;%</span> 
-                <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_drop_geometry</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">comuna</span>, <span class="va">nivel_educ</span>, <span class="va">proporcion</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nivel_educ</span> <span class="op">==</span> <span class="fl">14</span><span class="op">)</span>,
-              by <span class="op">=</span> <span class="st">"comuna"</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nivel_educ</span> <span class="op">==</span> <span class="fl">14</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">codigo_comuna</span>, <span class="va">nivel_educ</span>, <span class="va">proporcion</span><span class="op">)</span>,
+              by <span class="op">=</span> <span class="st">"codigo_comuna"</span>
             <span class="op">)</span>,
           <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">proporcion</span>, geometry <span class="op">=</span> <span class="va">geometry</span><span class="op">)</span>,
           size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span>
@@ -171,6 +170,7 @@
 <li>El uso de <code><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl()</a></code> y <code><a href="https://dplyr.tidyverse.org/reference/compute.html">collect()</a></code> en la primera parte se podra entender mejor leyendo, por ejemplo, <a href="https://pacha.dev/blog/2020/08/09/a-crash-course-on-postgresql-for-r-users/">A Crash Course on PostgreSQL for R Users</a>.</li>
 <li>En la segunda parte se usa <code><a href="../reference/censo_tabla.html">censo_tabla()</a></code> ya que SQL almacena la columna <code>geometry</code> (de tipo poligono) como cadena de texto mientras que R lee poligonos sin problema.</li>
 <li>En la tercera parte hago un join entre el mapa completo y la tabla con quienes tienen el grado de doctor. Este paso, aunque pueda parecer redundante, es necesario si quiero mostrar las zonas con 0 doctores y si lo omito se borran algunas zonas del mapa.</li>
+<li>El mapa que se genero usando las funciones de <code>chilemapas</code> podria haber generado con las cartografias de la base de datos. Sin embargo, el nivel de detalle baja mucho la velocidad del ejemplo y CRAN pide ejemplos minimos.</li>
 </ul>
 </div>
 <div id="ejercicios-para-el-usuario" class="section level1">
@@ -179,7 +179,12 @@
 <ol style="list-style-type: decimal">
 <li>Realizar un grafico similar al del ejemplo pero a nivel de zona censal.</li>
 <li>Explorar la columna <code>p10</code> en la tabla <code>personas</code> y realizar un grafico que de cuenta de la poblacion efectiva de la comuna (e.g. mejorando el problema de personas que podrian no ser de la comuna en el ejemplo).</li>
+<li>Agregar datos al mapa sin usar <code>chilemapas</code>. Una forma de hacerlo es la siguiente</li>
 </ol>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="va">mapa_biobio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/censo_tabla.html">censo_tabla</a></span><span class="op">(</span><span class="st">"mapa_comunas"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">==</span> <span class="st">"08"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nivel_educacional_biobio</span>, by <span class="op">=</span> <span class="st">"comuna"</span><span class="op">)</span></pre></div>
 </div>
   </div>
 

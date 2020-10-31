@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 library(censo2017)
 library(dplyr)
 library(ggplot2)
-library(sf)
+library(chilemapas)
 
 ## ---- warning=FALSE, message=FALSE, eval=FALSE--------------------------------
 #  nivel_educacional_biobio <- tbl(censo_bbdd(), "zonas") %>%
@@ -37,9 +37,9 @@ library(sf)
 nivel_educacional_biobio
 
 ## ---- warning=FALSE, message=FALSE--------------------------------------------
-mapa_biobio <- censo_tabla("mapa_comunas") %>%
-  filter(region == "08") %>% 
-  left_join(nivel_educacional_biobio, by = "comuna")
+mapa_biobio <- mapa_comunas %>% 
+  filter(codigo_region == "08") %>% 
+  left_join(nivel_educacional_biobio, by = c("codigo_comuna" = "comuna"))
 
 ## ---- warning=FALSE, message=FALSE--------------------------------------------
 censo_desconectar_base()
@@ -49,13 +49,12 @@ colors <- c("#DCA761","#C6C16D","#8B9C94","#628CA5","#5A6C7A")
 
 g <- ggplot() +
   geom_sf(data = mapa_biobio %>% 
-            select(comuna, geometry) %>% 
+            select(codigo_comuna, geometry) %>% 
             left_join(
               mapa_biobio %>% 
-                st_drop_geometry() %>% 
-                select(comuna, nivel_educ, proporcion) %>% 
-                filter(nivel_educ == 14),
-              by = "comuna"
+                filter(nivel_educ == 14) %>% 
+                select(codigo_comuna, nivel_educ, proporcion),
+              by = "codigo_comuna"
             ),
           aes(fill = proporcion, geometry = geometry),
           size = 0.1) +
@@ -64,4 +63,9 @@ g <- ggplot() +
   theme_minimal(base_size = 13)
 
 g
+
+## ---- warning=FALSE, message=FALSE, eval=FALSE--------------------------------
+#  mapa_biobio <- censo_tabla("mapa_comunas") %>%
+#    filter(region == "08") %>%
+#    left_join(nivel_educacional_biobio, by = "comuna")
 

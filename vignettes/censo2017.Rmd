@@ -32,7 +32,7 @@ Primero se cargan los paquetes necesarios.
 library(censo2017)
 library(dplyr)
 library(ggplot2)
-library(sf)
+library(chilemapas)
 ```
 
 Hay que realizar algunos cruces de tablas de manera de filtrar la region que nos interesa. Comienzo con la tabla zonas, genero la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. La v variable `p15`, cuya descripcion esta en el [repositorio](https://github.com/pachamaltese/censo2017/blob/main/data-raw/censo2017-descripcion-variables.xml), que interesa para este ejemplo.
@@ -65,11 +65,11 @@ Veo los datos antes de seguir.
 nivel_educacional_biobio
 ```
 
-Ahora obtengo el mapa de la provincia y procedo a pegar los datos a la tabla del mapa. Notese que en esta parte uso `censo_tabla()`, funcion que trae la tabla completa y que me ahorra pasos adicionales con dplyr para transformar la columna `geometry` a un formato adecuado para graficar.
+Ahora obtengo el mapa de la provincia y procedo a pegar los datos a la tabla del mapa. Se usara chilemapas para simplificar al limite.
 ```{r, warning=FALSE, message=FALSE}
-mapa_biobio <- censo_tabla("mapa_comunas") %>%
-  filter(region == "08") %>% 
-  left_join(nivel_educacional_biobio, by = "comuna")
+mapa_biobio <- mapa_comunas %>% 
+  filter(codigo_region == "08") %>% 
+  left_join(nivel_educacional_biobio, by = c("codigo_comuna" = "comuna"))
 ```
 
 Ahora que cargue toda la informacion necesaria en R desde la base de datos, debo cerrar la conexion SQL (importante).
@@ -83,13 +83,12 @@ colors <- c("#DCA761","#C6C16D","#8B9C94","#628CA5","#5A6C7A")
 
 g <- ggplot() +
   geom_sf(data = mapa_biobio %>% 
-            select(comuna, geometry) %>% 
+            select(codigo_comuna, geometry) %>% 
             left_join(
               mapa_biobio %>% 
-                st_drop_geometry() %>% 
-                select(comuna, nivel_educ, proporcion) %>% 
-                filter(nivel_educ == 14),
-              by = "comuna"
+                filter(nivel_educ == 14) %>% 
+                select(codigo_comuna, nivel_educ, proporcion),
+              by = "codigo_comuna"
             ),
           aes(fill = proporcion, geometry = geometry),
           size = 0.1) +
@@ -105,8 +104,15 @@ Notas:
 * El uso de `tbl()` y `collect()` en la primera parte se podra entender mejor leyendo, por ejemplo, [A Crash Course on PostgreSQL for R Users](https://pacha.dev/blog/2020/08/09/a-crash-course-on-postgresql-for-r-users/).
 * En la segunda parte se usa `censo_tabla()` ya que SQL almacena la columna `geometry` (de tipo poligono) como cadena de texto mientras que R lee poligonos sin problema.
 * En la tercera parte hago un join entre el mapa completo y la tabla con quienes tienen el grado de doctor. Este paso, aunque pueda parecer redundante, es necesario si quiero mostrar las zonas con 0 doctores y si lo omito se borran algunas zonas del mapa.
+* El mapa que se genero usando las funciones de `chilemapas` podria haber generado con las cartografias de la base de datos. Sin embargo, el nivel de detalle baja mucho la velocidad del ejemplo y CRAN pide ejemplos minimos.
 
 # Ejercicios para el usuario
 
 1. Realizar un grafico similar al del ejemplo pero a nivel de zona censal.
 2. Explorar la columna `p10` en la tabla `personas` y realizar un grafico que de cuenta de la poblacion efectiva de la comuna (e.g. mejorando el problema de personas que podrian no ser de la comuna en el ejemplo).
+3. Agregar datos al mapa sin usar `chilemapas`. Una forma de hacerlo es la siguiente
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
+mapa_biobio <- censo_tabla("mapa_comunas") %>%
+  filter(region == "08") %>% 
+  left_join(nivel_educacional_biobio, by = "comuna")
+```

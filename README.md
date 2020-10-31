@@ -1,7 +1,7 @@
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![GH-actions](https://github.com/pachamaltese/censo2017/workflows/check-full/badge.svg)](https://github.com/pachamaltese/censo2017/actions)
+[![GH-actions](https://github.com/pachamaltese/censo2017/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/censo2017/actions)
 [![Coverage status](https://codecov.io/gh/pachamaltese/censo2017/branch/master/graph/badge.svg)](https://codecov.io/github/pachamaltese/censo2017?branch=master)
 <!-- badges: end -->
 
