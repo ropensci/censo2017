@@ -23,70 +23,81 @@ knitr::opts_chunk$set(
 Este paquete se integra perfectamente con el tidyverse y se dara un ejemplo muy basico
 para mostrar las principales funciones.
 
-# Aproximacion de la poblacion con el grado de doctor en la Provincia de Santiago
+# Aproximacion de la poblacion con el grado de doctor en la Region del Bio Bio
 
 Se procedera a obtener una aproximacion usando dplyr ya que puede haber personas que no son de la comuna y aparecen censadas. Sin embargo no se hara el filtro que corrige esto para mantener el ejemplo lo mas simple posible.
 
-Hay que realizar algunos cruces de tablas de manera de filtrar la region que nos interesa. Comienzo con la tabla zonas, genero la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. Con estos pasos se puede agrupar por zona (o comuna) y obtener la cuenta.
-
+Primero se cargan los paquetes necesarios.
 ```{r, warning=FALSE, message=FALSE}
 library(censo2017)
 library(dplyr)
 library(ggplot2)
 library(sf)
-
-nivel_educacional <- tbl(censo_bbdd(), "zonas") %>% 
-    mutate(provincia = substr(as.character(geocodigo), 1, 3)) %>% 
-    filter(provincia == "131") %>% 
-    select(geocodigo, zonaloc_ref_id) %>%
-  
-    inner_join(select(tbl(censo_bbdd(), "viviendas"), zonaloc_ref_id, vivienda_ref_id), by = "zonaloc_ref_id") %>%
-    inner_join(select(tbl(censo_bbdd(), "hogares"), vivienda_ref_id, hogar_ref_id), by = "vivienda_ref_id") %>%
-    inner_join(select(tbl(censo_bbdd(), "personas"), hogar_ref_id, nivel_educ = p15), by = "hogar_ref_id") %>%
-    collect() %>% 
-    
-    group_by(geocodigo, nivel_educ) %>%
-    summarise(cuenta = n()) %>%
-    group_by(geocodigo) %>%
-    mutate(proporcion = cuenta / sum(cuenta))
-    
-nivel_educacional
 ```
 
-Ahora obtengo el mapa de la provincia y procedo a pegar los datos anteriores a la tabla del mapa. Notese que en esta parte uso `censo_tabla()`, funcion que trae la tabla completa y que me ahorra pasos adicionales con dplyr para transformar la columna `geometry` a un formato adecuado para graficar.
+Hay que realizar algunos cruces de tablas de manera de filtrar la region que nos interesa. Comienzo con la tabla zonas, genero la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. La v variable `p15`, cuya descripcion esta en el [repositorio](https://github.com/pachamaltese/censo2017/blob/main/data-raw/censo2017-descripcion-variables.xml), que interesa para este ejemplo.
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
+nivel_educacional_biobio <- tbl(censo_bbdd(), "zonas") %>% 
+  mutate(
+    region = substr(as.character(geocodigo), 0, 2),
+    comuna = substr(as.character(geocodigo), 1, 5)
+  ) %>% 
+  filter(region == "08") %>% 
+  select(comuna, geocodigo, zonaloc_ref_id) %>%
+  
+  inner_join(select(tbl(censo_bbdd(), "viviendas"), zonaloc_ref_id, vivienda_ref_id), by = "zonaloc_ref_id") %>%
+  inner_join(select(tbl(censo_bbdd(), "hogares"), vivienda_ref_id, hogar_ref_id), by = "vivienda_ref_id") %>%
+  inner_join(select(tbl(censo_bbdd(), "personas"), hogar_ref_id, nivel_educ = p15), by = "hogar_ref_id") %>%
+  collect()
+```
 
+Con lo anterior se puede agrupar por o comuna y obtener la cuenta.
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
+nivel_educacional_biobio <- nivel_educacional_biobio %>% 
+  group_by(comuna, nivel_educ) %>%
+  summarise(cuenta = n()) %>%
+  group_by(comuna) %>%
+  mutate(proporcion = cuenta / sum(cuenta))
+```
+
+Veo los datos antes de seguir.
+```{r}
+nivel_educacional_biobio
+```
+
+Ahora obtengo el mapa de la provincia y procedo a pegar los datos a la tabla del mapa. Notese que en esta parte uso `censo_tabla()`, funcion que trae la tabla completa y que me ahorra pasos adicionales con dplyr para transformar la columna `geometry` a un formato adecuado para graficar.
 ```{r, warning=FALSE, message=FALSE}
-mapa_santiago <- censo_tabla("mapa_zonas") %>%
-  filter(provincia == 131) %>% 
-  left_join(nivel_educacional, by = "geocodigo")
+mapa_biobio <- censo_tabla("mapa_comunas") %>%
+  filter(region == "08") %>% 
+  left_join(nivel_educacional_biobio, by = "comuna")
+```
+
+Ahora que cargue toda la informacion necesaria en R desde la base de datos, debo cerrar la conexion SQL (importante).
+```{r, warning=FALSE, message=FALSE}
+censo_desconectar_base()
 ```
 
 Finalmente procedo a generar el mapa.
-
 ```{r, fig.width=10, warning=FALSE, message=FALSE}
 colors <- c("#DCA761","#C6C16D","#8B9C94","#628CA5","#5A6C7A")
 
 g <- ggplot() +
-  geom_sf(data = mapa_santiago %>% 
-            select(geocodigo, geometry) %>% 
+  geom_sf(data = mapa_biobio %>% 
+            select(comuna, geometry) %>% 
             left_join(
-              mapa_santiago %>% 
+              mapa_biobio %>% 
                 st_drop_geometry() %>% 
-                select(geocodigo, nivel_educ, proporcion) %>% 
+                select(comuna, nivel_educ, proporcion) %>% 
                 filter(nivel_educ == 14),
-              by = "geocodigo"
+              by = "comuna"
             ),
           aes(fill = proporcion, geometry = geometry),
           size = 0.1) +
   scale_fill_gradientn(colours = rev(colors), name = "Porcentaje") +
-  labs(title = "Habitantes con el grado de doctor\npor zona censal en la Provincia de Santiago") +
+  labs(title = "Porcentaje de habitantes con el grado de doctor\npor comuna en la Region del Bio Bio") +
   theme_minimal(base_size = 13)
 
 g
-```
-Un ultimo paso, muy importante, es cerrar la conexion a la base de datos.
-```{r}
-censo_desconectar_base()
 ```
 
 Notas:
@@ -97,5 +108,5 @@ Notas:
 
 # Ejercicios para el usuario
 
-1. Realizar un grafico similar al del ejemplo pero a nivel comunal.
+1. Realizar un grafico similar al del ejemplo pero a nivel de zona censal.
 2. Explorar la columna `p10` en la tabla `personas` y realizar un grafico que de cuenta de la poblacion efectiva de la comuna (e.g. mejorando el problema de personas que podrian no ser de la comuna en el ejemplo).

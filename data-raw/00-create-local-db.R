@@ -218,7 +218,7 @@ for (i in seq_along(tablas)) {
   gc()
 }
 
-# fixes ----
+# fix varying geo codes ----
 
 zonas <- censo_tabla("zonas")
 
@@ -284,3 +284,188 @@ DBI::dbWriteTable(
   overwrite = F,
   append = T
 )
+
+comunas <- censo_tabla("comunas")
+
+comunas <- comunas %>% 
+  mutate(
+    redcoden = stringr::str_pad(redcoden, 5, "left", "0")
+  )
+
+DBI::dbSendQuery(censo_bbdd(), "DROP TABLE comunas")
+
+DBI::dbSendQuery(
+  censo_bbdd(),
+  "CREATE TABLE comunas (
+	comuna_ref_id float8 NULL,
+	provincia_ref_id float8 NULL,
+	idcomuna text NULL,
+	redcoden char(5) NOT NULL,
+	nom_comuna text NULL,
+	CONSTRAINT comunas_pk PRIMARY KEY (redcoden),
+	CONSTRAINT comunas_un UNIQUE (comuna_ref_id)
+)"
+)
+
+DBI::dbWriteTable(
+  censo_bbdd(),
+  "comunas",
+  comunas,
+  temporary = FALSE,
+  row.names = FALSE,
+  overwrite = F,
+  append = T
+)
+
+mapa_comunas <- censo_tabla("mapa_comunas")
+
+mapa_comunas <- mapa_comunas %>% 
+  mutate(
+    region = stringr::str_pad(region, 2, "left", "0"),
+    provincia = stringr::str_pad(provincia, 3, "left", "0"),
+    comuna = stringr::str_pad(comuna, 5, "left", "0")
+  )
+
+DBI::dbSendQuery(censo_bbdd(), "DROP TABLE mapa_comunas")
+
+DBI::dbSendQuery(
+  censo_bbdd(),
+  "CREATE TABLE mapa_comunas (
+	geometry text NULL,
+	region char(2) NULL,
+	provincia char(3) NULL,
+	comuna char(5) NOT NULL,
+	CONSTRAINT mapa_comunas_pk PRIMARY KEY (comuna)
+)"
+)
+
+DBI::dbWriteTable(
+  censo_bbdd(),
+  "mapa_comunas",
+  mapa_comunas,
+  temporary = FALSE,
+  row.names = FALSE,
+  overwrite = F,
+  append = T
+)
+
+provincias <- censo_tabla("provincias")
+
+provincias <- provincias %>% 
+  mutate(
+    redcoden = stringr::str_pad(redcoden, 3, "left", "0")
+  )
+
+DBI::dbSendQuery(censo_bbdd(), "DROP TABLE provincias")
+
+DBI::dbSendQuery(
+  censo_bbdd(),
+  "CREATE TABLE provincias (
+	provincia_ref_id float8 NULL,
+	region_ref_id float8 NULL,
+	idprovincia float8 NULL,
+	redcoden char(3) NOT NULL,
+	nom_provincia text NULL,
+	CONSTRAINT provincias_pk PRIMARY KEY (redcoden)
+)"
+)
+
+DBI::dbWriteTable(
+  censo_bbdd(),
+  "provincias",
+  provincias,
+  temporary = FALSE,
+  row.names = FALSE,
+  overwrite = F,
+  append = T
+)
+
+mapa_provincias <- censo_tabla("mapa_provincias")
+
+mapa_provincias <- mapa_provincias %>% 
+  mutate(
+    region = stringr::str_pad(region, 2, "left", "0"),
+    provincia = stringr::str_pad(provincia, 3, "left", "0")
+  )
+
+DBI::dbSendQuery(censo_bbdd(), "DROP TABLE mapa_provincias")
+
+DBI::dbSendQuery(
+  censo_bbdd(),
+  "CREATE TABLE mapa_provincias (
+	geometry text NULL,
+	region char(2) NULL,
+	provincia char(3) NOT NULL,
+	CONSTRAINT mapa_provincias_pk PRIMARY KEY (provincia)
+)"
+)
+
+DBI::dbWriteTable(
+  censo_bbdd(),
+  "mapa_provincias",
+  mapa_provincias,
+  temporary = FALSE,
+  row.names = FALSE,
+  overwrite = F,
+  append = T
+)
+
+regiones <- censo_tabla("regiones")
+
+regiones <- regiones %>% 
+  mutate(
+    redcoden = stringr::str_pad(redcoden, 2, "left", "0")
+  )
+
+DBI::dbSendQuery(censo_bbdd(), "DROP TABLE regiones")
+
+DBI::dbSendQuery(
+  censo_bbdd(),
+  "CREATE TABLE regiones (
+	region_ref_id float8 NOT NULL,
+	censo_ref_id float8 NULL,
+	idregion text NULL,
+	redcoden char(2) NOT NULL,
+	nom_region text NULL,
+	CONSTRAINT regiones_pk PRIMARY KEY (redcoden)
+)"
+)
+
+DBI::dbWriteTable(
+  censo_bbdd(),
+  "regiones",
+  regiones,
+  temporary = FALSE,
+  row.names = FALSE,
+  overwrite = F,
+  append = T
+)
+
+mapa_regiones <- censo_tabla("mapa_regiones")
+
+mapa_regiones <- mapa_regiones %>% 
+  mutate(
+    region = stringr::str_pad(region, 2, "left", "0")
+  )
+
+DBI::dbSendQuery(censo_bbdd(), "DROP TABLE mapa_regiones")
+
+DBI::dbSendQuery(
+  censo_bbdd(),
+  "CREATE TABLE mapa_regiones (
+	geometry text NULL,
+	region char(2) NOT NULL,
+	CONSTRAINT mapa_regiones_pk PRIMARY KEY (region)
+)"
+)
+
+DBI::dbWriteTable(
+  censo_bbdd(),
+  "mapa_regiones",
+  mapa_regiones,
+  temporary = FALSE,
+  row.names = FALSE,
+  overwrite = F,
+  append = T
+)
+
