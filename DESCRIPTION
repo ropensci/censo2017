@@ -53,6 +53,7 @@ Suggests:
     covr,
     dplyr,
     dbplyr,
-    ggplot2
+    ggplot2,
+    rmarkdown
 Depends: 
     R (>= 3.5)
