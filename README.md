@@ -25,11 +25,11 @@ remotes::install_github("pachamaltese/censo2017")
 
 Tal como explico en mi sitio [SQL Databases for Students and Educators](https://db-edu.pacha.dev/), esta base presenta algunas diferencias respecto de la original que se obtiene en DVD.
 
-Esta versión corresponde a una versión SQLite de la base original que hice usando PostGIS (PostgreSQL + GIS) a partir de los [Microdatos del Censo 2017 en DVD](https://www.ine.cl/prensa/2019/09/16/ine-pone-a-disposici%C3%B3n-la-base-de-microdatos-del-censo-2017). 
+Esta versión corresponde a una versión SQLite de la base original que hice usando PostGIS (PostgreSQL + GIS) a partir de los Microdatos del Censo 2017 en formato DVD. 
 
 La información se convirtió desde REDATAM usando el [Convertidor REDATAM](https://github.com/discontinuos/redatam-converter) creado por Pablo De Grande. La modificación a estos archivos, que incluye geometrías detalladas, consistió en unir todos los archivos shp regionales en una única tabla por nivel (e.g en lugar de proveer `R01_mapa_comunas`, ..., `R15_mapa_comunas` combiné las 15 regiones en una única tabla `mapa_comunas`).
 
-Todos los datos de estos repositorios contemplan 15 regiones pues los archivos del Censo se entregan de esta forma. Esto difiere de mi otro proyecto [chilemapas](https://[pacha.dev/chilemapas]) que se centra únicamente en las geometrías y donde convertí las mismas cartografías del DVD del Censo a mapas simplificados (de menor tamaño) y con la posterior transformación de códigos para dar cuenta de la creación de la Región de Ñuble.
+Todos los datos de estos repositorios contemplan 15 regiones pues los archivos del Censo se entregan de esta forma. Esto difiere de mi otro proyecto [chilemapas](https://pacha.dev/chilemapas/) que se centra únicamente en las geometrías y donde convertí las mismas cartografías del DVD del Censo a mapas simplificados (de menor tamaño) y con la posterior transformación de códigos para dar cuenta de la creación de la Región de Ñuble.
 
 Los cambios concretos respecto de la base original son los siguientes:
 * Nombres de columna en formato "tidy" (e.g. `comuna_ref_id` en lugar de `COMUNA_REF_ID`)

@@ -23,7 +23,7 @@
     (Provides convenient access to more than 17 million records from the
     Chilean Census 2017 database. The datasets were imported from the official 
     DVD provided by the Chilean National Bureau of Statistics by using the
-    REDATAM converter created by Pablo De Grandeand in addition it includes the
+    REDATAM converter created by Pablo De Grande and in addition it includes the
     maps accompanying these datasets.)">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -104,9 +104,9 @@ remotes::install_github("pachamaltese/censo2017")</a></code></pre>
 <h1 class="hasAnchor">
 <a href="#valor-agregado-sobre-los-archivos-shp-y-redatam-del-ine" class="anchor"></a>Valor agregado sobre los archivos shp y redatam del INE</h1>
 <p>Tal como explico en mi sitio <a href="https://db-edu.pacha.dev/">SQL Databases for Students and Educators</a>, esta base presenta algunas diferencias respecto de la original que se obtiene en DVD.</p>
-<p>Esta versión corresponde a una versión SQLite de la base original que hice usando PostGIS (PostgreSQL + GIS) a partir de los <a href="https://www.ine.cl/prensa/2019/09/16/ine-pone-a-disposici%C3%B3n-la-base-de-microdatos-del-censo-2017">Microdatos del Censo 2017 en DVD</a>.</p>
+<p>Esta versión corresponde a una versión SQLite de la base original que hice usando PostGIS (PostgreSQL + GIS) a partir de los Microdatos del Censo 2017 en formato DVD.</p>
 <p>La información se convirtió desde REDATAM usando el <a href="https://github.com/discontinuos/redatam-converter">Convertidor REDATAM</a> creado por Pablo De Grande. La modificación a estos archivos, que incluye geometrías detalladas, consistió en unir todos los archivos shp regionales en una única tabla por nivel (e.g en lugar de proveer <code>R01_mapa_comunas</code>, …, <code>R15_mapa_comunas</code> combiné las 15 regiones en una única tabla <code>mapa_comunas</code>).</p>
-<p>Todos los datos de estos repositorios contemplan 15 regiones pues los archivos del Censo se entregan de esta forma. Esto difiere de mi otro proyecto <a href="https://%5Bpacha.dev/chilemapas%5D">chilemapas</a> que se centra únicamente en las geometrías y donde convertí las mismas cartografías del DVD del Censo a mapas simplificados (de menor tamaño) y con la posterior transformación de códigos para dar cuenta de la creación de la Región de Ñuble.</p>
+<p>Todos los datos de estos repositorios contemplan 15 regiones pues los archivos del Censo se entregan de esta forma. Esto difiere de mi otro proyecto <a href="https://pacha.dev/chilemapas/">chilemapas</a> que se centra únicamente en las geometrías y donde convertí las mismas cartografías del DVD del Censo a mapas simplificados (de menor tamaño) y con la posterior transformación de códigos para dar cuenta de la creación de la Región de Ñuble.</p>
 <p>Los cambios concretos respecto de la base original son los siguientes:</p>
 <ul>
 <li>Nombres de columna en formato “tidy” (e.g. <code>comuna_ref_id</code> en lugar de <code>COMUNA_REF_ID</code>)</li>

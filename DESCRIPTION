@@ -24,7 +24,7 @@ Description: Provee un acceso conveniente a mas de 17 millones de registros
     (Provides convenient access to more than 17 million records from the
     Chilean Census 2017 database. The datasets were imported from the official 
     DVD provided by the Chilean National Bureau of Statistics by using the
-    REDATAM converter created by Pablo De Grandeand in addition it includes the
+    REDATAM converter created by Pablo De Grande and in addition it includes the
     maps accompanying these datasets.)
 URL: https://pacha.dev/censo2017/
 BugReports: https://github.com/pachamaltese/censo2017/issues/
