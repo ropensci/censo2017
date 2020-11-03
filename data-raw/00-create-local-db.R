@@ -136,6 +136,11 @@ dbSendQuery(
 
 dbSendQuery(
   con2,
+  "CREATE INDEX personas_idx ON personas (hogar_ref_id)"
+)
+
+dbSendQuery(
+  con2,
   "CREATE TABLE provincias (
 	provincia_ref_id float8 NULL,
 	region_ref_id float8 NULL,

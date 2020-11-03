@@ -1,25 +1,20 @@
 # save data as TSV ----
 
-con2 <- dbConnect(SQLite(), "data-raw/censo2017.sqlite")
-tablas <- dbListTables(con2)
+# create duckdb schema for testing ----
 
-for (t in tablas) {
-  d <- dbReadTable(con2, t)
-  f <- paste0("data-raw/", t, ".tsv")
-  if (!file.exists(f)) data.table::fwrite(d, f, sep = "\t")
-  rm(d)
-}
+library(DBI)
+library(duckdb)
+library(RSQLite)
 
-dbDisconnect(con2)
+con <- dbConnect(SQLite(), "data-raw/censo2017.sqlite")
+tablas <- dbListTables(con)
 
-# create duckdb file for testing ----
+con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
 
-con3 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
-
-dbSendQuery(con3, "DROP TABLE IF EXISTS comunas")
+dbSendQuery(con2, "DROP TABLE IF EXISTS comunas")
 
 dbSendQuery(
-  con3,
+  con2,
   "CREATE TABLE comunas (
 	comuna_ref_id float8 NULL,
 	provincia_ref_id float8 NULL,
@@ -30,17 +25,10 @@ dbSendQuery(
 	CONSTRAINT comunas_un UNIQUE (comuna_ref_id))"
 )
 
-dbExecute(
-  con3,
-  "COPY comunas 
-  FROM 'data-raw/comunas.tsv'
-  (DELIMITER '\t', HEADER 1, NULL 'NA')"
-)
-
-dbSendQuery(con3, "DROP TABLE IF EXISTS hogares")
+dbSendQuery(con2, "DROP TABLE IF EXISTS hogares")
 
 dbSendQuery(
-  con3,
+  con2,
   "CREATE TABLE hogares (
 	hogar_ref_id float8 NOT NULL,
 	vivienda_ref_id float8 NULL,
@@ -59,17 +47,10 @@ dbSendQuery(
 	CONSTRAINT hogares_pk PRIMARY KEY (hogar_ref_id))"
 )
 
-dbExecute(
-  con3,
-  "COPY hogares
-  FROM 'data-raw/hogares.tsv'
-  (DELIMITER '\t', HEADER 1, NULL 'NA')"
-)
-
-dbSendQuery(con3, "DROP TABLE IF EXISTS mapa_comunas")
+dbSendQuery(con2, "DROP TABLE IF EXISTS mapa_comunas")
 
 dbSendQuery(
-  con3,
+  con2,
   "CREATE TABLE mapa_comunas (
 	geometry text NULL,
 	region char(2) NULL,
@@ -78,14 +59,153 @@ dbSendQuery(
 	CONSTRAINT mapa_comunas_pk PRIMARY KEY (comuna))"
 )
 
-dbExecute(
-  con3,
-  "COPY mapa_comunas
-  FROM 'data-raw/mapa_comunas.tsv'
-  (DELIMITER '\t', HEADER 1, NULL 'NA')"
+dbSendQuery(con2, "DROP TABLE IF EXISTS mapa_provincias")
+
+dbSendQuery(
+  con2,
+  "CREATE TABLE mapa_provincias (
+	geometry text NULL,
+	region char(2) NULL,
+	provincia char(3) NOT NULL,
+	CONSTRAINT mapa_provincias_pk PRIMARY KEY (provincia))"
 )
 
-# Error in duckdb_execute(res) : duckdb_execute_R: Failed to run query
-# Error: Parser: Maximum line size of 1048576 bytes exceeded!
+dbSendQuery(con2, "DROP TABLE IF EXISTS mapa_regiones")
 
-dbDisconnect(con3, shutdown = T)
+dbSendQuery(
+  con2,
+  "CREATE TABLE mapa_regiones (
+	geometry text NULL,
+	region char(2) NOT NULL,
+	CONSTRAINT mapa_regiones_pk PRIMARY KEY (region))"
+)
+
+dbSendQuery(con2, "DROP TABLE IF EXISTS mapa_zonas")
+
+dbSendQuery(
+  con2,
+  "CREATE TABLE mapa_zonas (
+	geometry text NULL,
+	region float8 NULL,
+	provincia float8 NULL,
+	comuna float8 NULL,
+	geocodigo char(11) NOT NULL,
+	CONSTRAINT mapa_zonas_pk PRIMARY KEY (geocodigo))"
+)
+
+dbSendQuery(con2, "DROP TABLE IF EXISTS personas")
+
+dbSendQuery(
+  con2,
+  "CREATE TABLE personas (
+	persona_ref_id float8 NULL,
+	hogar_ref_id float8 NULL,
+	personan int4 NULL,
+	p07 int4 NULL,
+	p08 int4 NULL,
+	p09 int4 NULL,
+	p10 int4 NULL,
+	p10comuna int4 NULL,
+	p10pais int4 NULL,
+	p10pais_grupo int4 NULL,
+	p11 int4 NULL,
+	p11comuna int4 NULL,
+	p11pais int4 NULL,
+	p11pais_grupo int4 NULL,
+	p12 int4 NULL,
+	p12comuna int4 NULL,
+	p12pais int4 NULL,
+	p12pais_grupo int4 NULL,
+	p12a_llegada int4 NULL,
+	p12a_tramo int4 NULL,
+	p13 int4 NULL,
+	p14 int4 NULL,
+	p15 int4 NULL,
+	p15a int4 NULL,
+	p16 int4 NULL,
+	p16a int4 NULL,
+	p16a_otro int4 NULL,
+	p16a_grupo int4 NULL,
+	p17 int4 NULL,
+	p18 text NULL,
+	p19 int4 NULL,
+	p20 int4 NULL,
+	p21m int4 NULL,
+	p21a int4 NULL,
+	escolaridad int4 NULL,
+	rec_parentesco int4 NULL)"
+)
+
+dbSendQuery(con2, "DROP TABLE IF EXISTS provincias")
+
+dbSendQuery(
+  con2,
+  "CREATE TABLE provincias (
+	provincia_ref_id float8 NULL,
+	region_ref_id float8 NULL,
+	idprovincia float8 NULL,
+	redcoden char(3) NOT NULL,
+	nom_provincia text NULL,
+	CONSTRAINT provincias_pk PRIMARY KEY (redcoden))"
+)
+
+dbSendQuery(con2, "DROP TABLE IF EXISTS regiones")
+
+dbSendQuery(
+  con2,
+  "CREATE TABLE regiones (
+	region_ref_id float8 NOT NULL,
+	censo_ref_id float8 NULL,
+	idregion text NULL,
+	redcoden char(2) NOT NULL,
+	nom_region text NULL,
+	CONSTRAINT regiones_pk PRIMARY KEY (redcoden))"
+)
+
+dbSendQuery(con2, "DROP TABLE IF EXISTS viviendas")
+
+dbSendQuery(
+  con2,
+  "CREATE TABLE viviendas (
+	vivienda_ref_id float8 NOT NULL,
+	zonaloc_ref_id float8 NULL,
+	nviv int4 NULL,
+	p01 int4 NULL,
+	p02 int4 NULL,
+	p03a int4 NULL,
+	p03b int4 NULL,
+	p03c int4 NULL,
+	p04 int4 NULL,
+	p05 int4 NULL,
+	cant_hog int4 NULL,
+	cant_per int4 NULL,
+	ind_hacin float8 NULL,
+	ind_hacin_rec int4 NULL,
+	ind_material int4 NULL,
+	CONSTRAINT viviendas_pk PRIMARY KEY (vivienda_ref_id))"
+)
+
+dbSendQuery(con2, "DROP TABLE IF EXISTS zonas")
+
+dbSendQuery(
+  con2,
+  "CREATE TABLE zonas (
+	zonaloc_ref_id float8 NOT NULL,
+	geocodigo float8 NULL,
+	observacion text NULL,
+	CONSTRAINT zonas_pk PRIMARY KEY (zonaloc_ref_id),
+	CONSTRAINT zonas_un UNIQUE (geocodigo))"
+)
+
+dbDisconnect(con2)
+
+for (t in tablas) {
+  message(t)
+  d <- dbReadTable(con, t)
+  con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
+  dbWriteTable(con2, t, d, append = T)
+  dbDisconnect(con2, shutdown = T)
+  rm(d)
+}
+
+dbDisconnect(con)
