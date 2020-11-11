@@ -43,4 +43,4 @@ Muchas gracias a Juan Correa ([\@juanizio_c](https://twitter.com/Juanizio_C/)) p
 
 # Aportes
 
-Si quieres donar para aportar al desarrollo de este y más paquetes Open Source, puedes hacerlo en [Buy Me a Coffee](https://buymeacoffee.com/pacha/).
+Si quieres donar para aportar al desarrollo de este y mas paquetes Open Source, puedes hacerlo en [Buy Me a Coffee](https://www.buymeacoffee.com/pacha/).

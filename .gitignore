@@ -9,7 +9,5 @@ data-raw/*.duckdb.bz2
 data-raw/*.duckdb.wal
 data-raw/*.zip
 data-raw/*.tsv
-inst/paper.md
-inst/paper.bib
 inst/*.log
 inst/*.pdf

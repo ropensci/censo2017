@@ -2,12 +2,12 @@
 % Please edit documentation in R/connection-pane.R
 \name{censo_panel}
 \alias{censo_panel}
-\title{Abre el Panel de Conexión a la Base de Datos del Censo en RStudio}
+\title{Abre el Panel de Conexion a la Base de Datos del Censo en RStudio}
 \usage{
 censo_panel()
 }
 \description{
-Esta función abre el panel "Connections" para explorar la base de datos
+Esta funcion abre el panel "Connections" para explorar la base de datos
 local de forma interactiva.
 }
 \examples{

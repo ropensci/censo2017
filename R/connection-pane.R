@@ -8,7 +8,7 @@ sql_action <- function() {
       "",
       sep = "\n"
     )
-    
+
     rstudioapi::documentNew(
       text = contents, type = "sql",
       position = rstudioapi::document_position(2, 40),
@@ -17,9 +17,9 @@ sql_action <- function() {
   }
 }
 
-#' Abre el Panel de Conexión a la Base de Datos del Censo en RStudio
+#' Abre el Panel de Conexion a la Base de Datos del Censo en RStudio
 #'
-#' Esta función abre el panel "Connections" para explorar la base de datos
+#' Esta funcion abre el panel "Connections" para explorar la base de datos
 #' local de forma interactiva.
 #'
 #' @return NULL
