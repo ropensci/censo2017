@@ -3,6 +3,7 @@
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![GH-actions](https://github.com/pachamaltese/censo2017/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/censo2017/actions)
 [![codecov](https://codecov.io/gh/pachamaltese/censo2017/branch/main/graph/badge.svg?token=XI59cmGd15)](https://codecov.io/gh/pachamaltese/censo2017)
+[![CRAN status](https://www.r-pkg.org/badges/version/censo2017)](https://CRAN.R-project.org/package=censo2017)
 <!-- badges: end -->
 
 # Acerca de
@@ -10,6 +11,11 @@
 Provee un acceso conveniente a mas de 17 millones de registros de la base de datos del Censo 2017. Los datos fueron importados desde el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo De Grande y ademas se proporcionan los mapas que acompanian a estos datos.
 
 # Instalacion
+
+Version estable
+```
+install.packages("censo2017")
+```
 
 Version de desarrollo
 ```

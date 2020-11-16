@@ -67,13 +67,14 @@
 
       
 
-      </header><script src="censo2017_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="censo2017_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="censo2017_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="censo2017_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Uso basico del paquete censo2017</h1>
                         <h4 class="author">Mauricio Vargas S.</h4>
             
-            <h4 class="date">2020-11-05</h4>
+            <h4 class="date">2020-11-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pachamaltese/censo2017/blob/master/vignettes/censo2017.Rmd"><code>vignettes/censo2017.Rmd</code></a></small>
       <div class="hidden name"><code>censo2017.Rmd</code></div>
@@ -92,14 +93,14 @@
 <a href="#aproximacion-de-la-poblacion-con-el-grado-de-doctor-en-la-region-del-bio-bio" class="anchor"></a>Aproximacion de la poblacion con el grado de doctor en la Region del Bio Bio</h1>
 <p>Se procedera a obtener una aproximacion usando dplyr ya que puede haber personas que no son de la comuna y aparecen censadas. Sin embargo no se hara el filtro que corrige esto para mantener el ejemplo lo mas simple posible.</p>
 <p>Primero se cargan los paquetes necesarios.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/censo2017/">censo2017</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/censo2017/">censo2017</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pachamaltese.github.io/chilemapas/">chilemapas</a></span><span class="op">)</span></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pachamaltese.github.io/chilemapas/">chilemapas</a></span><span class="op">)</span></code></pre></div>
 <p>Hay que realizar algunos cruces de tablas de manera de filtrar la region que nos interesa. Comienzo con la tabla zonas, genero la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. La v variable <code>p15</code>, cuya descripcion esta en el <a href="https://github.com/pachamaltese/censo2017/blob/main/data-raw/censo2017-descripcion-variables.xml">repositorio</a>, que interesa para este ejemplo.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">nivel_educacional_biobio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="fu"><a href="../reference/censo_bbdd.html">censo_bbdd</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"zonas"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nivel_educacional_biobio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="fu"><a href="../reference/censo_bbdd.html">censo_bbdd</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"zonas"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">geocodigo</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>,
     comuna <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">geocodigo</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>
@@ -110,17 +111,17 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="fu"><a href="../reference/censo_bbdd.html">censo_bbdd</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"viviendas"</span><span class="op">)</span>, <span class="va">zonaloc_ref_id</span>, <span class="va">vivienda_ref_id</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"zonaloc_ref_id"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="fu"><a href="../reference/censo_bbdd.html">censo_bbdd</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"hogares"</span><span class="op">)</span>, <span class="va">vivienda_ref_id</span>, <span class="va">hogar_ref_id</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"vivienda_ref_id"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="fu"><a href="../reference/censo_bbdd.html">censo_bbdd</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"personas"</span><span class="op">)</span>, <span class="va">hogar_ref_id</span>, nivel_educ <span class="op">=</span> <span class="va">p15</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"hogar_ref_id"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Con lo anterior se puede agrupar por o comuna y obtener la cuenta.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">nivel_educacional_biobio</span> <span class="op">&lt;-</span> <span class="va">nivel_educacional_biobio</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nivel_educacional_biobio</span> <span class="op">&lt;-</span> <span class="va">nivel_educacional_biobio</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">comuna</span>, <span class="va">nivel_educ</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>cuenta <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">comuna</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>proporcion <span class="op">=</span> <span class="va">cuenta</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">cuenta</span><span class="op">)</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>proporcion <span class="op">=</span> <span class="va">cuenta</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">cuenta</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Veo los datos antes de seguir.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">nivel_educacional_biobio</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nivel_educacional_biobio</span>
 <span class="co">#&gt; # A tibble: 860 x 4</span>
 <span class="co">#&gt; # Groups:   comuna [54]</span>
 <span class="co">#&gt;    comuna nivel_educ cuenta proporcion</span>
@@ -135,18 +136,18 @@
 <span class="co">#&gt;  8 08101           8  18641    0.0834 </span>
 <span class="co">#&gt;  9 08101           9   5854    0.0262 </span>
 <span class="co">#&gt; 10 08101          10   2653    0.0119 </span>
-<span class="co">#&gt; # … with 850 more rows</span></pre></div>
+<span class="co">#&gt; # … with 850 more rows</span></code></pre></div>
 <p>Ahora obtengo el mapa de la provincia y procedo a pegar los datos a la tabla del mapa. Se usara chilemapas para simplificar al limite.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">mapa_biobio</span> <span class="op">&lt;-</span> <span class="va">mapa_comunas</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mapa_biobio</span> <span class="op">&lt;-</span> <span class="va">mapa_comunas</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">codigo_region</span> <span class="op">==</span> <span class="st">"08"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nivel_educacional_biobio</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"codigo_comuna"</span> <span class="op">=</span> <span class="st">"comuna"</span><span class="op">)</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nivel_educacional_biobio</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"codigo_comuna"</span> <span class="op">=</span> <span class="st">"comuna"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Ahora que cargue toda la informacion necesaria en R desde la base de datos, debo cerrar la conexion SQL (importante).</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="../reference/censo_desconectar_base.html">censo_desconectar_base</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/censo_desconectar_base.html">censo_desconectar_base</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Finalmente procedo a generar el mapa.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#DCA761"</span>,<span class="st">"#C6C16D"</span>,<span class="st">"#8B9C94"</span>,<span class="st">"#628CA5"</span>,<span class="st">"#5A6C7A"</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#DCA761"</span>,<span class="st">"#C6C16D"</span>,<span class="st">"#8B9C94"</span>,<span class="st">"#628CA5"</span>,<span class="st">"#5A6C7A"</span><span class="op">)</span>
 
 <span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mapa_biobio</span> <span class="op">%&gt;%</span> 
@@ -163,7 +164,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Porcentaje de habitantes con el grado de doctor\npor comuna en la Region del Bio Bio"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>
 
-<span class="va">g</span></pre></div>
+<span class="va">g</span></code></pre></div>
 <p><img src="censo2017_files/figure-html/unnamed-chunk-7-1.png" width="960"></p>
 <p>Notas:</p>
 <ul>
@@ -181,10 +182,10 @@
 <li>Explorar la columna <code>p10</code> en la tabla <code>personas</code> y realizar un grafico que de cuenta de la poblacion efectiva de la comuna (e.g. mejorando el problema de personas que podrian no ser de la comuna en el ejemplo).</li>
 <li>Agregar datos al mapa sin usar <code>chilemapas</code>. Una forma de hacerlo es la siguiente</li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">mapa_biobio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/censo_tabla.html">censo_tabla</a></span><span class="op">(</span><span class="st">"mapa_comunas"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mapa_biobio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/censo_tabla.html">censo_tabla</a></span><span class="op">(</span><span class="st">"mapa_comunas"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">==</span> <span class="st">"08"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nivel_educacional_biobio</span>, by <span class="op">=</span> <span class="st">"comuna"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nivel_educacional_biobio</span>, by <span class="op">=</span> <span class="st">"comuna"</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 
