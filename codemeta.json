@@ -310,10 +310,25 @@
       "version": ">= 3.5"
     }
   ],
-  "relatedLink": "https://pacha.dev/censo2017/",
+  "relatedLink": ["https://pacha.dev/censo2017/", "https://CRAN.R-project.org/package=censo2017"],
   "readme": "https://github.com/pachamaltese/censo2017/blob/main/README.md",
   "fileSize": "0KB",
   "contIntegration": "https://codecov.io/gh/pachamaltese/censo2017",
   "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/#stable"],
-  "keywords": ["chile", "censo", "census", "demografia", "demographics", "rstats", "sqlite", "redatam"]
+  "keywords": [
+    "chile",
+    "censo",
+    "census",
+    "demografia",
+    "demographics",
+    "rstats",
+    "sqlite",
+    "redatam"
+  ],
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  }
 }

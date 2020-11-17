@@ -2,6 +2,7 @@ Package: censo2017
 Title: Base de Datos de Facil Acceso del Censo 2017 de Chile
     (2017 Chilean Census Easy Access Database)
 Version: 0.1
+Date: 2020-11-17
 Authors@R: c( 
         person(given = "Mauricio",
                family = "Vargas",
