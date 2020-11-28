@@ -54,7 +54,8 @@ censo_panel <- function() {
         res <- DBI::dbGetQuery(censo_bbdd(),
                                paste("SELECT * FROM", table, "LIMIT 1"))
         data.frame(
-          name = names(res), type = vapply(res, function(x) class(x)[1], character(1)),
+          name = names(res), type = vapply(res, function(x) class(x)[1],
+                                           character(1)),
           stringsAsFactors = FALSE
         )
       },

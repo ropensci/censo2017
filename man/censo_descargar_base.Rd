@@ -7,17 +7,17 @@
 censo_descargar_base(ver = NULL, borrar = TRUE)
 }
 \arguments{
-\item{ver}{La version a descargar. Por defecto es la ultima version disponible en GitHub.
-Se pueden ver todas las versiones en
+\item{ver}{La version a descargar. Por defecto es la ultima version
+disponible en GitHub. Se pueden ver todas las versiones en
 \url{https://github.com/pachamaltese/censo2017/releases}.}
 
 \item{borrar}{Borrar o no el archivo zip luego de cargar la base de datos.}
 }
 \description{
 Este comando descarga la base de datos completa como un unico archivo bz2 que
-se descomprime para dejar disponible la base de datos local. La descarga son 750 MB
-y la base de datos usa 3 GB en disco. Nota: se usa bz2 para evitar el truncamiento
-al descomprimir zip en algunos sistemas operativos.
+se descomprime para dejar disponible la base de datos local. La descarga son
+750 MB y la base de datos usa 3 GB en disco. Nota: se usa bz2 para evitar el
+truncamiento al descomprimir zip en algunos sistemas operativos.
 }
 \examples{
 \donttest{

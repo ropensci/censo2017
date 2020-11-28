@@ -14,9 +14,9 @@ Un tibble
 }
 \description{
 Devuelve una tabla completa de la base de datos. Para entregar datos
-filtrados previamente se debe usar \code{\link[=censo_bbdd]{censo_bbdd()}}. Esta funcion puede
-ser especialmente util para obtener los mapas y usarlos directamente con
-tm o ggplot2, sin necesidad de transformar las columnas de geometrias.
+filtrados previamente se debe usar \code{\link[=censo_bbdd]{censo_bbdd()}}. Esta funcion
+puede ser especialmente util para obtener los mapas y usarlos directamente
+con tm o ggplot2, sin necesidad de transformar las columnas de geometrias.
 }
 \examples{
 if (censo_estado()) {

@@ -11,7 +11,8 @@ censo_path <- function() {
 
 censo_check_status <- function() {
   if (!censo_estado(FALSE)) {
-    stop("La base de datos local del Censo 2017 esta vacia o daniada. Descargala con censo_descargar_base().")
+    stop("La base de datos local del Censo 2017 esta vacia o daniada.
+         Descargala con censo_descargar_base().")
   }
 }
 
@@ -57,7 +58,9 @@ censo_bbdd <- function(dir = censo_path()) {
   error = function(e) {
     if (grepl("(Database lock|bad rolemask)", e)) {
       stop(
-        "La base de datos local del Censo esta siendo usada por otro proceso.\nIntenta cerrar otras sesiones de R o desconectar la base usando censo_desconectar_base() en las demas sesiones.",
+        "La base de datos local del Censo esta siendo usada por otro proceso.
+        Intenta cerrar otras sesiones de R o desconectar la base usando 
+        censo_desconectar_base() en las demas sesiones.",
         call. = FALSE
       )
     } else {
@@ -75,9 +78,9 @@ censo_bbdd <- function(dir = censo_path()) {
 #' Tablas Completas de la Base de Datos del Censo
 #'
 #' Devuelve una tabla completa de la base de datos. Para entregar datos
-#' filtrados previamente se debe usar [censo2017::censo_bbdd()]. Esta funcion puede
-#' ser especialmente util para obtener los mapas y usarlos directamente con
-#' tm o ggplot2, sin necesidad de transformar las columnas de geometrias.
+#' filtrados previamente se debe usar [censo2017::censo_bbdd()]. Esta funcion 
+#' puede ser especialmente util para obtener los mapas y usarlos directamente
+#' con tm o ggplot2, sin necesidad de transformar las columnas de geometrias.
 #'
 #' @param tabla Una cadena de texto indicando la tabla a extraer
 #' @return Un tibble
@@ -128,8 +131,8 @@ censo_db_disconnect_ <- function(environment = censo_cache) {
 #'
 #' @param msg Mostrar o no mensajes de estado. Por defecto es TRUE.
 #' 
-#' @return TRUE si la base de datos existe y contiene las tablas esperadas, FALSE 
-#' en caso contrario (invisible).
+#' @return TRUE si la base de datos existe y contiene las tablas esperadas, 
+#' FALSE  en caso contrario (invisible).
 #' @export
 #' @examples
 #' censo_estado()
@@ -138,10 +141,13 @@ censo_estado <- function(msg = TRUE) {
   existing_tables <- sort(DBI::dbListTables(censo_bbdd()))
   
   if (isTRUE(all.equal(expected_tables, existing_tables))) {
-    status_msg <- crayon::green(paste(cli::symbol$tick, "La base de datos local del Censo 2017 esta OK."))
+    status_msg <- crayon::green(paste(cli::symbol$tick, 
+    "La base de datos local del Censo 2017 esta OK."))
     out <- TRUE
   } else {
-    status_msg <- crayon::red(paste(cli::symbol$cross, "La base de datos local del Censo 2017 esta vacia o daniada. Descargala con censo_descargar_base()."))
+    status_msg <- crayon::red(paste(cli::symbol$cross,
+    "La base de datos local del Censo 2017 esta vacia o daniada.
+    Descargala con censo_descargar_base()."))
     out <- FALSE
   }
   if (msg) msg(cli::rule(status_msg))

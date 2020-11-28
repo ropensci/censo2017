@@ -10,8 +10,8 @@ censo_estado(msg = TRUE)
 \item{msg}{Mostrar o no mensajes de estado. Por defecto es TRUE.}
 }
 \value{
-TRUE si la base de datos existe y contiene las tablas esperadas, FALSE
-en caso contrario (invisible).
+TRUE si la base de datos existe y contiene las tablas esperadas,
+FALSE  en caso contrario (invisible).
 }
 \description{
 Entrega el estado de la base de datos local. Muestra un mensaje informativo

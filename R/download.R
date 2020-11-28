@@ -1,12 +1,12 @@
 #' Descarga la Base de Datos del Censo a tu Computador
 #'
 #' Este comando descarga la base de datos completa como un unico archivo bz2 que
-#' se descomprime para dejar disponible la base de datos local. La descarga son 750 MB
-#' y la base de datos usa 3 GB en disco. Nota: se usa bz2 para evitar el truncamiento
-#' al descomprimir zip en algunos sistemas operativos.
+#' se descomprime para dejar disponible la base de datos local. La descarga son 
+#' 750 MB y la base de datos usa 3 GB en disco. Nota: se usa bz2 para evitar el
+#' truncamiento al descomprimir zip en algunos sistemas operativos.
 #'
-#' @param ver La version a descargar. Por defecto es la ultima version disponible en GitHub. 
-#' Se pueden ver todas las versiones en
+#' @param ver La version a descargar. Por defecto es la ultima version 
+#' disponible en GitHub. Se pueden ver todas las versiones en
 #' <https://github.com/pachamaltese/censo2017/releases>.
 #' @param borrar Borrar o no el archivo zip luego de cargar la base de datos.
 #'
@@ -64,7 +64,8 @@ get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
     release_obj <- purrr::keep(releases, function(x) x$tag_name == tag_name)
   }
   
-  if (!length(release_obj)) stop("No se encuenta una version disponible \"", tag_name, "\"")
+  if (!length(release_obj)) stop("No se encuenta una version disponible \"",
+                                 tag_name, "\"")
   
   if (release_obj[[1]]$prerelease) {
     msg("Estos datos aun no se han validado.")
