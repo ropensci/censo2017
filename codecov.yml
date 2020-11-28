@@ -1,0 +1,19 @@
+comment: false
+
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1%
+    patch:
+      default:
+        target: auto
+        threshold: 1%
+        
+coverage:
+  ignore: 
+    - "R/connect.R"  # these internal functions are called from end-user functions
+    - "R/utils.R"
+    - "R/zzz.R"
+    

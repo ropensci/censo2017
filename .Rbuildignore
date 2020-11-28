@@ -9,3 +9,4 @@ CNAME
 ^codemeta\.json$
 inst/paper*
 inst/apa.csl
+codecov.yml
