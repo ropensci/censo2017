@@ -49,6 +49,7 @@ Suggests:
     testthat,
     covr,
     knitr,
-    dplyr
+    dplyr,
+    dbplyr
 Depends: 
     R (>= 3.5)

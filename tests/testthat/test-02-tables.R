@@ -22,7 +22,7 @@ test_that("censo_datos returns tbl_lazy", {
   
   expect_is(censo_bbdd(), "SQLiteConnection")
   
-  if (require("dplyr")) {
+  if (require("dplyr") & require("dbplyr")) {
     for (t in c("comunas", "regiones")) {
       expect_is(dplyr::tbl(censo_bbdd(), t), "tbl_lazy")
     }
