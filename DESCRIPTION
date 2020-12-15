@@ -1,7 +1,7 @@
 Package: censo2017
 Title: Base de Datos de Facil Acceso del Censo 2017 de Chile
     (2017 Chilean Census Easy Access Database)
-Version: 0.1
+Version: 0.2
 Authors@R: c( 
         person(given = "Mauricio",
                family = "Vargas",
@@ -33,7 +33,6 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-VignetteBuilder: knitr
 Imports:
     DBI,
     RSQLite,
@@ -47,15 +46,9 @@ Imports:
     crayon,
     rstudioapi
 Suggests:
-    devtools,
-    usethis,
     testthat,
     covr,
-    dplyr,
-    dbplyr,
-    ggplot2,
     knitr,
-    rmarkdown,
-    chilemapas
+    dplyr
 Depends: 
     R (>= 3.5)

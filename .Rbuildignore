@@ -10,3 +10,4 @@ CNAME
 inst/paper*
 inst/apa.csl
 codecov.yml
+vignettes
