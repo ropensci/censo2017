@@ -11,3 +11,5 @@ inst/paper*
 inst/apa.csl
 codecov.yml
 vignettes
+^CRAN-RELEASE$
+^cran-comments\.md$
