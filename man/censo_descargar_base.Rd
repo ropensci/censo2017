@@ -4,14 +4,12 @@
 \alias{censo_descargar_base}
 \title{Descarga la Base de Datos del Censo a tu Computador}
 \usage{
-censo_descargar_base(ver = NULL, borrar = TRUE)
+censo_descargar_base(ver = NULL)
 }
 \arguments{
 \item{ver}{La version a descargar. Por defecto es la ultima version
 disponible en GitHub. Se pueden ver todas las versiones en
 \url{https://github.com/pachamaltese/censo2017/releases}.}
-
-\item{borrar}{Borrar o no el archivo zip luego de cargar la base de datos.}
 }
 \description{
 Este comando descarga la base de datos completa como un unico archivo bz2 que

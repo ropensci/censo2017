@@ -1,9 +1,8 @@
-#' @importFrom rappdirs user_data_dir
 censo_path <- function() {
   sys_censo_path <- Sys.getenv("CENSO_BBDD_DIR")
   sys_censo_path <- gsub("\\\\", "/", sys_censo_path)
   if (sys_censo_path == "") {
-    return(gsub("\\\\", "/", paste0(rappdirs::user_data_dir(), "/censo2017")))
+    return(gsub("\\\\", "/", tools::R_user_dir("censo2017")))
   } else {
     return(gsub("\\\\", "/", sys_censo_path))
   }
@@ -150,7 +149,7 @@ censo_estado <- function(msg = TRUE) {
     Descargala con censo_descargar_base()."))
     out <- FALSE
   }
-  if (msg) msg(cli::rule(status_msg))
+  if (msg) msg(status_msg)
   invisible(out)
 }
 

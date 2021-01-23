@@ -8,7 +8,6 @@
 #' @param ver La version a descargar. Por defecto es la ultima version 
 #' disponible en GitHub. Se pueden ver todas las versiones en
 #' <https://github.com/pachamaltese/censo2017/releases>.
-#' @param borrar Borrar o no el archivo zip luego de cargar la base de datos.
 #'
 #' @return NULL
 #' @export
@@ -19,11 +18,11 @@
 #' censo_descargar_base()
 #' }
 #' }
-censo_descargar_base <- function(ver = NULL, borrar = TRUE) {
+censo_descargar_base <- function(ver = NULL) {
   msg("Descargando la base de datos desde GitHub...")
   
   dir <- censo_path()
-  try(dir.create(dir))
+  suppressWarnings(try(dir.create(dir)))
   
   zfile <- get_gh_release_file("pachamaltese/censo2017",
                                tag_name = ver,
@@ -33,12 +32,11 @@ censo_descargar_base <- function(ver = NULL, borrar = TRUE) {
   
   msg("Descomprimiendo la base de datos local...")
   
-  dfile <- gsub(".bz2", "", zfile)
-  if (file.exists(dfile)) censo_borrar_base()
+  dfile <- gsub("\\.bz2", "", zfile)
   suppressWarnings(try(censo_desconectar_base()))
-  R.utils::gunzip(zfile, dfile, overwrite = TRUE, remove = borrar)
+  if (file.exists(dfile)) unlink(dfile)
+  R.utils::gunzip(zfile, dfile, overwrite = TRUE, remove = TRUE)
   
-  suppressWarnings(censo_desconectar_base())
   invisible(DBI::dbListTables(censo_bbdd()))
   
   update_censo_pane()
@@ -101,9 +99,9 @@ get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
 #' }
 censo_borrar_base <- function() {
   suppressWarnings(censo_desconectar_base())
+  try(unlink(censo_path(), recursive = TRUE))
   try(
-    file.remove(paste0(censo_path(), "/censo2017.sqlite"), 
-                recursive = TRUE)
+    unlink(gsub("\\\\", "/", paste0(rappdirs::user_data_dir(), "/censo2017")), recursive = TRUE)
   )
   update_censo_pane()
   censo_panel()
