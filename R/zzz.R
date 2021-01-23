@@ -1,15 +1,13 @@
 .onAttach <- function(...) {
   msg(cli::rule(crayon::white("CENSO 2017")))
   msg(crayon::yellow(paste(cli::symbol$star,
-  "Por favor, lee la documentación. Este paquete descarga una base de datos de 3GB.")))
+  "Por favor, lee la documentacion. Este paquete descarga un archivo comprimido de 700MB con una base de datos de 3GB.")))
   msg(crayon::yellow(paste(cli::symbol$star,
-  "Si usas este paquete en tus artículos, no olvides citarlo.")))
-  msg(crayon::yellow(paste(cli::symbol$star,
-  "El comando citation('censo2017') genera una entrada bibtex con todos los detalles.")))
+  "Usa el comando citation('censo2017') para citar este paquete en publicaciones.")))
   msg(crayon::yellow(paste(cli::symbol$star,
   "Puedes aportar al desarrollo de este paquete en https://buymeacoffee.com/pacha.")))
-  msg(crayon::cyan(paste(cli::symbol$warning,
-  "IMPORTANTE: Si no quieres descargar la base de datos en tu home, crea la variable de entorno CENSO_BBDD_DIR con la ruta.")))
+  msg(crayon::yellow(paste(cli::symbol$warning,
+  "Si no quieres descargar la base de datos en tu home, crea la variable de entorno CENSO_BBDD_DIR con la ruta.")))
   if (interactive() && Sys.getenv("RSTUDIO") == "1"  && !in_chk()) {
     censo_panel()
   }

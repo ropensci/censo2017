@@ -145,8 +145,7 @@ censo_estado <- function(msg = TRUE) {
     out <- TRUE
   } else {
     status_msg <- crayon::red(paste(cli::symbol$cross,
-    "La base de datos local del Censo 2017 esta vacia o daniada.
-    Descargala con censo_descargar_base()."))
+    "La base de datos local del Censo 2017 esta vacia o daniada. Descargala con censo_descargar_base()."))
     out <- FALSE
   }
   if (msg) msg(status_msg)

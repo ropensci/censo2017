@@ -1,3 +1,8 @@
+# Version 0.3
+
+- Moves local database location according to CRAN request
+- Requires R 4.0
+
 # Version 0.2
 
 - Adds `vignettes/` to `.Rbuildignore`.

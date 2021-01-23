@@ -191,7 +191,7 @@ dbSendQuery(
   con2,
   "CREATE TABLE zonas (
 	zonaloc_ref_id float8 NOT NULL,
-	geocodigo float8 NULL,
+	geocodigo char(11) NULL,
 	observacion text NULL,
 	CONSTRAINT zonas_pk PRIMARY KEY (zonaloc_ref_id),
 	CONSTRAINT zonas_un UNIQUE (geocodigo))"
@@ -199,13 +199,17 @@ dbSendQuery(
 
 dbDisconnect(con2)
 
+con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
+
 for (t in tablas) {
   message(t)
   d <- dbReadTable(con, t)
-  con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
   dbWriteTable(con2, t, d, append = T)
-  dbDisconnect(con2, shutdown = T)
+  dbListTables(con2)
+  gc()
   rm(d)
 }
+
+dbDisconnect(con2, shutdown = T)
 
 dbDisconnect(con)
