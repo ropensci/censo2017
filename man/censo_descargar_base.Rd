@@ -13,8 +13,8 @@ disponible en GitHub. Se pueden ver todas las versiones en
 }
 \description{
 Este comando descarga la base de datos completa como un unico archivo bz2 que
-se descomprime para dejar disponible la base de datos local. La descarga son
-750 MB y la base de datos usa 3 GB en disco. Nota: se usa bz2 para evitar el
+se descomprime para dejar disponible la base de datos local. La descarga es
+1 GB y la base de datos usa 8 GB en disco. Nota: se usa bz2 para evitar el
 truncamiento al descomprimir zip en algunos sistemas operativos.
 }
 \examples{

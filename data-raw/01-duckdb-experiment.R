@@ -197,19 +197,19 @@ dbSendQuery(
 	CONSTRAINT zonas_un UNIQUE (geocodigo))"
 )
 
-dbDisconnect(con2)
+duckdb::dbDisconnect(con2, shutdown = TRUE)
 
 con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
 
 for (t in tablas) {
   message(t)
   d <- dbReadTable(con, t)
+  con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
   dbWriteTable(con2, t, d, append = T)
   dbListTables(con2)
+  duckdb::dbDisconnect(con2, shutdown = TRUE)
   gc()
   rm(d)
 }
-
-dbDisconnect(con2, shutdown = T)
 
 dbDisconnect(con)

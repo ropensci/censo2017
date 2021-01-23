@@ -18,13 +18,13 @@ censo_check_status <- function() {
 #' Conexion a la Base de Datos del Censo
 #'
 #' Devuelve una conexion a la base de datos local. Esto corresponde a una
-#' conexion a una base 'SQLite' compatible con DBI. A diferencia de 
-#' [censo2017::censo_tabla()], esta funcion es mas flexible y se puede usar con 
+#' conexion a una base 'DuckDB' compatible con DBI. A diferencia de
+#' [censo2017::censo_tabla()], esta funcion es mas flexible y se puede usar con
 #' dbplyr para leer unicamente lo que se necesita o directamente con DBI para
 #' usar comandos SQL.
 #'
 #' @param dir La ubicacion de la base de datos en el disco. Por defecto es
-#' `censo2017` en la carpeta de datos del usuario ([rappdirs::user_data_dir()]), 
+#' `censo2017` en la carpeta de datos del usuario ([rappdirs::user_data_dir()]),
 #' o la variable de entorno `CENSO_BBDD_DIR`.
 #'
 #' @export
@@ -45,20 +45,20 @@ censo_bbdd <- function(dir = censo_path()) {
       return(db)
     }
   }
-  
+
   try(dir.create(dir, showWarnings = FALSE, recursive = TRUE))
-  
+
   tryCatch({
     db <- DBI::dbConnect(
-      RSQLite::SQLite(),
-      paste0(dir, "/censo2017.sqlite")
+      duckdb::duckdb(),
+      paste0(dir, "/censo2017.duckdb")
     )
   },
   error = function(e) {
     if (grepl("(Database lock|bad rolemask)", e)) {
       stop(
         "La base de datos local del Censo esta siendo usada por otro proceso.
-        Intenta cerrar otras sesiones de R o desconectar la base usando 
+        Intenta cerrar otras sesiones de R o desconectar la base usando
         censo_desconectar_base() en las demas sesiones.",
         call. = FALSE
       )
@@ -68,7 +68,7 @@ censo_bbdd <- function(dir = censo_path()) {
   },
   finally = NULL
   )
-  
+
   assign("censo_bbdd", db, envir = censo_cache)
   db
 }
@@ -77,7 +77,7 @@ censo_bbdd <- function(dir = censo_path()) {
 #' Tablas Completas de la Base de Datos del Censo
 #'
 #' Devuelve una tabla completa de la base de datos. Para entregar datos
-#' filtrados previamente se debe usar [censo2017::censo_bbdd()]. Esta funcion 
+#' filtrados previamente se debe usar [censo2017::censo_bbdd()]. Esta funcion
 #' puede ser especialmente util para obtener los mapas y usarlos directamente
 #' con tm o ggplot2, sin necesidad de transformar las columnas de geometrias.
 #'
@@ -93,7 +93,7 @@ censo_tabla <- function(tabla) {
   if (any(tabla %in% grep("mapa_", censo_tables(), value = T))) {
     df <- sf::st_read(censo_bbdd(), tabla)
   } else {
-    df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla)) 
+    df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla))
   }
   return(df)
 }
@@ -114,7 +114,7 @@ censo_desconectar_base <- function() {
 censo_db_disconnect_ <- function(environment = censo_cache) {
   db <- mget("censo_bbdd", envir = censo_cache, ifnotfound = NA)[[1]]
   if (inherits(db, "DBIConnection")) {
-    DBI::dbDisconnect(db)
+    duckdb::dbDisconnect(db, shutdown = TRUE)
   }
   observer <- getOption("connectionObserver")
   if (!is.null(observer)) {
@@ -129,8 +129,8 @@ censo_db_disconnect_ <- function(environment = censo_cache) {
 #' respecto de como obtener la base si esta no se encuentra o esta daniada.
 #'
 #' @param msg Mostrar o no mensajes de estado. Por defecto es TRUE.
-#' 
-#' @return TRUE si la base de datos existe y contiene las tablas esperadas, 
+#'
+#' @return TRUE si la base de datos existe y contiene las tablas esperadas,
 #' FALSE  en caso contrario (invisible).
 #' @export
 #' @examples
@@ -138,9 +138,9 @@ censo_db_disconnect_ <- function(environment = censo_cache) {
 censo_estado <- function(msg = TRUE) {
   expected_tables <- sort(censo_tables())
   existing_tables <- sort(DBI::dbListTables(censo_bbdd()))
-  
+
   if (isTRUE(all.equal(expected_tables, existing_tables))) {
-    status_msg <- crayon::green(paste(cli::symbol$tick, 
+    status_msg <- crayon::green(paste(cli::symbol$tick,
     "La base de datos local del Censo 2017 esta OK."))
     out <- TRUE
   } else {
@@ -160,4 +160,3 @@ censo_tables <- function() {
 
 censo_cache <- new.env()
 reg.finalizer(censo_cache, censo_db_disconnect_, onexit = TRUE)
-
