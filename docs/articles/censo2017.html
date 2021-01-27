@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censo2017</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -56,7 +56,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/pachamaltese/censo2017/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -70,14 +70,13 @@
 
       
 
-      </header><script src="censo2017_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="censo2017_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="censo2017_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="censo2017_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Uso basico del paquete censo2017</h1>
                         <h4 class="author">Mauricio Vargas S.</h4>
             
-            <h4 class="date">2020-12-15</h4>
+            <h4 class="date">2021-01-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pachamaltese/censo2017/blob/master/vignettes/censo2017.Rmd"><code>vignettes/censo2017.Rmd</code></a></small>
       <div class="hidden name"><code>censo2017.Rmd</code></div>
@@ -99,7 +98,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/censo2017/">censo2017</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pachamaltese.github.io/chilemapas/">chilemapas</a></span><span class="op">)</span></code></pre></div>
 <p>Hay que realizar algunos cruces de tablas de manera de filtrar la region que nos interesa. Comienzo con la tabla zonas, genero la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. La v variable <code>p15</code>, cuya descripcion esta en el <a href="https://github.com/pachamaltese/censo2017/blob/main/data-raw/censo2017-descripcion-variables.xml">repositorio</a>, que interesa para este ejemplo.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">

@@ -41,8 +41,8 @@
 
 <meta property="og:title" content="Descarga la Base de Datos del Censo a tu Computador — censo_descargar_base" />
 <meta property="og:description" content="Este comando descarga la base de datos completa como un unico archivo bz2 que
-se descomprime para dejar disponible la base de datos local. La descarga son
-750 MB y la base de datos usa 3 GB en disco. Nota: se usa bz2 para evitar el
+se descomprime para dejar disponible la base de datos local. La descarga es
+1 GB y la base de datos usa 8 GB en disco. Nota: se usa bz2 para evitar el
 truncamiento al descomprimir zip en algunos sistemas operativos." />
 
 
@@ -75,7 +75,7 @@ truncamiento al descomprimir zip en algunos sistemas operativos." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censo2017</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@ truncamiento al descomprimir zip en algunos sistemas operativos." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -100,7 +100,7 @@ truncamiento al descomprimir zip en algunos sistemas operativos." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/pachamaltese/censo2017/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -124,12 +124,12 @@ truncamiento al descomprimir zip en algunos sistemas operativos." />
 
     <div class="ref-description">
     <p>Este comando descarga la base de datos completa como un unico archivo bz2 que
-se descomprime para dejar disponible la base de datos local. La descarga son
-750 MB y la base de datos usa 3 GB en disco. Nota: se usa bz2 para evitar el
+se descomprime para dejar disponible la base de datos local. La descarga es
+1 GB y la base de datos usa 8 GB en disco. Nota: se usa bz2 para evitar el
 truncamiento al descomprimir zip en algunos sistemas operativos.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>censo_descargar_base</span><span class='op'>(</span>ver <span class='op'>=</span> <span class='cn'>NULL</span>, borrar <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>censo_descargar_base</span><span class='op'>(</span>ver <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,10 +139,6 @@ truncamiento al descomprimir zip en algunos sistemas operativos.</p>
       <td><p>La version a descargar. Por defecto es la ultima version
 disponible en GitHub. Se pueden ver todas las versiones en
 <a href='https://github.com/pachamaltese/censo2017/releases'>https://github.com/pachamaltese/censo2017/releases</a>.</p></td>
-    </tr>
-    <tr>
-      <th>borrar</th>
-      <td><p>Borrar o no el archivo zip luego de cargar la base de datos.</p></td>
     </tr>
     </table>
 

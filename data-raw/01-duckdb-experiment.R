@@ -199,17 +199,55 @@ dbSendQuery(
 
 duckdb::dbDisconnect(con2, shutdown = TRUE)
 
-con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
-
 for (t in tablas) {
   message(t)
   d <- dbReadTable(con, t)
+  
   con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
   dbWriteTable(con2, t, d, append = T)
-  dbListTables(con2)
   duckdb::dbDisconnect(con2, shutdown = TRUE)
+  
   gc()
   rm(d)
 }
 
+gc()
 dbDisconnect(con)
+
+# strangely, zonas (the last table in the list) is not copied to the DuckDB
+con <- dbConnect(SQLite(), "data-raw/censo2017.sqlite")
+d <- dbReadTable(con, "zonas")
+dbDisconnect(con)
+
+con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
+dbWriteTable(con2, "zonas", d, append = T, temporary = F)
+duckdb::dbDisconnect(con2, shutdown = TRUE)
+
+# metadata ----
+
+con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
+meta <- data.frame(duckdb_version = packageVersion("duckdb"), modification_date = Sys.Date())
+meta$duckdb_version <- as.character(meta$duckdb_version)
+meta$modification_date <- as.character(meta$modification_date)
+dbWriteTable(con2, "metadata", meta, overwrite = T)
+duckdb::dbDisconnect(con2, shutdown = TRUE)
+
+# test
+for (t in tablas) {
+  message(t)
+  
+  con <- dbConnect(SQLite(), "data-raw/censo2017.sqlite")
+  d <- dbReadTable(con, t)
+  d <- c(nrow(d), ncol(d))
+  dbDisconnect(con)
+  
+  con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
+  d2 <- dbReadTable(con2, t)
+  d2 <- c(nrow(d2), ncol(d2))
+  duckdb::dbDisconnect(con2, shutdown = TRUE)
+  
+  stopifnot(d[1] == d2[1])
+  stopifnot(d[2] == d2[2])
+  
+  message(paste(paste0("r", d[1], "c", d[2]), "vs", paste0("r", d2[1], "c", d2[2])))
+}

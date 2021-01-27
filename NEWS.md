@@ -2,6 +2,7 @@
 
 - Moves local database location according to CRAN request
 - Requires R 4.0
+- Uses DuckDB instead of SQLite
 
 # Version 0.2
 

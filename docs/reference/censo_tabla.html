@@ -75,7 +75,7 @@ con tm o ggplot2, sin necesidad de transformar las columnas de geometrias." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censo2017</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@ con tm o ggplot2, sin necesidad de transformar las columnas de geometrias." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -100,7 +100,7 @@ con tm o ggplot2, sin necesidad de transformar las columnas de geometrias." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/pachamaltese/censo2017/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -148,20 +148,7 @@ con tm o ggplot2, sin necesidad de transformar las columnas de geometrias.</p>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='censo_estado.html'>censo_estado</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='fu'>censo_tabla</span><span class='op'>(</span><span class='st'>"comunas"</span><span class='op'>)</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='message'>── <span style='color: #00BB00;'>✓ La base de datos local del Censo 2017 esta OK.</span><span> ────────────────────────────</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 346 x 5</span><span>
-#&gt;    comuna_ref_id provincia_ref_id idcomuna redcoden nom_comuna   
-#&gt;            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>             1                1 01       01101    IQUIQUE      
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>             2                1 07       01107    ALTO HOSPICIO
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>             3                2 01       01401    POZO ALMONTE 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>             4                2 02       01402    CAMIÑA       
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>             5                2 03       01403    COLCHANE     
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>             6                2 04       01404    HUARA        
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>             7                2 05       01405    PICA         
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>             8                3 01       02101    ANTOFAGASTA  
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>             9                3 02       02102    MEJILLONES   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>            10                3 03       02103    SIERRA GORDA 
-#&gt; </span><span style='color: #949494;'># … with 336 more rows</span><span></div></span></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in (function (cond) .Internal(C_tryCatchHelper(addr, 1L, cond)))(structure(list(message = "duckdb_startup_R: Failed to open database",     call = initialize(value, ...)), class = c("simpleError", "error", "condition"))): error in evaluating the argument 'conn' in selecting a method for function 'dbListTables': duckdb_startup_R: Failed to open database</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

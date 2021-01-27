@@ -13,3 +13,4 @@ codecov.yml
 vignettes
 ^CRAN-RELEASE$
 ^cran-comments\.md$
+README.md

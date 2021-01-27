@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable-1)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![GH-actions](https://github.com/pachamaltese/censo2017/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/censo2017/actions)
 [![codecov](https://codecov.io/gh/pachamaltese/censo2017/branch/main/graph/badge.svg?token=XI59cmGd15)](https://codecov.io/gh/pachamaltese/censo2017)
@@ -70,7 +70,7 @@ Entrada para BibTeX:
 
 # Agradecimientos
 
-Muchas gracias a Juan Correa ([\@juanizio_c](https://twitter.com/Juanizio_C/)) por su asesoria como geografo experto.
+Muchas gracias a Juan Correa ([\@Juanizio_C](https://twitter.com/Juanizio_C/)) por su asesoria como geografo experto.
 
 # Aportes
 
