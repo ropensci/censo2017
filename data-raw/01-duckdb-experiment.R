@@ -198,14 +198,27 @@ dbSendQuery(
 )
 
 duckdb::dbDisconnect(con2, shutdown = TRUE)
+gc()
 
-for (t in tablas) {
+metadata <- data.frame(duckdb_version = packageVersion("duckdb"), modification_date = Sys.Date())
+metadata$duckdb_version <- as.character(metadata$duckdb_version)
+metadata$modification_date <- as.character(metadata$modification_date)
+
+for (t in c(tablas, "metadata")) {
   message(t)
-  d <- dbReadTable(con, t)
+  if(t != "metadata") {
+    d <- dbReadTable(con, t)
+  } else {
+    d <- metadata
+  }
   
   con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
   dbWriteTable(con2, t, d, append = T)
-  duckdb::dbDisconnect(con2, shutdown = TRUE)
+  dbDisconnect(con2, shutdown = TRUE)
+  
+  con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
+  message(paste(dbListTables(con2)))
+  dbDisconnect(con2, shutdown = TRUE)
   
   gc()
   rm(d)
@@ -213,24 +226,6 @@ for (t in tablas) {
 
 gc()
 dbDisconnect(con)
-
-# strangely, zonas (the last table in the list) is not copied to the DuckDB
-con <- dbConnect(SQLite(), "data-raw/censo2017.sqlite")
-d <- dbReadTable(con, "zonas")
-dbDisconnect(con)
-
-con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
-dbWriteTable(con2, "zonas", d, append = T, temporary = F)
-duckdb::dbDisconnect(con2, shutdown = TRUE)
-
-# metadata ----
-
-con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
-meta <- data.frame(duckdb_version = packageVersion("duckdb"), modification_date = Sys.Date())
-meta$duckdb_version <- as.character(meta$duckdb_version)
-meta$modification_date <- as.character(meta$modification_date)
-dbWriteTable(con2, "metadata", meta, overwrite = T)
-duckdb::dbDisconnect(con2, shutdown = TRUE)
 
 # test
 for (t in tablas) {
@@ -244,7 +239,7 @@ for (t in tablas) {
   con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
   d2 <- dbReadTable(con2, t)
   d2 <- c(nrow(d2), ncol(d2))
-  duckdb::dbDisconnect(con2, shutdown = TRUE)
+  dbDisconnect(con2, shutdown = TRUE)
   
   stopifnot(d[1] == d2[1])
   stopifnot(d[2] == d2[2])
