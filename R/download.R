@@ -83,26 +83,3 @@ get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
   attr(out_path, "ver") <- release_obj[[1]]$tag_name
   return(out_path)
 }
-
-#' Elimina la Base de Datos del Censo de tu Computador
-#'
-#' Elimina el directorio `censo2017` en el directorio de datos de usuario.
-#'
-#' @return NULL
-#' @export
-#'
-#' @examples
-#' \donttest{
-#' \dontrun{
-#' censo_borrar_base()
-#' }
-#' }
-censo_borrar_base <- function() {
-  suppressWarnings(censo_desconectar_base())
-  try(unlink(censo_path(), recursive = TRUE))
-  try(
-    unlink(gsub("\\\\", "/", paste0(rappdirs::user_data_dir(), "/censo2017")), recursive = TRUE)
-  )
-  update_censo_pane()
-  censo_panel()
-}

@@ -1,10 +1,14 @@
 censo_path <- function() {
+  duckdb_version <- utils::packageVersion("duckdb")
   sys_censo_path <- Sys.getenv("CENSO_BBDD_DIR")
   sys_censo_path <- gsub("\\\\", "/", sys_censo_path)
   if (sys_censo_path == "") {
-    return(gsub("\\\\", "/", tools::R_user_dir("censo2017")))
-  } else {
-    return(gsub("\\\\", "/", sys_censo_path))
+    return(gsub("\\\\", "/", paste0(
+      tools::R_user_dir("censo2017"),
+      "/duckdb-", duckdb_version
+    )))  } else {
+    return(gsub("\\\\", "/", paste0(sys_censo_path, "/duckdb-",
+                                    duckdb_version)))
   }
 }
 
@@ -145,7 +149,8 @@ censo_estado <- function(msg = TRUE) {
     out <- TRUE
   } else {
     status_msg <- crayon::red(paste(cli::symbol$cross,
-    "La base de datos local del Censo 2017 esta vacia o daniada. Descargala con censo_descargar_base()."))
+    "La base de datos local del Censo 2017 esta vacia o daniada.
+  Descargala con censo_descargar_base()."))
     out <- FALSE
   }
   if (msg) msg(status_msg)
@@ -155,7 +160,7 @@ censo_estado <- function(msg = TRUE) {
 censo_tables <- function() {
   c("comunas", "hogares", "mapa_comunas", "mapa_provincias",
     "mapa_regiones", "mapa_zonas", "personas", "provincias",
-    "regiones", "viviendas", "zonas")
+    "regiones", "viviendas", "zonas", "metadata")
 }
 
 censo_cache <- new.env()
