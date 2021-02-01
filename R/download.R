@@ -22,7 +22,7 @@ censo_descargar_base <- function(ver = NULL) {
   msg("Descargando la base de datos desde GitHub...")
   
   dir <- censo_path()
-  suppressWarnings(try(dir.create(dir)))
+  suppressWarnings(try(dir.create(dir, recursive = TRUE)))
   
   zfile <- get_gh_release_file("pachamaltese/censo2017",
                                tag_name = ver,

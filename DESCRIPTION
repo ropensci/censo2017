@@ -44,7 +44,6 @@ Imports:
     cli,
     crayon,
     rstudioapi,
-    rappdirs,
     tools
 Suggests:
     testthat,
