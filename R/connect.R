@@ -29,7 +29,7 @@ censo_check_status <- function() {
 #'
 #' @param dir La ubicacion de la base de datos en el disco. Por defecto es
 #' `censo2017` en la carpeta de datos del usuario de R o la variable de entorno
-#' '`CENSO_BBDD_DIR` si el usuario la especifica.
+#' `CENSO_BBDD_DIR` si el usuario la especifica.
 #'
 #' @export
 #'
