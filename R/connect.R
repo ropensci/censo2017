@@ -59,7 +59,7 @@ censo_bbdd <- function(dir = censo_path()) {
     )
   },
   error = function(e) {
-    if (grepl("(Database lock|bad rolemask)", e)) {
+    if (grepl("Failed to open database", e)) {
       stop(
         "La base de datos local del Censo esta siendo usada por otro proceso.
         Intenta cerrar otras sesiones de R o desconectar la base usando
