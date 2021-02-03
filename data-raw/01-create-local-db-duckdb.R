@@ -1,5 +1,7 @@
 # packages ----
 
+library(dplyr)
+library(stringr)
 library(DBI)
 library(duckdb)
 library(RSQLite)
@@ -91,9 +93,9 @@ dbSendQuery(
   con2,
   "CREATE TABLE mapa_zonas (
 	geometry VARCHAR NULL,
-	region INTEGER NULL,
-	provincia INTEGER NULL,
-	comuna INTEGER NULL,
+	region VARCHAR(2) NULL,
+	provincia VARCHAR(3) NULL,
+	comuna VARCHAR(5) NULL,
 	geocodigo VARCHAR(11) NOT NULL)"
 )
 
@@ -225,6 +227,15 @@ for (t in c(tablas, "metadata")) {
     d <- dbReadTable(con, t)
   } else {
     d <- metadata
+  }
+  
+  if (t == "mapa_zonas") {
+    d <- d %>% 
+      mutate(
+        region = str_pad(region, 2, "left", "0"),
+        provincia = str_pad(provincia, 3, "left", "0"),
+        comuna = str_pad(comuna, 5, "left", "0")
+      )
   }
   
   con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
