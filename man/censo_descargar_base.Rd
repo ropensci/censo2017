@@ -4,18 +4,22 @@
 \alias{censo_descargar_base}
 \title{Descarga la Base de Datos del Censo a tu Computador}
 \usage{
-censo_descargar_base(ver = NULL)
+censo_descargar_base(ver = NULL, destdir = tempdir())
 }
 \arguments{
 \item{ver}{La version a descargar. Por defecto es la ultima version
 disponible en GitHub. Se pueden ver todas las versiones en
 \url{https://github.com/pachamaltese/censo2017/releases}.}
+
+\item{destdir}{La carpeta donde se va a descargar y descomprimir el archivo
+zip para crear la base de datos. Por defecto es una carpeta temporal.}
 }
 \description{
-Este comando descarga la base de datos completa como un unico archivo bz2 que
-se descomprime para dejar disponible la base de datos local. La descarga es
-1 GB y la base de datos usa 8 GB en disco. Nota: se usa bz2 para evitar el
-truncamiento al descomprimir zip en algunos sistemas operativos.
+Este comando descarga la base de datos completa como un unico archivo zip que
+se descomprime para crear la base de datos local. La descarga es
+570 MB y la base de datos usa 8 GB en disco. Si no quieres descargar la base
+de datos en tu home, ejecuta usethis::edit_r_environ() para crear la variable
+de entorno CENSO_BBDD_DIR con la ruta.
 }
 \examples{
 \donttest{

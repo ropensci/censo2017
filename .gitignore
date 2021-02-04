@@ -9,5 +9,9 @@ data-raw/*.duckdb.bz2
 data-raw/*.duckdb.wal
 data-raw/*.zip
 data-raw/*.tsv
+data-raw/*.shp
+data-raw/*.dbf
+data-raw/*.shx
+data-raw/*.prj
 inst/*.log
 inst/*.pdf
