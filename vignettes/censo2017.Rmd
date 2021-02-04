@@ -35,7 +35,7 @@ library(ggplot2)
 library(chilemapas)
 ```
 
-Hay que realizar algunos cruces de tablas de manera de filtrar la region que nos interesa. Comienzo con la tabla zonas, genero la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. La v variable `p15`, cuya descripcion esta en el [repositorio](https://github.com/pachamaltese/censo2017/blob/main/data-raw/censo2017-descripcion-variables.xml), que interesa para este ejemplo.
+Hay que realizar algunos cruces de tablas de manera de filtrar la region que nos interesa. Comienzo con la tabla zonas, genero la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. La variable `p15`, cuya descripcion esta en el [repositorio](https://github.com/pachamaltese/censo2017/blob/main/data-raw/censo2017-descripcion-variables.xml), que interesa para este ejemplo.
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
 nivel_educacional_biobio <- tbl(censo_bbdd(), "zonas") %>% 
   mutate(
