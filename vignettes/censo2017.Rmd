@@ -39,12 +39,11 @@ Hay que realizar algunos cruces de tablas de manera de filtrar la region que nos
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
 nivel_educacional_biobio <- tbl(censo_bbdd(), "zonas") %>% 
   mutate(
-    region = substr(as.character(geocodigo), 0, 2),
+    region = substr(as.character(geocodigo), 1, 2),
     comuna = substr(as.character(geocodigo), 1, 5)
   ) %>% 
   filter(region == "08") %>% 
   select(comuna, geocodigo, zonaloc_ref_id) %>%
-  
   inner_join(select(tbl(censo_bbdd(), "viviendas"), zonaloc_ref_id, vivienda_ref_id), by = "zonaloc_ref_id") %>%
   inner_join(select(tbl(censo_bbdd(), "hogares"), vivienda_ref_id, hogar_ref_id), by = "vivienda_ref_id") %>%
   inner_join(select(tbl(censo_bbdd(), "personas"), hogar_ref_id, nivel_educ = p15), by = "hogar_ref_id") %>%

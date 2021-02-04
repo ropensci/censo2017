@@ -76,7 +76,7 @@ usar comandos SQL." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censo2017</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -139,8 +139,8 @@ usar comandos SQL.</p>
     <tr>
       <th>dir</th>
       <td><p>La ubicacion de la base de datos en el disco. Por defecto es
-<code>censo2017</code> en la carpeta de datos del usuario (<code><a href='https://rdrr.io/pkg/rappdirs/man/user_data_dir.html'>rappdirs::user_data_dir()</a></code>),
-o la variable de entorno <code>CENSO_BBDD_DIR</code>.</p></td>
+<code>censo2017</code> en la carpeta de datos del usuario de R o la variable de entorno
+<code>CENSO_BBDD_DIR</code> si el usuario la especifica.</p></td>
     </tr>
     </table>
 
@@ -154,7 +154,9 @@ o la variable de entorno <code>CENSO_BBDD_DIR</code>.</p></td>
   <span class='st'>'SELECT * FROM comunas WHERE provincia_ref_id = 1'</span>
  <span class='op'>)</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in (function (cond) .Internal(C_tryCatchHelper(addr, 1L, cond)))(structure(list(message = "duckdb_startup_R: Failed to open database",     call = initialize(value, ...)), class = c("simpleError", "error", "condition"))): error in evaluating the argument 'conn' in selecting a method for function 'dbListTables': duckdb_startup_R: Failed to open database</span></div></pre>
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✓ La base de datos local del Censo 2017 esta OK.</span><span></span></div><div class='output co'>#&gt;   comuna_ref_id provincia_ref_id idcomuna redcoden    nom_comuna
+#&gt; 1             1                1       01    01101       IQUIQUE
+#&gt; 2             2                1       07    01107 ALTO HOSPICIO</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
