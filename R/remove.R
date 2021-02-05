@@ -13,7 +13,7 @@
 #' }
 censo_borrar_base <- function() {
   suppressWarnings(censo_desconectar_base())
-  try(unlink(gsub("RSQLite.*", "", censo_path()), recursive = TRUE))
+  try(unlink(gsub("duckdb.*", "", censo_path()), recursive = TRUE))
   update_censo_pane()
   censo_panel()
 }
