@@ -68,20 +68,20 @@ censo_descargar_base <- function(ver = NULL, destdir = tempdir()) {
     invisible(gc())
   }
   
-  for (x in seq_along(finp_shp)) {
-    tout <- gsub(".*/", "", gsub("\\.shp", "", finp_shp[x]))
-    
-    msg(sprintf("Creando tabla %s ...", tout))
-    
-    con <- censo_bbdd()
-    
-    d <- sf::st_read(finp_shp[x], quiet = TRUE)
-    suppressMessages(DBI::dbWriteTable(con, tout, d, append = T, temporary = F))
-    
-    DBI::dbDisconnect(con, shutdown = TRUE)
-    rm(d)
-    invisible(gc())
-  }
+  # for (x in seq_along(finp_shp)) {
+  #   tout <- gsub(".*/", "", gsub("\\.shp", "", finp_shp[x]))
+  #   
+  #   msg(sprintf("Creando tabla %s ...", tout))
+  #   
+  #   con <- censo_bbdd()
+  #   
+  #   d <- sf::st_read(finp_shp[x], quiet = TRUE)
+  #   suppressMessages(DBI::dbWriteTable(con, tout, d, append = T, temporary = F))
+  #   
+  #   DBI::dbDisconnect(con, shutdown = TRUE)
+  #   rm(d)
+  #   invisible(gc())
+  # }
   
   metadatos <- data.frame(version_duckdb = utils::packageVersion("duckdb"),
                           fecha_modificacion = Sys.time())

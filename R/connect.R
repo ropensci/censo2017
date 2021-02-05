@@ -158,8 +158,10 @@ censo_estado <- function(msg = TRUE) {
 }
 
 censo_tables <- function() {
-  c("comunas", "hogares", "mapa_comunas", "mapa_provincias",
-    "mapa_regiones", "mapa_zonas", "personas", "provincias",
+  # c("comunas", "hogares", "mapa_comunas", "mapa_provincias",
+  #   "mapa_regiones", "mapa_zonas", "personas", "provincias",
+  #   "regiones", "viviendas", "zonas", "metadatos")
+  c("comunas", "hogares", "personas", "provincias",
     "regiones", "viviendas", "zonas", "metadatos")
 }
 
