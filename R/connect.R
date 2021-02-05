@@ -1,13 +1,13 @@
 censo_path <- function() {
-  rsqlite_version <- utils::packageVersion("rsqlite")
+  rsqlite_version <- utils::packageVersion("RSQLite")
   sys_censo_path <- Sys.getenv("CENSO_BBDD_DIR")
   sys_censo_path <- gsub("\\\\", "/", sys_censo_path)
   if (sys_censo_path == "") {
     return(gsub("\\\\", "/", paste0(
       tools::R_user_dir("censo2017"),
-      "/rsqlite-", rsqlite_version
+      "/RSQLite-", rsqlite_version
     )))  } else {
-    return(gsub("\\\\", "/", paste0(sys_censo_path, "/rsqlite-",
+    return(gsub("\\\\", "/", paste0(sys_censo_path, "/RSQLite-",
                                     rsqlite_version)))
   }
 }
