@@ -1,9 +1,9 @@
 create_schema <- function(con = censo_bbdd()) {
   # comunas ----
   
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS comunas")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS comunas")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE comunas (
 	comuna_ref_id INTEGER NOT NULL,
@@ -15,9 +15,9 @@ create_schema <- function(con = censo_bbdd()) {
   
   # hogares ----
   
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS hogares")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS hogares")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE hogares (
 	hogar_ref_id INTEGER NOT NULL,
@@ -38,9 +38,9 @@ create_schema <- function(con = censo_bbdd()) {
   
   # mapa comunas ----
   
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS mapa_comunas")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS mapa_comunas")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE mapa_comunas (
 	region VARCHAR(2) NULL,
@@ -51,9 +51,9 @@ create_schema <- function(con = censo_bbdd()) {
   
   # mapa provincias ----
   
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS mapa_provincias")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS mapa_provincias")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE mapa_provincias (
 	region VARCHAR(2) NULL,
@@ -63,9 +63,9 @@ create_schema <- function(con = censo_bbdd()) {
   
   # mapa regiones ----
   
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS mapa_regiones")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS mapa_regiones")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE mapa_regiones (
 	region VARCHAR(2) NOT NULL,
@@ -73,9 +73,9 @@ create_schema <- function(con = censo_bbdd()) {
   )
   
   # mapa zonas ----
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS mapa_zonas")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS mapa_zonas")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE mapa_zonas (
 	region VARCHAR(2) NULL,
@@ -87,9 +87,9 @@ create_schema <- function(con = censo_bbdd()) {
   
   # personas ----
   
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS personas")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS personas")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE personas (
 	persona_ref_id DOUBLE NULL,
@@ -132,9 +132,9 @@ create_schema <- function(con = censo_bbdd()) {
   
   # provincias ----
   
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS provincias")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS provincias")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE provincias (
 	provincia_ref_id INTEGER NULL,
@@ -146,9 +146,9 @@ create_schema <- function(con = censo_bbdd()) {
   
   # regiones ----
   
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS regiones")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS regiones")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE regiones (
 	region_ref_id INTEGER NOT NULL,
@@ -160,9 +160,9 @@ create_schema <- function(con = censo_bbdd()) {
   
   # viviendas ----
   
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS viviendas")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS viviendas")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE viviendas (
 	vivienda_ref_id INTEGER NOT NULL,
@@ -184,9 +184,9 @@ create_schema <- function(con = censo_bbdd()) {
   
   # zonas ----
   
-  duckdb::dbSendQuery(con, "DROP TABLE IF EXISTS zonas")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS zonas")
   
-  duckdb::dbSendQuery(
+  DBI::dbSendQuery(
     con,
     "CREATE TABLE zonas (
 	zonaloc_ref_id INTEGER NOT NULL,
@@ -196,6 +196,6 @@ create_schema <- function(con = censo_bbdd()) {
   
   # disconnect ----
   
-  duckdb::dbDisconnect(con, shutdown = TRUE)
+  DBI::dbDisconnect(con)
   gc()
 }

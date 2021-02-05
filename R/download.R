@@ -21,7 +21,6 @@
 #' \dontrun{
 #' censo_descargar_base()
 #' }
-#' }
 censo_descargar_base <- function(ver = NULL, destdir = tempdir()) {
   msg("Descargando la base de datos desde GitHub...")
   
@@ -83,9 +82,9 @@ censo_descargar_base <- function(ver = NULL, destdir = tempdir()) {
     invisible(gc())
   }
   
-  metadatos <- data.frame(version_duckdb = utils::packageVersion("duckdb"),
+  metadatos <- data.frame(version_rsqlite = utils::packageVersion("RSQlite"),
                           fecha_modificacion = Sys.time())
-  metadatos$version_duckdb <- as.character(metadatos$version_duckdb)
+  metadatos$version_rsqlite <- as.character(metadatos$version_rsqlite)
   metadatos$fecha_modificacion <- as.character(metadatos$fecha_modificacion)
   
   con <- censo_bbdd()

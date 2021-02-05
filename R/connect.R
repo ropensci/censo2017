@@ -1,14 +1,14 @@
 censo_path <- function() {
-  duckdb_version <- utils::packageVersion("duckdb")
+  rsqlite_version <- utils::packageVersion("rsqlite")
   sys_censo_path <- Sys.getenv("CENSO_BBDD_DIR")
   sys_censo_path <- gsub("\\\\", "/", sys_censo_path)
   if (sys_censo_path == "") {
     return(gsub("\\\\", "/", paste0(
       tools::R_user_dir("censo2017"),
-      "/duckdb-", duckdb_version
+      "/rsqlite-", rsqlite_version
     )))  } else {
-    return(gsub("\\\\", "/", paste0(sys_censo_path, "/duckdb-",
-                                    duckdb_version)))
+    return(gsub("\\\\", "/", paste0(sys_censo_path, "/rsqlite-",
+                                    rsqlite_version)))
   }
 }
 
@@ -22,7 +22,7 @@ censo_check_status <- function() {
 #' Conexion a la Base de Datos del Censo
 #'
 #' Devuelve una conexion a la base de datos local. Esto corresponde a una
-#' conexion a una base 'DuckDB' compatible con DBI. A diferencia de
+#' conexion a una base 'SQLite' compatible con DBI. A diferencia de
 #' [censo2017::censo_tabla()], esta funcion es mas flexible y se puede usar con
 #' dbplyr para leer unicamente lo que se necesita o directamente con DBI para
 #' usar comandos SQL.
@@ -54,8 +54,8 @@ censo_bbdd <- function(dir = censo_path()) {
 
   tryCatch({
     db <- DBI::dbConnect(
-      duckdb::duckdb(),
-      paste0(dir, "/censo2017.duckdb")
+      RSQLite::SQLite(),
+      paste0(dir, "/censo2017.sqlite")
     )
   },
   error = function(e) {
@@ -118,7 +118,7 @@ censo_desconectar_base <- function() {
 censo_db_disconnect_ <- function(environment = censo_cache) {
   db <- mget("censo_bbdd", envir = censo_cache, ifnotfound = NA)[[1]]
   if (inherits(db, "DBIConnection")) {
-    duckdb::dbDisconnect(db, shutdown = TRUE)
+    DBI::dbDisconnect(db)
   }
   observer <- getOption("connectionObserver")
   if (!is.null(observer)) {
