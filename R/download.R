@@ -1,8 +1,8 @@
 #' Descarga la Base de Datos del Censo a tu Computador
 #'
 #' Este comando descarga la base de datos completa como un unico archivo zip que
-#' se descomprime para crear la base de datos local. La descarga es 
-#' 570 MB y la base de datos usa 8 GB en disco. Si no quieres descargar la base 
+#' se descomprime para crear la base de datos local. La descarga necesita 310 MB 
+#' libres y la base de datos 8 GB. Si no quieres descargar la base 
 #' de datos en tu home, ejecuta usethis::edit_r_environ() para crear la variable
 #' de entorno CENSO_BBDD_DIR con la ruta.
 #'
@@ -36,12 +36,21 @@ censo_descargar_base <- function(ver = NULL) {
   msg("Descomprimiendo la base de datos local...")
   
   suppressWarnings(try(censo_desconectar_base()))
-  try(censo_borrar_base())
+  
+  duckdb_version <- utils::packageVersion("duckdb")
+  db_pattern <- paste0("v", gsub("\\.", "", duckdb_version), ".duckdb")
+  
+  existing_files <- list.files(censo_path())
+  
+  if (!any(grepl(db_pattern, existing_files))) {
+    try(censo_borrar_base())
+    
+  }
   
   utils::unzip(zfile, overwrite = TRUE, exdir = destdir)
   
   finp_tsv <- list.files(destdir, full.names = TRUE, pattern = "tsv")
-  finp_shp <- list.files(destdir, full.names = TRUE, pattern = "shp")
+  # finp_shp <- list.files(destdir, full.names = TRUE, pattern = "shp")
   
   invisible(create_schema())
   
@@ -67,20 +76,20 @@ censo_descargar_base <- function(ver = NULL) {
     invisible(gc())
   }
   
-  for (x in seq_along(finp_shp)) {
-    tout <- gsub(".*/", "", gsub("\\.shp", "", finp_shp[x]))
-
-    msg(sprintf("Creando tabla %s ...", tout))
-
-    con <- censo_bbdd()
-
-    d <- sf::st_read(finp_shp[x], quiet = TRUE)
-    suppressMessages(DBI::dbWriteTable(con, tout, d, append = T, temporary = F))
-
-    DBI::dbDisconnect(con, shutdown = TRUE)
-    rm(d)
-    invisible(gc())
-  }
+  # for (x in seq_along(finp_shp)) {
+  #   tout <- gsub(".*/", "", gsub("\\.shp", "", finp_shp[x]))
+  # 
+  #   msg(sprintf("Creando tabla %s ...", tout))
+  # 
+  #   con <- censo_bbdd()
+  # 
+  #   d <- sf::st_read(finp_shp[x], quiet = TRUE)
+  #   suppressMessages(DBI::dbWriteTable(con, tout, d, append = T, temporary = F))
+  # 
+  #   DBI::dbDisconnect(con, shutdown = TRUE)
+  #   rm(d)
+  #   invisible(gc())
+  # }
   
   metadatos <- data.frame(version_duckdb = utils::packageVersion("duckdb"),
                           fecha_modificacion = Sys.time())
@@ -88,7 +97,7 @@ censo_descargar_base <- function(ver = NULL) {
   metadatos$fecha_modificacion <- as.character(metadatos$fecha_modificacion)
   
   con <- censo_bbdd()
-  suppressMessages(DBI::dbWriteTable(con, "metadatos", metadatos, append = F, temporary = F))
+  suppressMessages(DBI::dbWriteTable(con, "metadatos", metadatos, append = T, temporary = F))
   DBI::dbDisconnect(con, shutdown = TRUE)
   
   unlink(destdir, recursive = TRUE)

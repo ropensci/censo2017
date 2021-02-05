@@ -94,11 +94,12 @@ censo_bbdd <- function(dir = censo_path()) {
 #'   censo_tabla("comunas")
 #' }
 censo_tabla <- function(tabla) {
-  if (any(tabla %in% grep("mapa_", censo_tables(), value = T))) {
-    df <- sf::st_read(censo_bbdd(), tabla, as_tibble = TRUE, quiet = TRUE)
-  } else {
-    df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla))
-  }
+  # if (any(tabla %in% grep("mapa_", censo_tables(), value = T))) {
+  #   df <- sf::st_read(censo_bbdd(), tabla, as_tibble = TRUE, quiet = TRUE)
+  # } else {
+  #   df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla))
+  # }
+  df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla))
   return(df)
 }
 
@@ -157,8 +158,11 @@ censo_estado <- function(msg = TRUE) {
 }
 
 censo_tables <- function() {
-  c("comunas", "hogares", "mapa_comunas", "mapa_provincias",
-    "mapa_regiones", "mapa_zonas", "personas", "provincias",
+  # c("comunas", "hogares", "mapa_comunas", "mapa_provincias",
+  #   "mapa_regiones", "mapa_zonas", "personas", "provincias",
+  #   "regiones", "viviendas", "zonas", "metadatos")
+  
+  c("comunas", "hogares", "personas", "provincias",
     "regiones", "viviendas", "zonas", "metadatos")
 }
 
