@@ -12,10 +12,3 @@
   if (interactive()) censo_estado()
 }
 
-in_chk <- function() {
-  any(
-    grepl("check",
-          sapply(sys.calls(), function(a) paste(deparse(a), collapse = "\n"))
-    )
-  )
-}

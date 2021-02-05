@@ -49,7 +49,7 @@ censo_descargar_base <- function(ver = NULL, destdir = tempdir()) {
   for (x in seq_along(finp_tsv)) {
     tout <- gsub(".*/", "", gsub("\\.tsv", "", finp_tsv[x]))
     
-    msg(sprintf("Creating %s ...", tout))
+    msg(sprintf("Creando tabla %s ...", tout))
     
     con <- censo_bbdd()
     
@@ -83,7 +83,8 @@ censo_descargar_base <- function(ver = NULL, destdir = tempdir()) {
     invisible(gc())
   }
   
-  metadatos <- data.frame(version_duckdb = packageVersion("duckdb"), fecha_modificacion = Sys.time())
+  metadatos <- data.frame(version_duckdb = utils::packageVersion("duckdb"),
+                          fecha_modificacion = Sys.time())
   metadatos$version_duckdb <- as.character(metadatos$version_duckdb)
   metadatos$fecha_modificacion <- as.character(metadatos$fecha_modificacion)
   

@@ -22,3 +22,11 @@ text_col <- function(x) {
 
   if (isTRUE(theme$dark)) crayon::white(x) else crayon::black(x)
 }
+
+in_chk <- function() {
+  any(
+    grepl("check",
+          sapply(sys.calls(), function(a) paste(deparse(a), collapse = "\n"))
+    )
+  )
+}
