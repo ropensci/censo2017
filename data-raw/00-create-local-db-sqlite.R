@@ -268,9 +268,9 @@ dbSendQuery(
   con2,
   "CREATE TABLE mapa_zonas (
 	geometry text NULL,
-	region float8 NULL,
-	provincia float8 NULL,
-	comuna float8 NULL,
+	region char(2) NULL,
+	provincia char(3) NULL,
+	comuna char(5) NULL,
 	geocodigo char(11) NOT NULL,
 	CONSTRAINT mapa_zonas_pk PRIMARY KEY (geocodigo))"
 )

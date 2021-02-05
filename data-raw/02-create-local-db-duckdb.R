@@ -210,23 +210,24 @@ dbSendQuery(
 
 # disconnect ----
 
-duckdb::dbDisconnect(con2, shutdown = TRUE)
+duckdb::dbDisconnect(con2)
 gc()
 
 # metadata ----
 
-metadata <- data.frame(duckdb_version = packageVersion("duckdb"), modification_date = Sys.Date())
-metadata$duckdb_version <- as.character(metadata$duckdb_version)
-metadata$modification_date <- as.character(metadata$modification_date)
+metadatos <- data.frame(version_duckdb = utils::packageVersion("duckdb"),
+                        fecha_modificacion = Sys.time())
+metadatos$version_duckdb <- as.character(metadatos$version_duckdb)
+metadatos$fecha_modificacion <- as.character(metadatos$fecha_modificacion)
 
 # connect, copy table, disconnect and repeat ----
 
-for (t in c(tablas, "metadata")) {
+for (t in c(tablas, "metadatos")) {
   message(t)
-  if(t != "metadata") {
+  if(t != "metadatos") {
     d <- dbReadTable(con, t)
   } else {
-    d <- metadata
+    d <- metadatos
   }
   
   if (t == "mapa_zonas") {
@@ -239,8 +240,12 @@ for (t in c(tablas, "metadata")) {
   }
   
   con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
-  dbWriteTable(con2, t, d, append = T, temporary = F)
-  dbDisconnect(con2, shutdown = TRUE)
+  if(t != "metadatos") {
+    dbWriteTable(con2, t, d, append = T, temporary = F)
+  } else {
+    dbWriteTable(con2, t, d, overwrite = T, temporary = F)
+  }
+  dbDisconnect(con2)
   
   gc()
   rm(d)
@@ -268,7 +273,7 @@ dbSendQuery(con2, "CREATE INDEX mapa_provincias_provincia ON mapa_provincias (pr
 dbSendQuery(con2, "CREATE INDEX mapa_regiones_region ON mapa_regiones (region)")
 dbSendQuery(con2, "CREATE INDEX mapa_zonas_geocodigo ON mapa_zonas (geocodigo)")
 
-dbDisconnect(con2, shutdown = TRUE)
+dbDisconnect(con2)
 
 # test ----
 
@@ -283,7 +288,7 @@ for (t in tablas) {
   con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
   d2 <- dbReadTable(con2, t)
   d2 <- c(nrow(d2), ncol(d2))
-  dbDisconnect(con2, shutdown = TRUE)
+  dbDisconnect(con2)
   stopifnot(d[1] == d2[1])
   stopifnot(d[2] == d2[2])
   
