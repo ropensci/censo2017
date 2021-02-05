@@ -13,7 +13,7 @@ censo_bbdd(dir = censo_path())
 }
 \description{
 Devuelve una conexion a la base de datos local. Esto corresponde a una
-conexion a una base 'DuckDB' compatible con DBI. A diferencia de
+conexion a una base SQLite compatible con DBI. A diferencia de
 \code{\link[=censo_tabla]{censo_tabla()}}, esta funcion es mas flexible y se puede usar con
 dbplyr para leer unicamente lo que se necesita o directamente con DBI para
 usar comandos SQL.

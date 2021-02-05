@@ -35,7 +35,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports:
     DBI,
-    duckdb,
+    RSQLite,
     httr,
     tibble,
     purrr,
@@ -43,7 +43,8 @@ Imports:
     cli,
     crayon,
     rstudioapi,
-    tools
+    tools,
+    R.utils
 Suggests:
     testthat,
     covr,

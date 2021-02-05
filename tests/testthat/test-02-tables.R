@@ -9,7 +9,7 @@ test_that("censo_datos returns tbl_df", {
   skip_on_cran()
   skip_if_not(censo_estado())
   
-  expect_is(censo_bbdd(), "duckdb_connection")
+  expect_is(censo_bbdd(), "SQLiteConnection")
   
   for (t in c("comunas", "regiones")) {
     expect_is(censo_tabla(t), "tbl_df")
@@ -20,7 +20,7 @@ test_that("censo_datos returns tbl_lazy", {
   skip_on_cran()
   skip_if_not(censo_estado())
   
-  expect_is(censo_bbdd(), "duckdb_connection")
+  expect_is(censo_bbdd(), "SQLiteConnection")
   
   if (require("dplyr") & require("dbplyr")) {
     for (t in c("comunas", "regiones")) {

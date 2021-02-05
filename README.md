@@ -26,7 +26,7 @@ remotes::install_github("pachamaltese/censo2017")
 
 # Valor agregado sobre los archivos shp y redatam del INE
 
-Tal como explico en mi sitio [SQL Databases for Students and Educators](https://db-edu.pacha.dev/), esta base presenta algunas diferencias respecto de la original que se obtiene en DVD.
+Tal como explico en mi sitio [SQL Databases for Students and Educators](https://databases.pacha.dev/), esta base presenta algunas diferencias respecto de la original que se obtiene en DVD.
 
 Esta version corresponde a una version SQLite de la base original que hice usando PostGIS (PostgreSQL + GIS) a partir de los Microdatos del Censo 2017 en formato DVD. 
 
@@ -42,7 +42,7 @@ Los cambios concretos respecto de la base original son los siguientes:
 * Aniadi la variable `geocodigo` a la tabla de `zonas`. Esto facilita mucho las uniones con las tablas de mapas.
 * Tambien inclui las observaciones 16054 to 16060 en la variable `zonaloc_ref_id`. Esto se debio a que era necesario para crear una llave foranea desde la tabla `mapa_zonas` y vincular el `geocodigo` (no todas las zonas del mapa estan presentes en los datos del Censo).
 
-Ademas de estos datos, libere la [descripcion de variables](https://db-edu.pacha.dev/censo2017-descripcion-variables.xml), donde se puede explorar la estructura de arbol de los datos REDATAM y sus etiquetas (e.g. la variable `p15` significa "maximo nivel educacional obtenido", donde `13` significa "titulo profesional").
+Ademas de estos datos, libere la [descripcion de variables](https://databases.pacha.dev/censo2017-descripcion-variables.xml), donde se puede explorar la estructura de arbol de los datos REDATAM y sus etiquetas (e.g. la variable `p15` significa "maximo nivel educacional obtenido", donde `13` significa "titulo profesional").
 
 # Cita este trabajo
 

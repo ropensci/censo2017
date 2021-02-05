@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">censo2017</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@ remotes::install_github("pachamaltese/censo2017")</a></code></pre>
 <div id="valor-agregado-sobre-los-archivos-shp-y-redatam-del-ine" class="section level1">
 <h1 class="hasAnchor">
 <a href="#valor-agregado-sobre-los-archivos-shp-y-redatam-del-ine" class="anchor"></a>Valor agregado sobre los archivos shp y redatam del INE</h1>
-<p>Tal como explico en mi sitio <a href="https://db-edu.pacha.dev/">SQL Databases for Students and Educators</a>, esta base presenta algunas diferencias respecto de la original que se obtiene en DVD.</p>
+<p>Tal como explico en mi sitio <a href="https://databases.pacha.dev/">SQL Databases for Students and Educators</a>, esta base presenta algunas diferencias respecto de la original que se obtiene en DVD.</p>
 <p>Esta version corresponde a una version SQLite de la base original que hice usando PostGIS (PostgreSQL + GIS) a partir de los Microdatos del Censo 2017 en formato DVD.</p>
 <p>La informacion se convirtio desde REDATAM usando el <a href="https://github.com/discontinuos/redatam-converter/">Convertidor REDATAM</a> creado por Pablo De Grande. La modificacion a estos archivos, que incluye geometrias detalladas, consistio en unir todos los archivos shp regionales en una unica tabla por nivel (e.g en lugar de proveer <code>R01_mapa_comunas</code>, …, <code>R15_mapa_comunas</code> combine las 15 regiones en una unica tabla <code>mapa_comunas</code>).</p>
 <p>Todos los datos de estos repositorios contemplan 15 regiones pues los archivos del Censo se entregan de esta forma. Esto difiere de mi otro proyecto <a href="https://pacha.dev/chilemapas/">chilemapas</a> que se centra unicamente en las geometrias y donde converti las mismas cartografias del DVD del Censo a mapas simplificados (de menor tamanio) y con la posterior transformacion de codigos para dar cuenta de la creacion de la Region de Niuble.</p>
@@ -116,7 +116,7 @@ remotes::install_github("pachamaltese/censo2017")</a></code></pre>
 <li>Aniadi la variable <code>geocodigo</code> a la tabla de <code>zonas</code>. Esto facilita mucho las uniones con las tablas de mapas.</li>
 <li>Tambien inclui las observaciones 16054 to 16060 en la variable <code>zonaloc_ref_id</code>. Esto se debio a que era necesario para crear una llave foranea desde la tabla <code>mapa_zonas</code> y vincular el <code>geocodigo</code> (no todas las zonas del mapa estan presentes en los datos del Censo).</li>
 </ul>
-<p>Ademas de estos datos, libere la <a href="https://db-edu.pacha.dev/censo2017-descripcion-variables.xml">descripcion de variables</a>, donde se puede explorar la estructura de arbol de los datos REDATAM y sus etiquetas (e.g. la variable <code>p15</code> significa “maximo nivel educacional obtenido”, donde <code>13</code> significa “titulo profesional”).</p>
+<p>Ademas de estos datos, libere la <a href="https://databases.pacha.dev/censo2017-descripcion-variables.xml">descripcion de variables</a>, donde se puede explorar la estructura de arbol de los datos REDATAM y sus etiquetas (e.g. la variable <code>p15</code> significa “maximo nivel educacional obtenido”, donde <code>13</code> significa “titulo profesional”).</p>
 </div>
 <div id="cita-este-trabajo" class="section level1">
 <h1 class="hasAnchor">
