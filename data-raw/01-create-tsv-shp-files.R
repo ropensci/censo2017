@@ -19,6 +19,8 @@ dbDisconnect(con)
 
 # export TSV ----
 
+try(dir.create("data-raw/files-for-user-db"))
+
 for (t in tablas_no_mapas) {
   message(t)
   
@@ -26,12 +28,12 @@ for (t in tablas_no_mapas) {
   d <- dbReadTable(con, t)
   dbDisconnect(con)
   
-  fwrite(d, paste0("data-raw/", t, ".tsv"), sep = "\t")
+  fwrite(d, paste0("data-raw/files-for-user-db/", t, ".tsv"), sep = "\t")
   gc()
   rm(d)
 }
 
-# export shape ----
+# export SHP ----
 
 for (t in tablas_mapas) {
   message(t)
@@ -40,16 +42,7 @@ for (t in tablas_mapas) {
   d <- st_read(con, t)
   dbDisconnect(con)
   
-  if (t == "mapa_zonas") {
-    d <- d %>% 
-      mutate(
-        region = str_pad(region, 2, "left", "0"),
-        provincia = str_pad(provincia, 3, "left", "0"),
-        comuna = str_pad(comuna, 5, "left", "0")
-      )
-  }
-  
-  st_write(d, paste0("data-raw/", t, ".shp"))
+  st_write(d, paste0("data-raw/files-for-user-db/", t, ".shp"))
   gc()
   rm(d)
 }

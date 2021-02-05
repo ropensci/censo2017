@@ -13,5 +13,6 @@ data-raw/*.shp
 data-raw/*.dbf
 data-raw/*.shx
 data-raw/*.prj
+data-raw/files-for-user-db
 inst/*.log
 inst/*.pdf

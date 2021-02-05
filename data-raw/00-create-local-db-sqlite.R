@@ -8,13 +8,13 @@ library(sf)
 
 # create initial schema ----
 
-# I imported the SQL dump from db-edu.pacha.dev
+# I imported the SQL dump from databases.pacha.dev
 con <- dbConnect(
   Postgres(),
   user = "student",
-  password = "foobar",
+  password = Sys.getenv("databases_student_pwd"),
   dbname = "censo",
-  host = "localhost"
+  host = "databases.pacha.dev"
 )
 
 tablas <- dbListTables(con)
@@ -192,7 +192,7 @@ dbSendQuery(
 	CONSTRAINT zonas_un UNIQUE (geocodigo))"
 )
 
-dbDisconnect(con2, shutdown = T)
+dbDisconnect(con2)
 
 for (i in seq_along(tablas)) {
   t <- tablas[i]
@@ -207,9 +207,8 @@ for (i in seq_along(tablas)) {
     t,
     d,
     temporary = FALSE,
-    row.names = FALSE,
-    overwrite = F,
-    append = T
+    overwrite = FALSE,
+    append = TRUE
   )
   
   dbDisconnect(con2)
@@ -226,10 +225,8 @@ zonas <- dbReadTable(con2, "zonas")
 
 zonas <- zonas %>% 
   mutate(
-    len = nchar(geocodigo),
     geocodigo = str_pad(geocodigo, 11, "left", "0")
-  ) %>% 
-  select(-len)
+  )
 
 dbSendQuery(con2, "DROP TABLE zonas")
 
@@ -257,10 +254,11 @@ mapa_zonas <- dbReadTable(con2, "mapa_zonas")
 
 mapa_zonas <- mapa_zonas %>% 
   mutate(
-    len = nchar(geocodigo),
+    region = str_pad(region, 2, "left", "0"),
+    provincia = str_pad(provincia, 3, "left", "0"),
+    comuna = str_pad(comuna, 5, "left", "0"),
     geocodigo = str_pad(geocodigo, 11, "left", "0")
-  ) %>% 
-  select(-len)
+  )
 
 dbSendQuery(con2, "DROP TABLE mapa_zonas")
 
