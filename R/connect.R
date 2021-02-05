@@ -118,7 +118,7 @@ censo_desconectar_base <- function() {
 censo_db_disconnect_ <- function(environment = censo_cache) {
   db <- mget("censo_bbdd", envir = censo_cache, ifnotfound = NA)[[1]]
   if (inherits(db, "DBIConnection")) {
-    RSQLite::dbDisconnect(db)
+    DBI::dbDisconnect(db, shutdown = TRUE)
   }
   observer <- getOption("connectionObserver")
   if (!is.null(observer)) {

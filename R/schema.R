@@ -196,6 +196,23 @@ create_schema <- function() {
 	observacion VARCHAR NULL)"
   )
   
+  # indexes ----
+  
+  dbSendQuery(con2, "CREATE UNIQUE INDEX comunas_redcoden ON comunas (redcoden)")
+  dbSendQuery(con2, "CREATE UNIQUE INDEX provincias_redcoden ON provincias (redcoden)")
+  dbSendQuery(con2, "CREATE UNIQUE INDEX regiones_redcoden ON regiones (redcoden)")
+  
+  dbSendQuery(con2, "CREATE UNIQUE INDEX hogares_hogar_ref_id ON hogares (hogar_ref_id)")
+  dbSendQuery(con2, "CREATE UNIQUE INDEX viviendas_vivienda_ref_id ON viviendas (vivienda_ref_id)")
+  
+  dbSendQuery(con2, "CREATE UNIQUE INDEX zonas_zonaloc_ref_id ON zonas (zonaloc_ref_id)")
+  dbSendQuery(con2, "CREATE UNIQUE INDEX zonas_geocodigo ON zonas (geocodigo)")
+  
+  dbSendQuery(con2, "CREATE INDEX mapa_comunas_comuna ON mapa_comunas (comuna)")
+  dbSendQuery(con2, "CREATE INDEX mapa_provincias_provincia ON mapa_provincias (provincia)")
+  dbSendQuery(con2, "CREATE INDEX mapa_regiones_region ON mapa_regiones (region)")
+  dbSendQuery(con2, "CREATE INDEX mapa_zonas_geocodigo ON mapa_zonas (geocodigo)")
+  
   # disconnect ----
   
   DBI::dbDisconnect(con, shutdown = TRUE)
