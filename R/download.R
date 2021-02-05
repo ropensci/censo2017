@@ -101,6 +101,8 @@ censo_descargar_base <- function(ver = NULL) {
   censo_estado()
 }
 
+#' Descarga los archivos tsv/shp desde GitHub
+#' @noRd
 get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
                                 overwrite = TRUE) {
   releases <- httr::GET(
@@ -137,3 +139,4 @@ get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
   attr(out_path, "ver") <- release_obj[[1]]$tag_name
   return(out_path)
 }
+

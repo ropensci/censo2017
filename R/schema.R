@@ -1,3 +1,5 @@
+#' Crea el esquema SQL
+#' @noRd
 create_schema <- function() {
   con <- censo_bbdd()
   
