@@ -1,13 +1,11 @@
-#' @importFrom httr GET stop_for_status content accept write_disk progress
-#' @importFrom purrr keep
 get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
                                 overwrite = TRUE) {
-  releases <- GET(
+  releases <- httr::GET(
     paste0("https://api.github.com/repos/", repo, "/releases")
   )
-  stop_for_status(releases, "buscando versiones")
+  httr::stop_for_status(releases, "buscando versiones")
   
-  releases <- content(releases)
+  releases <- httr::content(releases)
   
   if (is.null(tag_name)) {
     release_obj <- releases[1]
@@ -25,13 +23,13 @@ get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
   download_url <- release_obj[[1]]$assets[[1]]$url
   filename <- basename(release_obj[[1]]$assets[[1]]$browser_download_url)
   out_path <- normalizePath(file.path(dir, filename), mustWork = FALSE)
-  response <- GET(
+  response <- httr::GET(
     download_url,
-    accept("application/octet-stream"),
-    write_disk(path = out_path, overwrite = overwrite),
-    progress()
+    httr::accept("application/octet-stream"),
+    httr::write_disk(path = out_path, overwrite = overwrite),
+    httr::progress()
   )
-  stop_for_status(response, "downloading data")
+  httr::stop_for_status(response, "downloading data")
   
   attr(out_path, "ver") <- release_obj[[1]]$tag_name
   return(out_path)
