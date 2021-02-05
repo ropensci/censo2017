@@ -1,7 +1,7 @@
 Package: censo2017
 Title: Base de Datos de Facil Acceso del Censo 2017 de Chile
     (2017 Chilean Census Easy Access Database)
-Version: 0.3.2
+Version: 0.4
 Authors@R: c(
         person(given = "Mauricio",
                family = "Vargas",
@@ -35,7 +35,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports:
     DBI,
-    duckdb,
+    RSQLite,
     httr,
     tibble,
     purrr,
