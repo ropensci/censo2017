@@ -9,7 +9,11 @@
 
 # Acerca de
 
-Provee un acceso conveniente a mas de 17 millones de registros de la base de datos del Censo 2017. Los datos fueron importados desde el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo De Grande y ademas se proporcionan los mapas que acompanian a estos datos.
+Provee un acceso conveniente a mas de 17 millones de registros de la base de datos del Censo 2017. Los datos fueron importados desde el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo De Grande y ademas se proporcionan los mapas que acompanian a estos datos. Posteriormente estos datos quedaron disponibles en las [Bases de Datos del INE](https://www.ine.cl/estadisticas/sociales/censos-de-poblacion-y-vivienda/poblacion-y-vivienda).
+
+Despues de la primera llamada a `library(censo2017)` se le pedira al usuario que descargue la base usando `censo_descargar_base()` y se puede modificar la ruta de descarga con la variable de entorno `CENSO_BBDD_DIR`. La variable de entorno se puede crear con `usethis::edit_r_environ()`.
+
+El sitio de la documentacion es pacha.dev/censo2017 y las vinietas estan disponibles en pacha.dev/censo2017/articles.
 
 # Instalacion
 
@@ -67,6 +71,10 @@ Entrada para BibTeX:
   doi = {10.5281/zenodo.4277761}
 }
 ```
+
+# Contribuciones
+
+Para contribuir a este proyecto debes estar de acuerdo con el [Codigo de Conducta](https://pacha.dev/censo2017/CODE_OF_CONDUCT.html). Me es util contar con mas ejemplos, mejoras a las funciones y todo lo que ayude a la comunidad. Si tienes algo que aportar me puedes dejar un issue, pull request o enviarme un tweet (\@pachamaltese) si tienes dudas respecto de como aportar.
 
 # Agradecimientos
 

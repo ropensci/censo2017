@@ -81,9 +81,7 @@ censo_bbdd <- function(dir = censo_path()) {
 #' Tablas Completas de la Base de Datos del Censo
 #'
 #' Devuelve una tabla completa de la base de datos. Para entregar datos
-#' filtrados previamente se debe usar [censo2017::censo_bbdd()]. Esta funcion
-#' puede ser especialmente util para obtener los mapas y usarlos directamente
-#' con tm o ggplot2, sin necesidad de transformar las columnas de geometrias.
+#' filtrados previamente se debe usar [censo2017::censo_bbdd()].
 #'
 #' @param tabla Una cadena de texto indicando la tabla a extraer
 #' @return Un tibble
@@ -94,11 +92,6 @@ censo_bbdd <- function(dir = censo_path()) {
 #'   censo_tabla("comunas")
 #' }
 censo_tabla <- function(tabla) {
-  # if (any(tabla %in% grep("mapa_", censo_tables(), value = T))) {
-  #   df <- sf::st_read(censo_bbdd(), tabla, as_tibble = TRUE, quiet = TRUE)
-  # } else {
-  #   df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla))
-  # }
   df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla))
   return(df)
 }
@@ -158,10 +151,6 @@ censo_estado <- function(msg = TRUE) {
 }
 
 censo_tables <- function() {
-  # c("comunas", "hogares", "mapa_comunas", "mapa_provincias",
-  #   "mapa_regiones", "mapa_zonas", "personas", "provincias",
-  #   "regiones", "viviendas", "zonas", "metadatos")
-  
   c("comunas", "hogares", "personas", "provincias",
     "regiones", "viviendas", "zonas", "metadatos")
 }

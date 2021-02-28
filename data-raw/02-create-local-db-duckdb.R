@@ -1,7 +1,6 @@
 # packages ----
 
 library(dplyr)
-library(stringr)
 library(DBI)
 library(duckdb)
 library(RSQLite)
@@ -210,7 +209,7 @@ dbSendQuery(
 
 # disconnect ----
 
-duckdb::dbDisconnect(con2)
+duckdb::dbDisconnect(con2, shutdown = T)
 gc()
 
 # metadata ----
@@ -222,30 +221,13 @@ metadatos$fecha_modificacion <- as.character(metadatos$fecha_modificacion)
 
 # connect, copy table, disconnect and repeat ----
 
-for (t in c(tablas, "metadatos")) {
+for (t in c(tablas)) {
   message(t)
-  if(t != "metadatos") {
-    d <- dbReadTable(con, t)
-  } else {
-    d <- metadatos
-  }
-  
-  if (t == "mapa_zonas") {
-    d <- d %>% 
-      mutate(
-        region = str_pad(region, 2, "left", "0"),
-        provincia = str_pad(provincia, 3, "left", "0"),
-        comuna = str_pad(comuna, 5, "left", "0")
-      )
-  }
+  d <- dbReadTable(con, t)
   
   con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
-  if(t != "metadatos") {
-    dbWriteTable(con2, t, d, append = T, temporary = F)
-  } else {
-    dbWriteTable(con2, t, d, overwrite = T, temporary = F)
-  }
-  dbDisconnect(con2)
+  dbWriteTable(con2, t, d, append = T, temporary = F)
+  dbDisconnect(con2, shutdown = T)
   
   gc()
   rm(d)
@@ -253,6 +235,10 @@ for (t in c(tablas, "metadatos")) {
 
 gc()
 dbDisconnect(con)
+
+con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
+copy_to(con2, metadatos, "metadatos", temporary = F)
+dbDisconnect(con2, shutdown = T)
 
 # create indexes ----
 
@@ -273,7 +259,7 @@ dbSendQuery(con2, "CREATE INDEX mapa_provincias_provincia ON mapa_provincias (pr
 dbSendQuery(con2, "CREATE INDEX mapa_regiones_region ON mapa_regiones (region)")
 dbSendQuery(con2, "CREATE INDEX mapa_zonas_geocodigo ON mapa_zonas (geocodigo)")
 
-dbDisconnect(con2)
+dbDisconnect(con2, shutdown = T)
 
 # test ----
 
@@ -288,7 +274,7 @@ for (t in tablas) {
   con2 <- dbConnect(duckdb(), "data-raw/censo2017.duckdb")
   d2 <- dbReadTable(con2, t)
   d2 <- c(nrow(d2), ncol(d2))
-  dbDisconnect(con2)
+  dbDisconnect(con2, shutdown = T)
   stopifnot(d[1] == d2[1])
   stopifnot(d[2] == d2[2])
   
