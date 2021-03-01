@@ -162,10 +162,6 @@ create_schema <- function() {
   
   # indexes ----
   
-  DBI::dbSendQuery(con, "CREATE UNIQUE INDEX comunas_redcoden ON comunas (redcoden)")
-  DBI::dbSendQuery(con, "CREATE UNIQUE INDEX provincias_redcoden ON provincias (redcoden)")
-  DBI::dbSendQuery(con, "CREATE UNIQUE INDEX regiones_redcoden ON regiones (redcoden)")
-  
   DBI::dbSendQuery(con, "CREATE UNIQUE INDEX hogares_hogar_ref_id ON hogares (hogar_ref_id)")
   DBI::dbSendQuery(con, "CREATE UNIQUE INDEX viviendas_vivienda_ref_id ON viviendas (vivienda_ref_id)")
   

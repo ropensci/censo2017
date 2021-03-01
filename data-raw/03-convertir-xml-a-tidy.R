@@ -1,6 +1,4 @@
-# I had to convert from XML to JSON in the terminal
-# sudo apt install libxml-compile-perl libjson-perl
-
+library(censo2017)
 library(xml2)
 library(tidyverse)
 
@@ -386,9 +384,8 @@ censo_codificacion_variables <- personas_codificacion %>%
   bind_rows(viviendas_codificacion)
 
 censo_codificacion_variables <- censo_codificacion_variables %>% 
-  mutate(
-    tabla = as_factor(tabla)
-  )
+  drop_na()
 
-usethis::use_data(censo_variables)
-usethis::use_data(censo_codificacion_variables)
+data.table::fwrite(censo_variables, "data-raw/variables.tsv", sep = "\t")
+data.table::fwrite(censo_codificacion_variables, "data-raw/variables_codificacion.tsv", sep = "\t")
+
