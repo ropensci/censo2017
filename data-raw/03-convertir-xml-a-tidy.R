@@ -384,8 +384,8 @@ censo_codificacion_variables <- personas_codificacion %>%
   bind_rows(viviendas_codificacion)
 
 censo_codificacion_variables <- censo_codificacion_variables %>% 
-  drop_na()
+  drop_na() %>% 
+  mutate(valor = as.integer(valor))
 
 data.table::fwrite(censo_variables, "data-raw/variables.tsv", sep = "\t")
 data.table::fwrite(censo_codificacion_variables, "data-raw/variables_codificacion.tsv", sep = "\t")
-

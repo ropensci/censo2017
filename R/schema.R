@@ -148,6 +148,29 @@ create_schema <- function() {
 	fecha_modificacion VARCHAR NOT NULL)"
   )
   
+  # variables ----
+  
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS variables")
+  
+  DBI::dbSendQuery(
+    con,
+    "CREATE TABLE variables (
+	tabla VARCHAR NULL,
+	variable VARCHAR NULL,
+  descripcion VARCHAR NULL,
+  tipo VARCHAR NULL,
+  rango VARCHAR NULL)"
+  )
+  
+  DBI::dbSendQuery(
+    con,
+    "CREATE TABLE variables_codificacion (
+	tabla VARCHAR NULL,
+	variable VARCHAR NULL,
+	valor INTEGER NULL,
+  descripcion VARCHAR NULL)"
+  )
+  
   # zonas ----
   
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS zonas")
