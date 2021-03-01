@@ -152,7 +152,8 @@ censo_estado <- function(msg = TRUE) {
 
 censo_tables <- function() {
   c("comunas", "hogares", "personas", "provincias",
-    "regiones", "viviendas", "zonas", "metadatos")
+    "regiones", "viviendas", "zonas", 
+    "variables", "variables_codificacion", "metadatos")
 }
 
 censo_cache <- new.env()
