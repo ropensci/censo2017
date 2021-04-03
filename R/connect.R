@@ -92,7 +92,10 @@ censo_bbdd <- function(dir = censo_path()) {
 #'   censo_tabla("comunas")
 #' }
 censo_tabla <- function(tabla) {
-  df <- tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla))
+  df <- tryCatch(
+    tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla)),
+    error = function(e) { read_table_error(e) }
+  )
   return(df)
 }
 
