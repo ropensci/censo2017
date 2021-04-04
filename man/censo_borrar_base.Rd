@@ -10,9 +10,5 @@ censo_borrar_base()
 Elimina el directorio \code{censo2017} en el directorio de datos de usuario.
 }
 \examples{
-\donttest{
-\dontrun{
-censo_borrar_base()
-}
-}
+\dontrun{ censo_borrar_base() }
 }

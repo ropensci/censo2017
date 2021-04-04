@@ -30,7 +30,7 @@ censo_check_status <- function() {
 #' @export
 #'
 #' @examples
-#' if (censo_estado()) {
+#' \dontrun{
 #'  DBI::dbListTables(censo_bbdd())
 #'
 #'  DBI::dbGetQuery(
@@ -88,9 +88,7 @@ censo_bbdd <- function(dir = censo_path()) {
 #' @export
 #'
 #' @examples
-#' if (censo_estado()) {
-#'   censo_tabla("comunas")
-#' }
+#' \dontrun{ censo_tabla("comunas") }
 censo_tabla <- function(tabla) {
   df <- tryCatch(
     tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla)),
@@ -135,7 +133,7 @@ censo_db_disconnect_ <- function(environment = censo_cache) {
 #' FALSE  en caso contrario (invisible).
 #' @export
 #' @examples
-#' censo_estado()
+#' \dontrun{ censo_estado() }
 censo_estado <- function(msg = TRUE) {
   expected_tables <- sort(censo_tables())
   existing_tables <- sort(DBI::dbListTables(censo_bbdd()))

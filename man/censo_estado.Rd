@@ -18,5 +18,5 @@ Entrega el estado de la base de datos local. Muestra un mensaje informativo
 respecto de como obtener la base si esta no se encuentra o esta daniada.
 }
 \examples{
-censo_estado()
+\dontrun{ censo_estado() }
 }

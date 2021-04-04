@@ -6,11 +6,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
-#' \dontrun{
-#' censo_borrar_base()
-#' }
-#' }
+#' \dontrun{ censo_borrar_base() }
 censo_borrar_base <- function() {
   suppressWarnings(censo_desconectar_base())
   try(unlink(censo_path(), recursive = TRUE))

@@ -19,7 +19,7 @@ dbplyr para leer unicamente lo que se necesita o directamente con DBI para
 usar comandos SQL.
 }
 \examples{
-if (censo_estado()) {
+\dontrun{
  DBI::dbListTables(censo_bbdd())
 
  DBI::dbGetQuery(

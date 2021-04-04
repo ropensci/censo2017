@@ -13,11 +13,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
-#' \dontrun{
-#' censo_descargar_base()
-#' }
-#' }
+#' \dontrun{ censo_descargar_base() }
 censo_descargar_base <- function(ver = NULL) {
   msg("Descargando la base de datos desde GitHub...")
   

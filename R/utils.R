@@ -35,7 +35,7 @@ read_table_error <- function(e) {
   e <- as.character(e)
   # return(e)
   msg <- c(
-    sprintf("No esta disponible la tabla %s.", get("tabla", env = 1)),
+    sprintf("No esta disponible la tabla %s.", get("tabla", envir = 1)),
     "\nVerifica que escribiste el nombre correctamente y que instalaste los",
     "\ndatos con censo_descargar_base()."
   )

@@ -11,9 +11,8 @@ test_that("Database is deleted", {
   
   expect_true(censo_estado())
   censo_borrar_base()
-  expect_equal(DBI::dbListTables(censo_bbdd()), character(0))
+  expect_false(file.exists(censo_path()))
   expect_false(censo_estado())
 })
 
-unlink(Sys.getenv("CENSO_BBDD_DIR"), recursive = TRUE)
 Sys.setenv(CENSO_BBDD_DIR = olddir)

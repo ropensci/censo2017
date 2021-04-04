@@ -17,7 +17,5 @@ Devuelve una tabla completa de la base de datos. Para entregar datos
 filtrados previamente se debe usar \code{\link[=censo_bbdd]{censo_bbdd()}}.
 }
 \examples{
-if (censo_estado()) {
-  censo_tabla("comunas")
-}
+\dontrun{ censo_tabla("comunas") }
 }

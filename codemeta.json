@@ -5,18 +5,18 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "censo2017",
-  "description": "Provee un acceso conveniente a mas de 17 millones de registros\n    de la base de datos del Censo 2017. Los datos fueron importados desde\n    el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo De\n    Grande y ademas se proporcionan los mapas que acompanian a estos\n    datos. Esta paquete esta documentado intencionalmente en castellano\n    asciificado para que funcione sin problema en diferentes plataformas.\n    (Provides convenient access to more than 17 million records from the\n    Chilean Census 2017 database. The datasets were imported from the official\n    DVD provided by the Chilean National Bureau of Statistics by using the\n    REDATAM converter created by Pablo De Grande and in addition it includes the\n    maps accompanying these datasets.)",
+  "description": "Provee un acceso conveniente a mas de 17 millones de registros\n    de la base de datos del Censo 2017. Los datos fueron importados desde\n    el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo De\n    Grande. Esta paquete esta documentado intencionalmente en castellano\n    asciificado para que funcione sin problema en diferentes plataformas.\n    (Provides convenient access to more than 17 million records from the\n    Chilean Census 2017 database. The datasets were imported from the official\n    DVD provided by the Chilean National Bureau of Statistics by using the\n    REDATAM converter created by Pablo De Grande and in addition it includes the\n    maps accompanying these datasets.)",
   "name": "censo2017: Base de Datos de Facil Acceso del Censo 2017 de Chile\n    (2017 Chilean Census Easy Access Database)",
   "codeRepository": "https://github.com/pachamaltese/censo2017",
   "issueTracker": "https://github.com/pachamaltese/censo2017/issues/",
   "license": "https://spdx.org/licenses/CC0-1.0",
-  "version": "0.3",
+  "version": "0.4",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
+  "runtimePlatform": "R version 4.0.4 (2021-02-15)",
   "author": [
     {
       "@type": "Person",
@@ -149,18 +149,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "R.utils",
-      "name": "R.utils",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=R.utils"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
       "provider": {
@@ -182,18 +170,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "sf",
-      "name": "sf",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=sf"
     },
     {
       "@type": "SoftwareApplication",
@@ -233,18 +209,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rappdirs",
-      "name": "rappdirs",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rappdirs"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "tools",
       "name": "tools"
     },
@@ -259,7 +223,7 @@
   "readme": "https://github.com/pachamaltese/censo2017/blob/main/README.md",
   "fileSize": "0KB",
   "contIntegration": "https://codecov.io/gh/pachamaltese/censo2017",
-  "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/#stable"],
+  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable-1", "https://www.tidyverse.org/lifecycle/#stable"],
   "keywords": [
     "chile",
     "censo",

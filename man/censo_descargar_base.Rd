@@ -18,9 +18,5 @@ base de datos en tu home, ejecuta usethis::edit_r_environ() para crear la
 variable de entorno CENSO_BBDD_DIR con la ruta.
 }
 \examples{
-\donttest{
-\dontrun{
-censo_descargar_base()
-}
-}
+\dontrun{ censo_descargar_base() }
 }
