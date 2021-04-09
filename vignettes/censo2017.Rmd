@@ -90,7 +90,6 @@ Primero, creamos la variable colors, en el que incluiremos los codigos hexadecim
 Luego de hecho esto, utilizamos geom_sf del paquete ggplot2, que se usa para visualizar objetos de caracteristicas simples (sf = simple features). Geom_sf dibujara diferentes objetos geometricos a partir de una columna de tipo 'sf' que debe estar presente en los datos.
 
 Seleccionamos el codigo_comuna y geometry (que contiene los poligonos que componen cada region) desde el mapa_biobio, que creamos anteriormente. Volvemos a hacer un left_join ahora de mapa_biobio seleccionando unicamente codigo_comuna, nivel_educ y proporcion.
-
 ```{r, fig.width=10, warning=FALSE, message=FALSE}
 colors <- c("#DCA761","#C6C16D","#8B9C94","#628CA5","#5A6C7A")
 
