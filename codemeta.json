@@ -37,6 +37,14 @@
       "name": "Instituto Nacional de Estadisticas (INE)"
     }
   ],
+    "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Constanza",
+      "familyName": "Manriquez",
+      "email": "constanza.ima@gmail.com"
+    }
+  ],
   "copyrightHolder": {},
   "funder": {},
   "maintainer": [
