@@ -32,6 +32,9 @@ Useful links:
 Other contributors:
 \itemize{
   \item Juan Correa [contributor]
+  \item Maria Paula Caldas (rOpenSci) [reviewer]
+  \item Franz van Dunee (rOpenSci) [reviewer]
+  \item Constanza Manriquez (revision independiente de las vinietas) [reviewer]
   \item  Instituto Nacional de Estadisticas (INE) [data contributor]
 }
 

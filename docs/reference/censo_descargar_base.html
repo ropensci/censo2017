@@ -40,9 +40,10 @@
 
 
 <meta property="og:title" content="Descarga la Base de Datos del Censo a tu Computador — censo_descargar_base" />
-<meta property="og:description" content="Este comando descarga la base de datos completa como un unico archivo bz2 que
-se descomprime para dejar disponible la base de datos local en formato
-SQLite." />
+<meta property="og:description" content="Este comando descarga la base de datos completa como un unico archivo zip que
+se descomprime para crear la base de datos local. Si no quieres descargar la
+base de datos en tu home, ejecuta usethis::edit_r_environ() para crear la
+variable de entorno CENSO_BBDD_DIR con la ruta." />
 
 
 
@@ -122,9 +123,10 @@ SQLite." />
     </div>
 
     <div class="ref-description">
-    <p>Este comando descarga la base de datos completa como un unico archivo bz2 que
-se descomprime para dejar disponible la base de datos local en formato
-SQLite.</p>
+    <p>Este comando descarga la base de datos completa como un unico archivo zip que
+se descomprime para crear la base de datos local. Si no quieres descargar la
+base de datos en tu home, ejecuta usethis::edit_r_environ() para crear la
+variable de entorno CENSO_BBDD_DIR con la ruta.</p>
     </div>
 
     <pre class="usage"><span class='fu'>censo_descargar_base</span><span class='op'>(</span>ver <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
@@ -142,11 +144,7 @@ disponible en GitHub. Se pueden ver todas las versiones en
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>censo_descargar_base</span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>}</span>
-<span class='co'># }</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span>  <span class='fu'>censo_descargar_base</span><span class='op'>(</span><span class='op'>)</span> 
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

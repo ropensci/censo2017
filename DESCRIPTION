@@ -11,6 +11,18 @@ Authors@R: c(
         person(given = "Juan",
                family = "Correa",
                role = c("ctb")),
+        person(given = "Maria Paula",
+               family = "Caldas",
+               role = c("rev"),
+               comment = "rOpenSci"),
+        person(given = "Franz",
+               family = "van Dunee",
+               role = c("rev"),
+               comment = "rOpenSci"),
+        person(given = "Constanza",
+               family = "Manriquez",
+               role = c("rev"),
+               comment = "revision independiente de las vinietas"),
         person(family = "Instituto Nacional de Estadisticas (INE)",
                role = c("dtc")
         )

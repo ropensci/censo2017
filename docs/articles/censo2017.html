@@ -70,13 +70,13 @@
 
       
 
-      </header><script src="censo2017_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><script src="censo2017_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Uso basico del paquete censo2017</h1>
                         <h4 class="author">Mauricio Vargas S.</h4>
             
-            <h4 class="date">2021-02-05</h4>
+            <h4 class="date">2021-04-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pachamaltese/censo2017/blob/master/vignettes/censo2017.Rmd"><code>vignettes/censo2017.Rmd</code></a></small>
       <div class="hidden name"><code>censo2017.Rmd</code></div>
@@ -88,19 +88,21 @@
 <div id="introduccion" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduccion" class="anchor"></a>Introduccion</h1>
-<p>Este paquete se integra perfectamente con el tidyverse y se dara un ejemplo muy basico para mostrar las principales funciones.</p>
+<p>Este paquete se integra perfectamente con el tidyverse, con el que daremos un ejemplo muy basico para mostrar sus principales funciones.</p>
 </div>
-<div id="aproximacion-de-la-poblacion-con-el-grado-de-doctor-en-la-region-del-bio-bio" class="section level1">
+<div id="aproximacion-de-la-poblacion-con-el-grado-de-doctor-en-la-region-del-bio-bio-" class="section level1">
 <h1 class="hasAnchor">
-<a href="#aproximacion-de-la-poblacion-con-el-grado-de-doctor-en-la-region-del-bio-bio" class="anchor"></a>Aproximacion de la poblacion con el grado de doctor en la Region del Bio Bio</h1>
-<p>Se procedera a obtener una aproximacion usando dplyr ya que puede haber personas que no son de la comuna y aparecen censadas. Sin embargo no se hara el filtro que corrige esto para mantener el ejemplo lo mas simple posible.</p>
-<p>Primero se cargan los paquetes necesarios.</p>
+<a href="#aproximacion-de-la-poblacion-con-el-grado-de-doctor-en-la-region-del-bio-bio-" class="anchor"></a>Aproximacion de la poblacion con el grado de doctor en la Region del Bio Bio.</h1>
+<p>Se procedera a obtener una aproximacion usando dplyr ya que, puede haber personas que no sean de la comuna y aparezcan censadas en ella. Sin embargo, cabe aclarar que para esta ocasion no haremos el filtro que corrige esto. Nuestra idea es mantener el ejemplo lo mas simple posible.</p>
+<p>Primero que todo, se cargan los paquetes necesarios.</p>
+<p>• censo2017 … • dplyr … • ggplot2 … • chilemapas: Nos entrega mapas terrestres con topologias simplificadas. Esto significa, que este paquete al contener poligonos que generan graficos, y no tablas, nos permite un uso mas sencillo para lo que queremos realizar, que es darle un complemento visual a la información cargada desde censo2017.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/censo2017/">censo2017</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pachamaltese.github.io/chilemapas/">chilemapas</a></span><span class="op">)</span></code></pre></div>
-<p>Hay que realizar algunos cruces de tablas de manera de filtrar la region que nos interesa. Comienzo con la tabla zonas, genero la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. La variable <code>p15</code>, cuya descripcion esta en el <a href="https://github.com/pachamaltese/censo2017/blob/main/data-raw/censo2017-descripcion-variables.xml">repositorio</a>, que interesa para este ejemplo.</p>
+<p>Hay que realizar algunos cruces de tablas, de manera de filtrar la region que nos interesa.</p>
+<p>Comenzamos con la tabla zonas: generamos la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. Nos interesa utilizar la variable <code>p15</code>, cuya descripcion esta en el <a href="https://github.com/pachamaltese/censo2017/blob/main/data-raw/censo2017-descripcion-variables.xml">repositorio</a>, para este ejemplo.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nivel_educacional_biobio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="fu"><a href="../reference/censo_bbdd.html">censo_bbdd</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"zonas"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
@@ -113,14 +115,14 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="fu"><a href="../reference/censo_bbdd.html">censo_bbdd</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"hogares"</span><span class="op">)</span>, <span class="va">vivienda_ref_id</span>, <span class="va">hogar_ref_id</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"vivienda_ref_id"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="fu"><a href="../reference/censo_bbdd.html">censo_bbdd</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"personas"</span><span class="op">)</span>, <span class="va">hogar_ref_id</span>, nivel_educ <span class="op">=</span> <span class="va">p15</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"hogar_ref_id"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>Con lo anterior se puede agrupar por o comuna y obtener la cuenta.</p>
+<p>Con lo anterior, los niveles educacionales de las personas censadas se pueden agrupar por comuna y obtener la cuenta proporcionada en base a la suma total.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nivel_educacional_biobio</span> <span class="op">&lt;-</span> <span class="va">nivel_educacional_biobio</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">comuna</span>, <span class="va">nivel_educ</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>cuenta <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">comuna</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>proporcion <span class="op">=</span> <span class="va">cuenta</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">cuenta</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Veo los datos antes de seguir.</p>
+<p>Vemos los datos antes de continuar.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nivel_educacional_biobio</span>
 <span class="co">#&gt; # A tibble: 860 x 4</span>
@@ -137,16 +139,19 @@
 <span class="co">#&gt;  8 08101           8  18641    0.0834 </span>
 <span class="co">#&gt;  9 08101           9   5854    0.0262 </span>
 <span class="co">#&gt; 10 08101          10   2653    0.0119 </span>
-<span class="co">#&gt; # ... with 850 more rows</span></code></pre></div>
-<p>Ahora obtengo el mapa de la provincia y procedo a pegar los datos a la tabla del mapa. Se usara chilemapas para simplificar al limite.</p>
+<span class="co">#&gt; # … with 850 more rows</span></code></pre></div>
+<p>Creamos la variable mapa_biobio haciendo un filtro para obtener unicamente los datos de la region con codigo “08” (region del Bio Bio) desde mapa_comunas. Luego de eso, haremos un left join (union de tablas manteniendo todas las filas de la tabla izquierda o inicial) desde la tabla chilemapas, donde obtendremos el mapa de la provincia, y la uniremos con los datos coincidentes segon el codigo_comuna de la tabla censo2017.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapa_biobio</span> <span class="op">&lt;-</span> <span class="va">mapa_comunas</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">codigo_region</span> <span class="op">==</span> <span class="st">"08"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nivel_educacional_biobio</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"codigo_comuna"</span> <span class="op">=</span> <span class="st">"comuna"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Ahora que cargue toda la informacion necesaria en R desde la base de datos, debo cerrar la conexion SQL (importante).</p>
+<p>Ahora que cargamos toda la informacion necesaria en R desde la base de datos, debemos cerrar la conexion SQL (importante).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/censo_desconectar_base.html">censo_desconectar_base</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>Finalmente procedo a generar el mapa.</p>
+<p>Finalmente procedemos a generar el mapa.</p>
+<p>Primero, creamos la variable colors, en el que incluiremos los codigos hexadecimales de los colores que utilizaremos al momento de crear el mapa.</p>
+<p>Luego de hecho esto, utilizamos geom_sf del paquete ggplot2, que se usa para visualizar objetos de caracteristicas simples (sf = simple features). Geom_sf dibujara diferentes objetos geometricos a partir de una columna de tipo ‘sf’ que debe estar presente en los datos.</p>
+<p>Seleccionamos el codigo_comuna y geometry (que contiene los poligonos que componen cada region) desde el mapa_biobio, que creamos anteriormente. Volvemos a hacer un left_join ahora de mapa_biobio seleccionando unicamente codigo_comuna, nivel_educ y proporcion.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#DCA761"</span>,<span class="st">"#C6C16D"</span>,<span class="st">"#8B9C94"</span>,<span class="st">"#628CA5"</span>,<span class="st">"#5A6C7A"</span><span class="op">)</span>
 
@@ -172,7 +177,7 @@
 <li>El uso de <code><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl()</a></code> y <code><a href="https://dplyr.tidyverse.org/reference/compute.html">collect()</a></code> en la primera parte se podra entender mejor leyendo, por ejemplo, <a href="https://pacha.dev/blog/2020/08/09/a-crash-course-on-postgresql-for-r-users/">A Crash Course on PostgreSQL for R Users</a>.</li>
 <li>En la segunda parte se usa <code><a href="../reference/censo_tabla.html">censo_tabla()</a></code> ya que SQL almacena la columna <code>geometry</code> (de tipo poligono) como cadena de texto mientras que R lee poligonos sin problema.</li>
 <li>En la tercera parte hago un join entre el mapa completo y la tabla con quienes tienen el grado de doctor. Este paso, aunque pueda parecer redundante, es necesario si quiero mostrar las zonas con 0 doctores y si lo omito se borran algunas zonas del mapa.</li>
-<li>El mapa que se genero usando las funciones de <code>chilemapas</code> podria haber generado con las cartografias de la base de datos. Sin embargo, el nivel de detalle baja mucho la velocidad del ejemplo y CRAN pide ejemplos minimos.</li>
+<li>El mapa que se genero usando las funciones de chilemapas podria haber generado con las cartografias oficiales del Censo (ver repositorio cartografias-censo2017. Esta alternativa entrega un mayor nivel de detalle, pero requiere mayor esfuerzo para leer las cartografias y el tiempo requerido para generar los mapas aumenta fuertemente.</li>
 </ul>
 </div>
 <div id="ejercicios-para-el-usuario" class="section level1">
@@ -181,7 +186,7 @@
 <ol style="list-style-type: decimal">
 <li>Realizar un grafico similar al del ejemplo pero a nivel de zona censal.</li>
 <li>Explorar la columna <code>p10</code> en la tabla <code>personas</code> y realizar un grafico que de cuenta de la poblacion efectiva de la comuna (e.g. mejorando el problema de personas que podrian no ser de la comuna en el ejemplo).</li>
-<li>Agregar datos al mapa sin usar <code>chilemapas</code>. Una forma de hacerlo es la siguiente</li>
+<li>Agregar datos al mapa sin usar <code>chilemapas</code>. Una forma de hacerlo es la siguiente:</li>
 </ol>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapa_biobio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/censo_tabla.html">censo_tabla</a></span><span class="op">(</span><span class="st">"mapa_comunas"</span><span class="op">)</span> <span class="op">%&gt;%</span>
