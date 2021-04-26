@@ -1,3 +1,9 @@
+# Version 0.5
+
+- Adds all of rOpenSci's suggestion, which means great improvements such as
+ better documentation, consistent syntax, does not depend on DuckDB version, etc.
+ See https://github.com/ropensci/software-review/issues/414 for the full detail.
+ 
 # Version 0.4
 
 - Works with duckdb 0.3.4

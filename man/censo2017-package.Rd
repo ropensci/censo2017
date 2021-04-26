@@ -21,7 +21,7 @@ Provee un acceso conveniente a mas de 17 millones de registros
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://docs.ropensci.org/censo2017}
+  \item \url{https://docs.ropensci.org/censo2017/}
   \item Report bugs at \url{https://github.com/ropensci/censo2017/issues/}
 }
 
