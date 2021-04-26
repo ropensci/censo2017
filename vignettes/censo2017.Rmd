@@ -28,10 +28,11 @@ Se procedera a obtener una aproximacion usando dplyr ya que, puede haber persona
 
 Primero que todo, se cargan los paquetes necesarios.
 
-• censo2017 ...
-• dplyr ...
-• ggplot2 ...
+• censo2017: Proporciona los datos censales para poder generar las tablas y graficos de este ejemplo,
+• dplyr: Facilta filtrar datos en una tabla, unir distintas tablas y en general todas las tareas de limpieza y transformacion de datos. 
+* ggplot2: Nos permite graficar usando el concepto de "gramatica de graficos", es decir que podemos ir creando graficos incrementales y controlar los ejes, titulos y demas elementos por separado.
 • chilemapas: Nos entrega mapas terrestres con topologias simplificadas. Esto significa, que este paquete al contener poligonos que generan graficos, y no tablas, nos permite un uso mas sencillo para lo que queremos realizar, que es darle un complemento visual a la información cargada desde censo2017.
+
 ```{r, warning=FALSE, message=FALSE}
 library(censo2017)
 library(dplyr)
