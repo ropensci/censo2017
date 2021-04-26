@@ -10,11 +10,13 @@ state and is being actively
 developed.](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable-1)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![GH-actions](https://github.com/pachamaltese/censo2017/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/censo2017/actions)
-[![codecov](https://codecov.io/gh/pachamaltese/censo2017/branch/main/graph/badge.svg?token=XI59cmGd15)](https://codecov.io/gh/pachamaltese/censo2017)
+[![GH-actions](https://github.com/ropensci/censo2017/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/censo2017/actions)
+[![codecov](https://codecov.io/gh/ropensci/censo2017/branch/main/graph/badge.svg?token=XI59cmGd15)](https://codecov.io/gh/ropensci/censo2017)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/censo2017)](https://CRAN.R-project.org/package=censo2017)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4277761.svg)](https://doi.org/10.5281/zenodo.4277761)
+[![Buy Me a
+Coffee](https://img.shields.io/badge/buymeacoffee-pacha-yellow)](https://www.buymeacoffee.com/pacha?via=github)
 <!-- badges: end -->
 
 # Acerca de
@@ -34,8 +36,18 @@ modificar la ruta de descarga con la variable de entorno
 `CENSO_BBDD_DIR`. La variable de entorno se puede crear con
 `usethis::edit_r_environ()`.
 
-El sitio de la documentacion es pacha.dev/censo2017 y las vinietas con
-ejemplos estan disponibles en pacha.dev/censo2017/articles.
+La documentacion esta disponible en
+<https://docs.ropensci.org/censo2017/>.
+
+# Publico objetivo
+
+Estudiantes, academicos e investigadores que necesiten un acceso
+conveniente a datos censales directamente en R o RStudio.
+
+# Requerimientos de instalacion
+
+Este paquete necesita 3.5 GB libres para la crear la base de datos
+localmente.
 
 # Instalacion
 
@@ -46,7 +58,7 @@ Version estable
 Version de desarrollo
 
     # install.packages("remotes")
-    remotes::install_github("pachamaltese/censo2017")
+    remotes::install_github("ropensci/censo2017")
 
 # Valor agregado sobre los archivos SHP y REDATAM del INE
 
@@ -57,7 +69,7 @@ en formato DVD.
 
 La modificacion sobre los archivos originales, que incluyen geometrias
 detalladas disponibles en [Cartografias
-Censo2017](https://github.com/pachamaltese/cartografias-censo2017),
+Censo2017](https://github.com/ropensci/censo2017-cartografias),
 consistio en unir todos los archivos SHP regionales en una unica tabla
 por nivel (e.g en lugar de proveer `R01_mapa_comunas`, …,
 `R15_mapa_comunas` combine las 15 regiones en una unica tabla
@@ -75,9 +87,9 @@ Los cambios concretos respecto de la base original son los siguientes:
     `zonaloc_ref_id`. Esto se debio a que era necesario para crear una
     llave foranea desde la tabla `mapa_zonas` (ver repositorio
     [Cartografias
-    Censo2017](https://github.com/pachamaltese/cartografias-censo2017))
-    y vincular el `geocodigo` (no todas las zonas del mapa estan
-    presentes en los datos del Censo).
+    Censo2017](https://github.com/ropensci/censo2017-cartografias)) y
+    vincular el `geocodigo` (no todas las zonas del mapa estan presentes
+    en los datos del Censo).
 
 Ademas de los datos del Censo, inclui la descripcion de las variables en
 formato tabla (y no en XML como se obtiene del DVD). La ventaja de esto
@@ -121,11 +133,11 @@ Todos los datos de estos repositorios contemplan 15 regiones pues los
 archivos del Censo se entregan de esta forma y este paquete esta 100%
 orientado a facilitar el acceso a datos.
 
-Por su parte, [chilemapas](https://pacha.dev/chilemapas/) se centra
-unicamente en los mapas y tambien usa las cartografias del DVD del Censo
-para entregar mapas simplificados (de menor detalle y mas livianos).
-Chilemapas cuenta con una transformacion de codigos para dar cuenta de
-la creacion de la Region de Niuble.
+Por su parte, [chilemapas](https://docs.ropensci.org/censo2017) se
+centra unicamente en los mapas y tambien usa las cartografias del DVD
+del Censo para entregar mapas simplificados (de menor detalle y mas
+livianos). Chilemapas cuenta con una transformacion de codigos para dar
+cuenta de la creacion de la Region de Niuble.
 
 En resumen, censo2017 permite construir estadisticas demograficas y
 chilemapas ayuda a mostrarlas en un mapa usando ggplot2 (u otro paquete
@@ -138,7 +150,7 @@ por favor usa la siguiente cita:
 
     Mauricio Vargas (2020). censo2017: Base de Datos de Facil Acceso del Censo
       2017 de Chile (2017 Chilean Census Easy Access Database). R package version
-      0.1. https://pacha.dev/censo2017/
+      0.1. https://docs.ropensci.org/censo2017/
 
 Entrada para BibTeX:
 
@@ -148,24 +160,21 @@ Entrada para BibTeX:
       author = {Mauricio Vargas},
       year = {2020},
       note = {R package version 0.1},
-      url = {https://pacha.dev/censo2017/},
+      url = {https://docs.ropensci.org/censo2017/},
       doi = {10.5281/zenodo.4277761}
     }
 
 # Contribuciones
 
 Para contribuir a este proyecto debes estar de acuerdo con el [Codigo de
-Conducta](https://pacha.dev/censo2017/CODE_OF_CONDUCT.html). Me es util
+Conducta de rOpenSci](https://ropensci.org/code-of-conduct/). Me es util
 contar con mas ejemplos, mejoras a las funciones y todo lo que ayude a
-la comunidad. Si tienes algo que aportar me puedes dejar un issue, pull
-request o enviarme un tweet (@pachamaltese) si tienes dudas respecto de
-como aportar.
+la comunidad. Si tienes algo que aportar me puedes dejar un issue o pull
+request.
 
 # Agradecimientos
 
-Muchas gracias a Juan Correa
-([@Juanizio\_C](https://twitter.com/Juanizio_C/)) por su asesoria como
-geografo experto.
+Muchas gracias a Juan Correa por su asesoria como geografo experto.
 
 # Aportes
 

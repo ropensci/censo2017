@@ -1,7 +1,7 @@
 Package: censo2017
 Title: Base de Datos de Facil Acceso del Censo 2017 de Chile
     (2017 Chilean Census Easy Access Database)
-Version: 0.4
+Version: 0.5
 Authors@R: c(
         person(given = "Mauricio",
                family = "Vargas",
@@ -15,8 +15,12 @@ Authors@R: c(
                family = "Caldas",
                role = c("rev"),
                comment = "rOpenSci"),
-        person(given = "Franz",
+        person(given = "Frans",
                family = "van Dunee",
+               role = c("rev"),
+               comment = "rOpenSci"),
+        person(given = "Melina",
+               family = "Vidoni",
                role = c("rev"),
                comment = "rOpenSci"),
         person(given = "Constanza",
@@ -37,8 +41,8 @@ Description: Provee un acceso conveniente a mas de 17 millones de registros
     DVD provided by the Chilean National Bureau of Statistics by using the
     REDATAM converter created by Pablo De Grande and in addition it includes the
     maps accompanying these datasets.)
-URL: https://pacha.dev/censo2017/
-BugReports: https://github.com/pachamaltese/censo2017/issues/
+URL: https://docs.ropensci.org/censo2017/
+BugReports: https://github.com/ropensci/censo2017/issues/
 License: CC0
 Encoding: UTF-8
 LazyData: true

@@ -16,7 +16,7 @@
 #' \dontrun{ censo_descargar_base() }
 censo_descargar_base <- function(ver = NULL) {
   msg("Descargando la base de datos desde GitHub...")
-  
+
   destdir <- tempdir()
   dir <- censo_path()
   
@@ -42,12 +42,14 @@ censo_descargar_base <- function(ver = NULL) {
   }
   
   utils::unzip(zfile, overwrite = TRUE, exdir = destdir)
+  unlink(zfile)
   
   finp_tsv <- list.files(destdir, full.names = TRUE, pattern = "tsv")
 
   invisible(create_schema())
   
   for (x in seq_along(finp_tsv)) {
+
     tout <- gsub(".*/", "", gsub("\\.tsv", "", finp_tsv[x]))
     
     msg(sprintf("Creando tabla %s ...", tout))
@@ -66,6 +68,8 @@ censo_descargar_base <- function(ver = NULL) {
     )
     
     DBI::dbDisconnect(con, shutdown = TRUE)
+    
+    unlink(finp_tsv[x])
     invisible(gc())
   }
   

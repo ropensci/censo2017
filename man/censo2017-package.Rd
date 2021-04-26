@@ -21,8 +21,8 @@ Provee un acceso conveniente a mas de 17 millones de registros
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://pacha.dev/censo2017/}
-  \item Report bugs at \url{https://github.com/pachamaltese/censo2017/issues/}
+  \item \url{https://docs.ropensci.org/censo2017}
+  \item Report bugs at \url{https://github.com/ropensci/censo2017/issues/}
 }
 
 }
@@ -33,7 +33,8 @@ Other contributors:
 \itemize{
   \item Juan Correa [contributor]
   \item Maria Paula Caldas (rOpenSci) [reviewer]
-  \item Franz van Dunee (rOpenSci) [reviewer]
+  \item Frans van Dunee (rOpenSci) [reviewer]
+  \item Melina Vidoni (rOpenSci) [reviewer]
   \item Constanza Manriquez (revision independiente de las vinietas) [reviewer]
   \item  Instituto Nacional de Estadisticas (INE) [data contributor]
 }
