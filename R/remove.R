@@ -9,6 +9,6 @@
 #' \dontrun{ censo_borrar_base() }
 censo_borrar_base <- function() {
   suppressWarnings(censo_desconectar_base())
-  try(unlink(censo_path(), recursive = TRUE))
+  try(unlink(gsub("duckdb.*", "", censo_path()), recursive = TRUE))
   update_censo_pane()
 }
