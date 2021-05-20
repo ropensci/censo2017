@@ -52,11 +52,10 @@ censo_bbdd <- function(dir = censo_path()) {
 
   try(dir.create(dir, showWarnings = FALSE, recursive = TRUE))
 
+  drv <- duckdb::duckdb(db_file, read_only = FALSE)
+  
   tryCatch({
-    db <- DBI::dbConnect(
-      duckdb::duckdb(),
-      db_file
-    )
+    con <- DBI::dbConnect(drv)
   },
   error = function(e) {
     if (grepl("Failed to open database", e)) {
@@ -73,8 +72,8 @@ censo_bbdd <- function(dir = censo_path()) {
   finally = NULL
   )
 
-  assign("censo_bbdd", db, envir = censo_cache)
-  db
+  assign("censo_bbdd", con, envir = censo_cache)
+  con
 }
 
 
