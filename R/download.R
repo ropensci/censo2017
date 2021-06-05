@@ -13,8 +13,8 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{ censo_descargar_base() }
-censo_descargar_base <- function(ver = NULL) {
+#' \dontrun{ censo_descargar() }
+censo_descargar <- function(ver = NULL) {
   msg("Descargando la base de datos desde GitHub...")
 
   destdir <- tempdir()
@@ -30,7 +30,7 @@ censo_descargar_base <- function(ver = NULL) {
   
   msg("Descomprimiendo la base de datos local...")
   
-  suppressWarnings(try(censo_desconectar_base()))
+  suppressWarnings(try(censo_desconectar()))
   
   duckdb_version <- utils::packageVersion("duckdb")
   db_pattern <- paste0("v", gsub("\\.", "", duckdb_version), ".duckdb")
@@ -38,7 +38,7 @@ censo_descargar_base <- function(ver = NULL) {
   existing_files <- list.files(censo_path())
   
   if (!any(grepl(db_pattern, existing_files))) {
-    try(censo_borrar_base())
+    try(censo_eliminar())
   }
   
   utils::unzip(zfile, overwrite = TRUE, exdir = destdir)
@@ -54,7 +54,7 @@ censo_descargar_base <- function(ver = NULL) {
     
     msg(sprintf("Creando tabla %s ...", tout))
     
-    con <- censo_bbdd()
+    con <- censo_conectar()
     
     suppressMessages(
       DBI::dbExecute(
@@ -78,14 +78,14 @@ censo_descargar_base <- function(ver = NULL) {
   metadatos$version_duckdb <- as.character(metadatos$version_duckdb)
   metadatos$fecha_modificacion <- as.character(metadatos$fecha_modificacion)
   
-  con <- censo_bbdd()
+  con <- censo_conectar()
   suppressMessages(DBI::dbWriteTable(con, "metadatos", metadatos, append = T, temporary = F))
   DBI::dbDisconnect(con, shutdown = TRUE)
   
   unlink(destdir, recursive = TRUE)
   
-  invisible(DBI::dbListTables(censo_bbdd()))
-  censo_desconectar_base()
+  invisible(DBI::dbListTables(censo_conectar()))
+  censo_desconectar()
   
   update_censo_pane()
   censo_panel()

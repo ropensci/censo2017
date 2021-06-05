@@ -31,18 +31,18 @@ censo_check_status <- function() {
 #'
 #' @examples
 #' \dontrun{
-#'  DBI::dbListTables(censo_bbdd())
+#'  DBI::dbListTables(censo_conectar())
 #'
 #'  DBI::dbGetQuery(
-#'   censo_bbdd(),
+#'   censo_conectar(),
 #'   'SELECT * FROM comunas WHERE provincia_ref_id = 1'
 #'  )
 #' }
-censo_bbdd <- function(dir = censo_path()) {
+censo_conectar <- function(dir = censo_path()) {
   duckdb_version <- utils::packageVersion("duckdb")
   db_file <- paste0(dir, "/censo2017_duckdb_v", gsub("\\.", "", duckdb_version), ".duckdb")
   
-  db <- mget("censo_bbdd", envir = censo_cache, ifnotfound = NA)[[1]]
+  db <- mget("censo_conectar", envir = censo_cache, ifnotfound = NA)[[1]]
   
   if (inherits(db, "DBIConnection")) {
     if (DBI::dbIsValid(db)) {
@@ -62,7 +62,7 @@ censo_bbdd <- function(dir = censo_path()) {
       stop(
         "La base de datos local del Censo esta siendo usada por otro proceso.
         Intenta cerrar otras sesiones de R o desconectar la base usando
-        censo_desconectar_base() en las demas sesiones.",
+        censo_desconectar() en las demas sesiones.",
         call. = FALSE
       )
     } else {
@@ -72,15 +72,14 @@ censo_bbdd <- function(dir = censo_path()) {
   finally = NULL
   )
 
-  assign("censo_bbdd", con, envir = censo_cache)
+  assign("censo_conectar", con, envir = censo_cache)
   con
 }
-
 
 #' Tablas Completas de la Base de Datos del Censo
 #'
 #' Devuelve una tabla completa de la base de datos. Para entregar datos
-#' filtrados previamente se debe usar [censo2017::censo_bbdd()].
+#' filtrados previamente se debe usar [censo2017::censo_conectar()].
 #'
 #' @param tabla Una cadena de texto indicando la tabla a extraer
 #' @return Un tibble
@@ -90,27 +89,26 @@ censo_bbdd <- function(dir = censo_path()) {
 #' \dontrun{ censo_tabla("comunas") }
 censo_tabla <- function(tabla) {
   df <- tryCatch(
-    tibble::as_tibble(DBI::dbReadTable(censo_bbdd(), tabla)),
+    tibble::as_tibble(DBI::dbReadTable(censo_conectar(), tabla)),
     error = function(e) { read_table_error(e) }
   )
   return(df)
 }
-
 
 #' Desconecta la Base de Datos del Censo
 #'
 #' Una funcion auxiliar para desconectarse de la base de datos.
 #'
 #' @examples
-#' censo_desconectar_base()
+#' censo_desconectar()
 #' @export
 #'
-censo_desconectar_base <- function() {
-  censo_db_disconnect_()
+censo_desconectar <- function() {
+  censo_disconnect_()
 }
 
-censo_db_disconnect_ <- function(environment = censo_cache) {
-  db <- mget("censo_bbdd", envir = censo_cache, ifnotfound = NA)[[1]]
+censo_disconnect_ <- function(environment = censo_cache) {
+  db <- mget("censo_conectar", envir = censo_cache, ifnotfound = NA)[[1]]
   if (inherits(db, "DBIConnection")) {
     DBI::dbDisconnect(db, shutdown = TRUE)
   }
@@ -120,22 +118,9 @@ censo_db_disconnect_ <- function(environment = censo_cache) {
   }
 }
 
-
-#' Obtiene el Estado de la Base de Datos Local del Censo
-#'
-#' Entrega el estado de la base de datos local. Muestra un mensaje informativo
-#' respecto de como obtener la base si esta no se encuentra o esta daniada.
-#'
-#' @param msg Mostrar o no mensajes de estado. Por defecto es TRUE.
-#'
-#' @return TRUE si la base de datos existe y contiene las tablas esperadas,
-#' FALSE  en caso contrario (invisible).
-#' @export
-#' @examples
-#' \dontrun{ censo_estado() }
 censo_estado <- function(msg = TRUE) {
   expected_tables <- sort(censo_tables())
-  existing_tables <- sort(DBI::dbListTables(censo_bbdd()))
+  existing_tables <- sort(DBI::dbListTables(censo_conectar()))
 
   if (isTRUE(all.equal(expected_tables, existing_tables))) {
     status_msg <- crayon::green(paste(cli::symbol$tick,
@@ -157,4 +142,4 @@ censo_tables <- function() {
 }
 
 censo_cache <- new.env()
-reg.finalizer(censo_cache, censo_db_disconnect_, onexit = TRUE)
+reg.finalizer(censo_cache, censo_disconnect_, onexit = TRUE)

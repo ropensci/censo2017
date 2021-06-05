@@ -2,7 +2,7 @@ sql_action <- function() {
   if (requireNamespace("rstudioapi", quietly = TRUE) &&
       exists("documentNew", asNamespace("rstudioapi"))) {
     contents <- paste(
-      "-- !preview conn=censo2017::censo_bbdd()",
+      "-- !preview conn=censo2017::censo_conectar()",
       "",
       "SELECT * FROM comunas",
       "",
@@ -17,16 +17,6 @@ sql_action <- function() {
   }
 }
 
-#' Abre el Panel de Conexion a la Base de Datos del Censo en RStudio
-#'
-#' Esta funcion abre el panel "Connections" para explorar la base de datos
-#' local de forma interactiva.
-#'
-#' @return NULL
-#' @export
-#'
-#' @examples
-#' if (!is.null(getOption("connectionObserver"))) censo_panel()
 censo_panel <- function() {
   observer <- getOption("connectionObserver")
   if (!is.null(observer) && interactive()) {
@@ -36,14 +26,14 @@ censo_panel <- function() {
       displayName = "Tablas Censo 2017",
       icon = system.file("img", "cl-logo.png", package = "censo2017"),
       connectCode = "censo2017::censo_panel()",
-      disconnect = censo2017::censo_desconectar_base,
+      disconnect = censo2017::censo_desconectar,
       listObjectTypes = function() {
         list(
           table = list(contains = "data")
         )
       },
       listObjects = function(type = "datasets") {
-        tbls <- DBI::dbListTables(censo_bbdd())
+        tbls <- DBI::dbListTables(censo_conectar())
         data.frame(
           name = tbls,
           type = rep("table", length(tbls)),
@@ -51,7 +41,7 @@ censo_panel <- function() {
         )
       },
       listColumns = function(table) {
-        res <- DBI::dbGetQuery(censo_bbdd(),
+        res <- DBI::dbGetQuery(censo_conectar(),
                                paste("SELECT * FROM", table, "LIMIT 1"))
         data.frame(
           name = names(res), type = vapply(res, function(x) class(x)[1],
@@ -60,7 +50,7 @@ censo_panel <- function() {
         )
       },
       previewObject = function(rowLimit, table) {
-        DBI::dbGetQuery(censo_bbdd(),
+        DBI::dbGetQuery(censo_conectar(),
                         paste("SELECT * FROM", table, "LIMIT", rowLimit))
       },
       actions = list(
@@ -73,7 +63,7 @@ censo_panel <- function() {
           callback = sql_action
         )
       ),
-      connectionObject = censo_bbdd()
+      connectionObject = censo_conectar()
     )
   }
 }

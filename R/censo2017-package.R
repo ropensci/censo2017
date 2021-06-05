@@ -1,2 +1,46 @@
 #' @keywords internal
 "_PACKAGE"
+
+#' Poblacion por Nivel Educacional en la Region del Bio Bio
+#'
+#' @name nivel_educacional_biobio
+#' @docType data
+#' @author Elaboracion propia con base en datos desagregados del Censo
+#' @format Un tibble con 860 observaciones en las siguientes 4 variables.
+#' \describe{
+#'  \item{\code{comuna}}{codigo de comuna (15 regiones)}
+#'  \item{\code{nivel_educ}}{maximo nivel educacional alcanzado (ver la vinieta
+#'   con los links a la descripcion de codigos)}
+#'  \item{\code{cuenta}}{cantidad de personas censadas en la comuna}
+#'  \item{\code{proporcion}}{porcentaje que representan las personas censadas en
+#'   la comuna}
+#' }
+#' @description Proporciona la cuenta y porcentaje por comuna de las personas de
+#' la Region del Bio Bio de acuerdo al maximo nivel educacional que reportan 
+#' (e.g. primaria, secundaria, universitaria, etc.)
+#' @examples 
+#' nivel_educacional_biobio
+#' 
+#' \dontrun{
+#' # replicar el resultado usando dplyr directamente con SQL
+#' # es ligeramente distinto a las vinietas que explican esta misma tabla
+#' nivel_educacional_biobio <- tbl(censo_conectar(), "zonas") %>% 
+#'  mutate(
+#'   region = substr(as.character(geocodigo), 1, 2),
+#'   comuna = substr(as.character(geocodigo), 1, 5)
+#'  ) %>% 
+#'  filter(region == "08") %>% 
+#'  select(comuna, geocodigo, zonaloc_ref_id) %>%
+#'  inner_join(select(tbl(censo_conectar(), "viviendas"),
+#'   zonaloc_ref_id, vivienda_ref_id), by = "zonaloc_ref_id") %>%
+#'  inner_join(select(tbl(censo_conectar(), "hogares"),
+#'   vivienda_ref_id, hogar_ref_id), by = "vivienda_ref_id") %>%
+#'  inner_join(select(tbl(censo_conectar(), "personas"),
+#'   hogar_ref_id, nivel_educ = p15), by = "hogar_ref_id") %>%
+#'  group_by(comuna, nivel_educ) %>%
+#'  summarise(cuenta = n()) %>%
+#'  group_by(comuna) %>%
+#'  mutate(proporcion = cuenta * (1 / sum(cuenta))) %>% 
+#'  arrange(comuna, nivel_educ)}
+#' @keywords data
+NULL

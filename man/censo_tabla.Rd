@@ -14,7 +14,7 @@ Un tibble
 }
 \description{
 Devuelve una tabla completa de la base de datos. Para entregar datos
-filtrados previamente se debe usar \code{\link[=censo_bbdd]{censo_bbdd()}}.
+filtrados previamente se debe usar \code{\link[=censo_conectar]{censo_conectar()}}.
 }
 \examples{
 \dontrun{ censo_tabla("comunas") }
