@@ -9,7 +9,7 @@ censo_conectar(dir = censo_path())
 \arguments{
 \item{dir}{La ubicacion de la base de datos en el disco. Por defecto es
 \code{censo2017} en la carpeta de datos del usuario de R o la variable de entorno
-\code{CENSO_BBDD_DIR} si el usuario la especifica.}
+\code{CENSO2017_DIR} si el usuario la especifica.}
 }
 \description{
 Devuelve una conexion a la base de datos local. Esto corresponde a una

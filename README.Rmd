@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 
 Provee un acceso conveniente a mas de 17 millones de registros de la base de datos del Censo 2017. Los datos fueron importados desde el DVD oficial del INE usando el [Convertidor REDATAM](https://github.com/discontinuos/redatam-converter/) creado por Pablo De Grande y ademas se proporcionan los mapas que acompanian a estos datos. Estos mismos datos en DVD posteriormente quedaron disponibles en las [Bases de Datos del INE](https://www.ine.cl/estadisticas/sociales/censos-de-poblacion-y-vivienda/poblacion-y-vivienda).
 
-Despues de la primera llamada a `library(censo2017)` se le pedira al usuario que descargue la base usando `censo_descargar_base()` y se puede modificar la ruta de descarga con la variable de entorno `CENSO_BBDD_DIR`. La variable de entorno se puede crear con `usethis::edit_r_environ()`.
+Despues de la primera llamada a `library(censo2017)` se le pedira al usuario que descargue la base usando `censo_descargar_base()` y se puede modificar la ruta de descarga con la variable de entorno `CENSO2017_DIR`. La variable de entorno se puede crear con `usethis::edit_r_environ()`.
 
 La documentacion esta disponible en https://docs.ropensci.org/censo2017/.
 

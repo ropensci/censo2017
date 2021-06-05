@@ -15,7 +15,7 @@ disponible en GitHub. Se pueden ver todas las versiones en
 Este comando descarga la base de datos completa como un unico archivo zip que
 se descomprime para crear la base de datos local. Si no quieres descargar la
 base de datos en tu home, ejecuta usethis::edit_r_environ() para crear la
-variable de entorno CENSO_BBDD_DIR con la ruta.
+variable de entorno CENSO2017_DIR con la ruta.
 }
 \examples{
 \dontrun{ censo_descargar() }

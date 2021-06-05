@@ -17,7 +17,7 @@ sql_action <- function() {
   }
 }
 
-censo_panel <- function() {
+censo_pane <- function() {
   observer <- getOption("connectionObserver")
   if (!is.null(observer) && interactive()) {
     observer$connectionOpened(
@@ -25,7 +25,7 @@ censo_panel <- function() {
       host = "censo2017",
       displayName = "Tablas Censo 2017",
       icon = system.file("img", "cl-logo.png", package = "censo2017"),
-      connectCode = "censo2017::censo_panel()",
+      connectCode = "censo2017::censo_pane()",
       disconnect = censo2017::censo_desconectar,
       listObjectTypes = function() {
         list(
@@ -56,7 +56,7 @@ censo_panel <- function() {
       actions = list(
         Status = list(
           icon = system.file("img", "cl-logo.png", package = "censo2017"),
-          callback = censo_estado
+          callback = censo_status
         ),
         SQL = list(
           icon = system.file("img", "edit-sql.png", package = "censo2017"),

@@ -1,5 +1,5 @@
 censo_path <- function() {
-  sys_censo_path <- Sys.getenv("CENSO_BBDD_DIR")
+  sys_censo_path <- Sys.getenv("CENSO2017_DIR")
   sys_censo_path <- gsub("\\\\", "/", sys_censo_path)
   if (sys_censo_path == "") {
     return(gsub("\\\\", "/", tools::R_user_dir("censo2017")))
@@ -9,7 +9,7 @@ censo_path <- function() {
 }
 
 censo_check_status <- function() {
-  if (!censo_estado(FALSE)) {
+  if (!censo_status(FALSE)) {
     stop("La base de datos local del Censo 2017 esta vacia o daniada.
          Descargala con censo_descargar_base().")
   }
@@ -25,7 +25,7 @@ censo_check_status <- function() {
 #'
 #' @param dir La ubicacion de la base de datos en el disco. Por defecto es
 #' `censo2017` en la carpeta de datos del usuario de R o la variable de entorno
-#' `CENSO_BBDD_DIR` si el usuario la especifica.
+#' `CENSO2017_DIR` si el usuario la especifica.
 #'
 #' @export
 #'
@@ -40,7 +40,7 @@ censo_check_status <- function() {
 #' }
 censo_conectar <- function(dir = censo_path()) {
   duckdb_version <- utils::packageVersion("duckdb")
-  db_file <- paste0(dir, "/censo2017_duckdb_v", gsub("\\.", "", duckdb_version), ".duckdb")
+  db_file <- paste0(dir, "/censo2017_duckdb_v", gsub("\\.", "", duckdb_version), ".sql")
   
   db <- mget("censo_conectar", envir = censo_cache, ifnotfound = NA)[[1]]
   
@@ -118,7 +118,7 @@ censo_disconnect_ <- function(environment = censo_cache) {
   }
 }
 
-censo_estado <- function(msg = TRUE) {
+censo_status <- function(msg = TRUE) {
   expected_tables <- sort(censo_tables())
   existing_tables <- sort(DBI::dbListTables(censo_conectar()))
 

@@ -3,7 +3,7 @@
 #' Este comando descarga la base de datos completa como un unico archivo zip que
 #' se descomprime para crear la base de datos local. Si no quieres descargar la 
 #' base de datos en tu home, ejecuta usethis::edit_r_environ() para crear la 
-#' variable de entorno CENSO_BBDD_DIR con la ruta.
+#' variable de entorno CENSO2017_DIR con la ruta.
 #'
 #' @param ver La version a descargar. Por defecto es la ultima version 
 #' disponible en GitHub. Se pueden ver todas las versiones en
@@ -22,7 +22,7 @@ censo_descargar <- function(ver = NULL) {
   
   suppressWarnings(try(dir.create(dir, recursive = TRUE)))
   
-  zfile <- get_gh_release_file("pachamaltese/censo2017",
+  zfile <- get_gh_release_file("ropensci/censo2017",
                                tag_name = ver,
                                dir = destdir
   )
@@ -33,12 +33,14 @@ censo_descargar <- function(ver = NULL) {
   suppressWarnings(try(censo_desconectar()))
   
   duckdb_version <- utils::packageVersion("duckdb")
-  db_pattern <- paste0("v", gsub("\\.", "", duckdb_version), ".duckdb")
+  db_pattern <- paste0("v", gsub("\\.", "", duckdb_version), ".sql")
   
-  existing_files <- list.files(censo_path())
+  msg("Borrando las versiones antiguas de la base que pudiera haber...\n")
+  old_files  <- grep("duckdb", list.files(censo_path(), full.names = TRUE), value = TRUE)
+  old_files <- grep(db_pattern, old_files, value = TRUE, invert = TRUE)
   
-  if (!any(grepl(db_pattern, existing_files))) {
-    try(censo_eliminar())
+  if (length(old_files) > 0) {
+    try(unlink(old_files))
   }
   
   utils::unzip(zfile, overwrite = TRUE, exdir = destdir)
@@ -82,14 +84,9 @@ censo_descargar <- function(ver = NULL) {
   suppressMessages(DBI::dbWriteTable(con, "metadatos", metadatos, append = T, temporary = F))
   DBI::dbDisconnect(con, shutdown = TRUE)
   
-  unlink(destdir, recursive = TRUE)
-  
-  invisible(DBI::dbListTables(censo_conectar()))
-  censo_desconectar()
-  
   update_censo_pane()
-  censo_panel()
-  censo_estado()
+  censo_pane()
+  censo_status()
 }
 
 #' Descarga los archivos tsv/shp desde GitHub

@@ -6,7 +6,7 @@
   msg("Este paquete necesita 3.5 GB libres para la crear la base de datos localmente.")
   msg(" ")
   if (interactive() && Sys.getenv("RSTUDIO") == "1"  && !in_chk()) {
-    censo_panel()
+    censo_pane()
   }
-  if (interactive()) censo_estado()
+  if (interactive()) censo_status()
 }
