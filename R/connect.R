@@ -128,7 +128,7 @@ censo_status <- function(msg = TRUE) {
     out <- TRUE
   } else {
     status_msg <- crayon::red(paste(cli::symbol$cross,
-    "La base de datos local del Censo 2017 esta vacia, daniada o no es compatible con tu version de duckdb. Descargala con censo_descargar_base()."))
+    "La base de datos local del Censo 2017 esta vacia, daniada o no es compatible con tu version de duckdb. Descargala con censo_descargar()."))
     out <- FALSE
   }
   if (msg) msg(status_msg)

@@ -55,7 +55,7 @@ censo_pane <- function() {
       },
       actions = list(
         Status = list(
-          icon = system.file("img", "cl-logo.png", package = "censo2017"),
+          icon = system.file("img", "ropensci-logo.png", package = "censo2017"),
           callback = censo_status
         ),
         SQL = list(
