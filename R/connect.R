@@ -11,7 +11,7 @@ censo_path <- function() {
 censo_check_status <- function() {
   if (!censo_status(FALSE)) {
     stop("La base de datos local del Censo 2017 esta vacia o daniada.
-         Descargala con censo_descargar_base().")
+         Descargala con censo_descargar().")
   }
 }
 
