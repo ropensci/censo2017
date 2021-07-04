@@ -11,12 +11,17 @@
 #' @examples
 #' \dontrun{ censo_eliminar() }
 censo_eliminar <- function(preguntar = TRUE) {
-  answer <- menu(c("De acuerdo", "Cancelar"), 
-                 title = "Esto eliminara todas las bases del censo",
-                 graphics = FALSE)
-  if (answer == 1) {
-    suppressWarnings(censo_desconectar())
-    try(unlink(censo_path(), recursive = TRUE))
-    update_censo_pane() 
+  if (preguntar) {
+    answer <- utils::menu(c("De acuerdo", "Cancelar"), 
+                   title = "Esto eliminara todas las bases del censo",
+                   graphics = FALSE)
+    if (answer == 2) {
+       return(invisible())
+    }
   }
+  
+  suppressWarnings(censo_desconectar())
+  try(unlink(censo_path(), recursive = TRUE))
+  update_censo_pane()
+  return(invisible())
 }

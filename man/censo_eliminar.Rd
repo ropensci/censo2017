@@ -4,7 +4,11 @@
 \alias{censo_eliminar}
 \title{Elimina la Base de Datos del Censo de tu Computador}
 \usage{
-censo_eliminar()
+censo_eliminar(preguntar = TRUE)
+}
+\arguments{
+\item{preguntar}{Si acaso se despliega un menu para confirmar la accion de
+borrar cualquier base del censo existente. Por defecto es verdadero.}
 }
 \description{
 Elimina el directorio \code{censo2017} y todos sus contenidos, incluyendo versiones

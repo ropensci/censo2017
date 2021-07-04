@@ -30,6 +30,9 @@ censo_descargar <- function(ver = NULL) {
   
   msg("Descomprimiendo la base de datos local...")
   
+  duckdb_version <- utils::packageVersion("duckdb")
+  db_pattern <- paste0("v", gsub("\\.", "", duckdb_version), ".sql")
+  
   duckdb_current_files <- list.files(censo_path(), db_pattern)
   
   if (length(duckdb_current_files) > 0) {
@@ -40,11 +43,8 @@ censo_descargar <- function(ver = NULL) {
   
   suppressWarnings(try(censo_desconectar()))
   
-  duckdb_version <- utils::packageVersion("duckdb")
-  db_pattern <- paste0("v", gsub("\\.", "", duckdb_version), ".sql")
-  
   msg("Borrando las versiones antiguas de la base que pudiera haber...\n")
-  censo_eliminar()
+  censo_eliminar(preguntar = FALSE)
   
   utils::unzip(zfile, overwrite = TRUE, exdir = destdir)
   unlink(zfile)
