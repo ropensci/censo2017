@@ -22,7 +22,7 @@ test_that("censo_tabla returns tbl_df", {
 
   censo_desconectar()
   
-  censo_eliminar()
+  censo_eliminar(preguntar = FALSE)
   
   expect_false(file.exists(censo_path()))
 })
