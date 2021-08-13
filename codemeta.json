@@ -7,7 +7,7 @@
   "identifier": "censo2017",
   "description": "Provee un acceso conveniente a mas de 17 millones de registros\n    de la base de datos del Censo 2017. Los datos fueron importados desde\n    el DVD oficial del INE usando el Convertidor REDATAM creado por Pablo De\n    Grande. Esta paquete esta documentado intencionalmente en castellano\n    asciificado para que funcione sin problema en diferentes plataformas.\n    (Provides convenient access to more than 17 million records from the\n    Chilean Census 2017 database. The datasets were imported from the official\n    DVD provided by the Chilean National Bureau of Statistics by using the\n    REDATAM converter created by Pablo De Grande and in addition it includes the\n    maps accompanying these datasets.)",
   "name": "censo2017: Base de Datos de Facil Acceso del Censo 2017 de Chile\n    (2017 Chilean Census Easy Access Database)",
-  "codeRepository": "https://github.com/ropensci/censo2017",
+  "codeRepository": "https://github.com/pachadotdev/censo2017",
   "issueTracker": "https://github.com/ropensci/censo2017/issues/",
   "license": "https://spdx.org/licenses/CC0-1.0",
   "version": "0.6.1",
@@ -16,13 +16,13 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
   "author": [
     {
       "@type": "Person",
       "givenName": "Mauricio",
       "familyName": "Vargas",
-      "email": "mvargas@dcc.uchile.cl",
+      "email": "mavargas11@uc.cl",
       "@id": "https://orcid.org/0000-0003-1017-7574"
     }
   ],
@@ -52,7 +52,7 @@
       "@type": "Person",
       "givenName": "Mauricio",
       "familyName": "Vargas",
-      "email": "mvargas@dcc.uchile.cl",
+      "email": "mavargas11@uc.cl",
       "@id": "https://orcid.org/0000-0003-1017-7574"
     }
   ],
@@ -252,9 +252,9 @@
     }
   ],
   "relatedLink": ["https://docs.ropensci.org/censo2017/", "https://CRAN.R-project.org/package=censo2017"],
-  "readme": "https://github.com/ropensci/censo2017/blob/main/README.md",
-  "fileSize": "46.288KB",
-  "contIntegration": "https://codecov.io/gh/ropensci/censo2017",
+  "readme": "https://github.com/pachadotdev/censo2017/blob/main/README.md",
+  "fileSize": "46.407KB",
+  "contIntegration": ["https://github.com/ropensci/censo2017/actions", "https://codecov.io/gh/ropensci/censo2017"],
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable-1", "https://www.tidyverse.org/lifecycle/#stable"],
   "keywords": [
     "chile",
@@ -273,7 +273,7 @@
     "name": "Comprehensive R Archive Network (CRAN)",
     "url": "https://cran.r-project.org"
   },
-  "releaseNotes": "https://github.com/ropensci/censo2017/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/pachadotdev/censo2017/blob/master/NEWS.md",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/414",
