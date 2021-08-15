@@ -27,7 +27,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Mauricio Vargas \email{mvargas@dcc.uchile.cl} (\href{https://orcid.org/0000-0003-1017-7574}{ORCID})
+\strong{Maintainer}: Mauricio Vargas \email{mavargas11@uc.cl} (\href{https://orcid.org/0000-0003-1017-7574}{ORCID})
 
 Other contributors:
 \itemize{

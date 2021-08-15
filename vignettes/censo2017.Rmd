@@ -42,7 +42,7 @@ library(chilemapas)
 
 Hay que realizar algunos cruces de tablas, de manera de filtrar la region que nos interesa.
 
-Comenzamos con la tabla zonas: generamos la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. Nos interesa utilizar la variable `p15`, cuya descripcion esta en el [repositorio](https://github.com/pachamaltese/censo2017/blob/main/data-raw/censo2017-descripcion-variables.xml), para este ejemplo.
+Comenzamos con la tabla zonas: generamos la provincia a partir del geocodigo y luego filtro para unir hasta llegar a la tabla personas. Nos interesa utilizar la variable `p15`, cuya descripcion esta en la tabla `variables` y cuya codificacion aparece en la tabla `variables_codificacion`.
 
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
 nivel_educacional_biobio <- tbl(censo_conectar(), "zonas") %>% 
