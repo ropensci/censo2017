@@ -7,7 +7,7 @@
 #'
 #' @param ver La version a descargar. Por defecto es la ultima version 
 #' disponible en GitHub. Se pueden ver todas las versiones en
-#' <https://github.com/pachamaltese/censo2017/releases>.
+#' <https://github.com/ropensci/censo2017/releases>.
 #'
 #' @return NULL
 #' @export
