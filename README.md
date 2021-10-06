@@ -18,7 +18,7 @@ status](https://www.r-pkg.org/badges/version/censo2017)](https://CRAN.R-project.
 [![Buy Me a
 Coffee](https://img.shields.io/badge/buymeacoffee-pacha-yellow)](https://www.buymeacoffee.com/pacha?via=github)
 [![Status at rOpenSci Software Peer
-Review](https://badges.ropensci.org/433_status.svg)](https://github.com/ropensci/software-review/issues/414)
+Review](https://badges.ropensci.org/414_status.svg)](https://github.com/ropensci/software-review/issues/414)
 <!-- badges: end -->
 
 # Acerca de
