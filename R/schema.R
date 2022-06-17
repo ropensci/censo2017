@@ -161,6 +161,8 @@ create_schema <- function() {
   tipo VARCHAR NULL,
   rango VARCHAR NULL)"
   )
+
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS variables_codificacion")
   
   DBI::dbSendQuery(
     con,
