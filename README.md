@@ -96,8 +96,8 @@ Los cambios concretos respecto de la base original son los siguientes:
 Ademas de los datos del Censo, inclui la descripcion de las variables en
 formato tabla (y no en XML como se obtiene del DVD). La ventaja de esto
 es poder consultar rapidamente lo que significan los codigos de
-variables y su etiquetado, por ejemplo como explico en las 
-[vinietas](https://github.com/pachadotdev/censo2017/blob/main/vignettes/censo2017.Rmd).
+variables y su etiquetado, por ejemplo como explico en la 
+[historia del proyecto]([https://github.com/pachadotdev/censo2017/blob/main/vignettes/censo2017.Rmd](https://ropensci.org/blog/2021/07/27/censo2017-es/)).
 
 # Relacion de Censo 2017 con Chilemapas
 
