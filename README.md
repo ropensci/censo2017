@@ -96,38 +96,8 @@ Los cambios concretos respecto de la base original son los siguientes:
 Ademas de los datos del Censo, inclui la descripcion de las variables en
 formato tabla (y no en XML como se obtiene del DVD). La ventaja de esto
 es poder consultar rapidamente lo que significan los codigos de
-variables y su etiquetado, por ejemplo:
-
-``` r
-# con la bbdd instalada
-library(censo2017)
-library(dplyr)
-
-censo_tabla("variables") %>% 
-  filter(variable == "p01")
-#> # A tibble: 1 x 5
-#>   tabla     variable descripcion      tipo    rango 
-#>   <chr>     <chr>    <chr>            <chr>   <chr> 
-#> 1 viviendas p01      Tipo de Vivienda integer 1 - 10
-
-censo_tabla("variables_codificacion") %>% 
-  filter(variable == "p01")
-#> # A tibble: 12 x 4
-#>    tabla     variable valor descripcion                                         
-#>    <chr>     <chr>    <int> <chr>                                               
-#>  1 viviendas p01          1 Casa                                                
-#>  2 viviendas p01          2 Departamento en Edificio                            
-#>  3 viviendas p01          3 Vivienda Tradicional Indígena (Ruka, Pae Pae u Otra…
-#>  4 viviendas p01          4 Pieza en Casa Antigua o en Conventillo              
-#>  5 viviendas p01          5 Mediagua, Mejora, Rancho o Choza                    
-#>  6 viviendas p01          6 Móvil (Carpa, Casa Rodante o Similar)               
-#>  7 viviendas p01          7 Otro Tipo de Vivienda Particular                    
-#>  8 viviendas p01          8 Vivienda Colectiva                                  
-#>  9 viviendas p01          9 Operativo Personas en Tránsito (No Es Vivienda)     
-#> 10 viviendas p01         10 Operativo Calle (No Es Vivienda)                    
-#> 11 viviendas p01         11 Valor Perdido                                       
-#> 12 viviendas p01          0 No Aplica
-```
+variables y su etiquetado, por ejemplo como explico en las 
+[vinietas](https://github.com/pachadotdev/censo2017/blob/main/vignettes/censo2017.Rmd).
 
 # Relacion de Censo 2017 con Chilemapas
 
