@@ -48,8 +48,8 @@ conveniente a datos censales directamente en R o RStudio.
 
 # Requerimientos de instalacion
 
-Este paquete necesita 3.5 GB libres para la crear la base de datos
-localmente.
+Esta libreria necesita 3.5 GB libres para la crear la base de datos
+localmente. Una vez creada la base, esta ocupa 1.0 GB en disco.
 
 # Instalacion
 
