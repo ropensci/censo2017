@@ -16,7 +16,7 @@ Authors@R: c(
                role = c("rev"),
                comment = "rOpenSci"),
         person(given = "Frans",
-               family = "van Dunee",
+               family = "van Dunné",
                role = c("rev"),
                comment = "rOpenSci"),
         person(given = "Melina",
