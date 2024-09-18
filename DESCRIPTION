@@ -44,6 +44,7 @@ Description: Provee un acceso conveniente a mas de 17 millones de registros
 URL: https://docs.ropensci.org/censo2017/
 BugReports: https://github.com/ropensci/censo2017/issues/
 License: CC0
+Language: es
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
